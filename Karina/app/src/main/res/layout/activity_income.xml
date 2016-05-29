@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/margin"
+    tools:context="group8.karina.presentation.IncomeActivity"
+    android:layout_height="match_parent">
+
+    <!--Title (text), value (text), date (datepicker), user (dropdown), comment(text), category(dropdown)-->
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/titleText"
+        android:layout_alignParentTop="true" />
+    <EditText
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/valueText"
+        android:layout_alignStart="@+id/valueText" />
+
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_below="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Value: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/valueText" />
+
+    <EditText
+        android:id="@+id/valueText"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/titleText"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/tempDatePicker"
+        android:layout_alignStart="@+id/tempDatePicker" />
+
+    <!--Title (text), value (text), date (datepicker), user (dropdown), comment(text), category(dropdown)-->
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_below="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/tempDatePicker" />
+
+    <Button
+        android:id="@+id/tempDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp Date Picker"
+        android:layout_below="@id/valueText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/userSpinner"
+        android:layout_alignStart="@+id/userSpinner" />
+
+    <TextView
+        android:id="@+id/user"
+        android:layout_below="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/userSpinner" />
+
+    <Spinner
+        android:id="@+id/userSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempDatePicker"
+        android:layout_alignLeft="@+id/categorySpinner"
+        android:layout_alignStart="@+id/categorySpinner" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_below="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/categorySpinner" />
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userSpinner"
+        android:layout_alignLeft="@+id/commentText"
+        android:layout_alignStart="@+id/commentText" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_below="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/commentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/categorySpinner"
+        android:layout_toRightOf="@id/comment"
+
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentText"
+        android:text="Save"/>
+
+</RelativeLayout>
