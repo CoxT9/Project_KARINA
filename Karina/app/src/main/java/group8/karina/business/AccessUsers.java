@@ -1,5 +1,5 @@
 package group8.karina.business;
-import java.util.ArrayList;
+import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.application.KarinaApp;

@@ -33,12 +33,6 @@ public class AccessUsersTests
         Services.closeDataAccess();
     }
 
-    @After
-    public void tearDown()
-    {
-        Services.closeDataAccess();
-    }
-
     @Test
     public void insert_user_inserts_user()
     {

@@ -87,7 +87,12 @@ public class DataAccessStub
 
 	public List<User> getUserSequential()
 	{
-       return users;
+		List<User> result = new ArrayList<User>();
+		for( User u : users)
+		{
+			result.add(u.clone());
+		}
+		return result;
 	}
 
 
@@ -142,17 +147,80 @@ public class DataAccessStub
 		return null;
 	}
 
-	public String getCategorySequential(List<Category> categoryResult)
+	public List getAllCategories()
 	{
-        categoryResult.addAll(categories);
+		List<Category> result = new ArrayList<Category>();
+		for( Category cat : categories)
+		{
+			result.add(cat.clone());
+		}
+		return result;
+	}
+
+	public List getIncomeCategories()
+	{
+		List<Category> incomeCategories = getAllCategories();
+		int count = 0;
+
+		while (count < incomeCategories.size())
+		{
+			if (incomeCategories.get(count).isExpense())
+			{
+				incomeCategories.remove(count);
+			}
+			else
+			{
+				count++;
+			}
+		}
+
+		return(incomeCategories);
+	}
+
+	public List getExpenseCategories()
+	{
+		List<Category> expenseCategories = getAllCategories();
+		int count = 0;
+
+		while (count < expenseCategories.size())
+		{
+			if (!expenseCategories.get(count).isExpense())
+			{expenseCategories.remove(count);
+			}
+			else
+			{
+				count++;
+			}
+		}
+
+		return(expenseCategories);
+	}
+
+	public Category getCategoryByNameAndIsExpense(String targetName, boolean isExpense)
+	{
+		for (Category cat: categories)
+		{
+			if(cat.getCategoryName().equals(targetName) && cat.isExpense() == isExpense)
+			{
+				return cat;
+			}
+		}
+
 		return null;
 	}
 
-	public String insertCategory(Category currentCategory)
+	public void insertCategory(Category currentCategory) throws DuplicateEntryException
 	{
-		// don't bother checking for duplicates
-		categories.add(currentCategory);
-		return null;
+		Category found = getCategoryByNameAndIsExpense(currentCategory.getCategoryName(), currentCategory.isExpense());
+		if (found == null)
+		{
+			categories.add(currentCategory);
+		}
+		else
+		{
+			throw new DuplicateEntryException("Duplicate detected when entering category into database");
+		}
+
 	}
 
 	public String updateCategory(Category currentCategory)
