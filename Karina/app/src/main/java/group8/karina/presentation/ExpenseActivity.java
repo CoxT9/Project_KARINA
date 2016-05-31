@@ -1,3 +1,4 @@
+
 package group8.karina.presentation;
 
 import android.content.Intent;
@@ -23,6 +24,9 @@ public class ExpenseActivity extends TransactionActivity
     {
         if(validateForSave())
         {
+            Transaction t = new Transaction(null,getSelectedUser(),true,(-1.0*getEnteredAmount()),getSelectedCategory(),getComments());
+            accessTransactions.insertTransaction(t);
+
             startActivity(new Intent(this, MainActivity.class));
         }
     }

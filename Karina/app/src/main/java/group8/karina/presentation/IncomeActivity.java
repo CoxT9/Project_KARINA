@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import group8.karina.R;
+import group8.karina.objects.Transaction;
 
 /**
  * Created by Mike on 5/27/2016.
@@ -19,6 +20,7 @@ public class IncomeActivity extends TransactionActivity
     {
         if(validateForSave())
         {
+            Transaction t = new Transaction(null,getSelectedUser(),false,getEnteredAmount(),getSelectedCategory(),getComments());
             startActivity(new Intent(this, MainActivity.class));
         }
     }

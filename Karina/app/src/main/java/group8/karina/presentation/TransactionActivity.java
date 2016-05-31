@@ -40,6 +40,8 @@ public class TransactionActivity extends AppCompatActivity
     private TextView valueErrorText;
 
     protected AccessTransactions accessTransactions;
+    protected List<User> users;
+    protected List<Category> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,8 +73,9 @@ public class TransactionActivity extends AppCompatActivity
         List<String> list;
 
         list = new ArrayList<String>();
+        categories = accessCategories.getAllCategories();
 
-        for (Category cat : accessCategories.getAllCategories())
+        for (Category cat : categories)
         {
             list.add(cat.getCategoryName());
         }
@@ -108,9 +111,11 @@ public class TransactionActivity extends AppCompatActivity
         ArrayAdapter<String> adapter;
         List<String> list;
 
+        users = accessUsers.getUsers();
+
         list = new ArrayList<String>();
 
-        for (User user : accessUsers.getUsers())
+        for (User user : users)
         {
             list.add(user.getUserName());
         }
@@ -158,7 +163,7 @@ public class TransactionActivity extends AppCompatActivity
             valueErrorText.setTextColor(Color.RED);
             result = false;
         }
-        else if(!value.getText().toString().matches("[0-1]*\\.[0-9][0-1]"))
+        else if(!value.getText().toString().matches("[0-9]*\\.[0-9][0-9]"))
         {
             valueErrorText.setText("invalid money amount");
             valueErrorText.setTextColor(Color.RED);
@@ -168,4 +173,43 @@ public class TransactionActivity extends AppCompatActivity
         return result;
     }
 
+    protected int getSelectedUser()
+    {
+        String selectedUser = (String) userSpinner.getSelectedItem();
+
+        for(User u : users)
+        {
+            if(u.getUserName().equals(selectedUser))
+            {
+                return u.getUserID();
+            }
+        }
+
+        return -1;
+    }
+
+    protected int getSelectedCategory()
+    {
+        String selectedCategory = (String) categorySpinner.getSelectedItem();
+
+        for(Category c : categories)
+        {
+            if(c.getCategoryName().equals(selectedCategory))
+            {
+                return c.getCategoryID();
+            }
+        }
+
+        return -1;
+    }
+
+    protected double getEnteredAmount()
+    {
+        return Double.parseDouble(value.getText().toString());
+    }
+
+    protected String getComments()
+    {
+        return comments.getText().toString();
+    }
 }
