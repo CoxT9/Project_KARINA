@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/valueText"
-        android:layout_alignStart="@+id/valueText" />
+        android:layout_alignLeft="@+id/setDate"
+        android:layout_alignStart="@+id/setDate" />
 
 
     <TextView
@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/tempDatePicker"
-        android:layout_alignStart="@+id/tempDatePicker" />
+        android:layout_alignLeft="@+id/titleText"
+        android:layout_alignStart="@+id/titleText" />
 
     <!--Title (text), value (text), date (datepicker), user (dropdown), comment(text), category(dropdown)-->
 
@@ -61,18 +61,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@+id/tempDatePicker" />
+        android:layout_alignBottom="@+id/setDate" />
 
-    <Button
-        android:id="@+id/tempDatePicker"
+    <EditText
+        android:id="@+id/setDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temp Date Picker"
+        android:inputType="date"
         android:layout_below="@id/valueText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/userSpinner"
-        android:layout_alignStart="@+id/userSpinner" />
+        android:layout_alignStart="@+id/userSpinner"
+        android:hint="DD-MM-YYYY" />
 
     <TextView
         android:id="@+id/user"
@@ -89,7 +90,7 @@
         android:id="@+id/userSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tempDatePicker"
+        android:layout_below="@id/setDate"
         android:layout_alignLeft="@+id/categorySpinner"
         android:layout_alignStart="@+id/categorySpinner" />
 
@@ -139,5 +140,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/commentText"
         android:text="Save"/>
+
 
 </RelativeLayout>
