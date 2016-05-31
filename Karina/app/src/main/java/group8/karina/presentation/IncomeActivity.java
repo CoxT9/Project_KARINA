@@ -16,7 +16,7 @@ public class IncomeActivity extends AppCompatActivity
 
     private EditText title;
     private EditText value;
-    //TODO: datepicker
+    private EditText setDate;
     private Spinner userSpinner;
     private Spinner categorySpinner;
     private EditText comments;
@@ -32,6 +32,12 @@ public class IncomeActivity extends AppCompatActivity
         userSpinner = (Spinner) findViewById(R.id.userSpinner);
         categorySpinner = (Spinner)findViewById(R.id.categorySpinner);
         comments = (EditText)findViewById(R.id.commentText);
+        setDate = (EditText) findViewById(R.id.setDate);
+
+    }
+
+    public void setDateClicked() {
+
     }
 
     public void saveButtonClicked(View view)
