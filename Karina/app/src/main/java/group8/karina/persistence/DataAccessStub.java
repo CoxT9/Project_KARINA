@@ -64,17 +64,17 @@ public class DataAccessStub
         categories.add(category);
 
 		transactions = new ArrayList<Transaction>();
-		myTransaction = new Transaction( new Date(), 1, true, 50, 1);
+		myTransaction = new Transaction( new Date(), 1, true, 50, 1,null);
 		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 4, true, 30, 3);
+		myTransaction = new Transaction( new Date(), 4, true, 30, 3,null);
 		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 3, true, 80, 2);
+		myTransaction = new Transaction( new Date(), 3, true, 80, 2,null);
 		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 2, true, 12.75, 1);
+		myTransaction = new Transaction( new Date(), 2, true, 12.75, 1,null);
 		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 1, false, 100, 4);
+		myTransaction = new Transaction( new Date(), 1, false, 100, 4,null);
 		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 4, false, 51.34, 4);
+		myTransaction = new Transaction( new Date(), 4, false, 51.34, 4,null);
 		transactions.add(myTransaction);
 
 		System.out.println("Opened " +dbType +" database " +dbName);
