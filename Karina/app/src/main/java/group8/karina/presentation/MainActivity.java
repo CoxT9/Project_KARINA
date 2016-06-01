@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(this, CategoryList.class));
     }
 
-    public void onAddExpenseClicked(View view)
+    public void onExpenseListClicked(View view)
     {
-        startActivity(new Intent(this, ExpenseActivity.class));
+        startActivity(new Intent(this, ExpenseList.class));
     }
 
-    public void onAddIncomeClicked(View view)
+    public void onIncomeListClicked(View view)
     {
-        startActivity(new Intent(this, IncomeActivity.class));
+        startActivity(new Intent(this, IncomeList.class));
     }
 }

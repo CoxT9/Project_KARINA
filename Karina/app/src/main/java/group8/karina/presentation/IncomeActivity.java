@@ -8,9 +8,7 @@ import android.widget.Spinner;
 
 import group8.karina.R;
 
-/**
- * Created by Mike on 5/27/2016.
- */
+
 public class IncomeActivity extends AppCompatActivity
 {
 
@@ -36,7 +34,8 @@ public class IncomeActivity extends AppCompatActivity
 
     }
 
-    public void setDateClicked() {
+    public void setDateClicked()
+    {
 
     }
 
