@@ -10,13 +10,14 @@ public class Transaction
     private int userID;
     private Date date;
 
-    public Transaction( Date newDate, int usr, Boolean exp, double amt, int cat)
+    public Transaction(Date newDate, int usr, Boolean exp, double amt, int cat)
     {
         date=newDate;
         expense=exp;
         amount=amt;
         categoryID=cat;
         userID=usr;
+        transID=-1;
     }
 
     public int getTransactionID()

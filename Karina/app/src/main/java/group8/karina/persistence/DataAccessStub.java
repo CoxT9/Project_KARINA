@@ -98,9 +98,9 @@ public class DataAccessStub
 
 	public String insertUser(User currentUser) throws DuplicateEntryException
 	{
-        int index = users.indexOf(currentUser);
+        User found = getUserByName(currentUser.getUserName());
 
-		if(index >=0 )
+		if(found != null)
 		{
 			throw new DuplicateEntryException("Duplicate detected when entering user into database");
 		}

@@ -18,7 +18,7 @@ public class AccessTransactions
         dataAccess = Services.getDataAccess();
     }
 
-    public List<Transaction> getAllTransactions() // Why does it pass in a list to get a list?
+    public List<Transaction> getAllTransactions()
     {
         return dataAccess.getAllTransactions();
     }

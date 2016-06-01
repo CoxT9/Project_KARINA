@@ -11,12 +11,18 @@ public class Category
     {
         catName = newCatName;
         catExpense = exp;
+        catID = -1;
 
     }
 
     public int getCategoryID()
     {
         return catID;
+    }
+
+    public void setCategoryID(int newID)
+    {
+        catID = newID;
     }
 
     public String getCategoryName()
