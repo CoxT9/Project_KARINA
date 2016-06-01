@@ -9,14 +9,16 @@ public class Transaction
     private int categoryID;
     private int userID;
     private Date date;
+    private String comments;
 
-    public Transaction( Date newDate, int usr, Boolean exp, double amt, int cat)
+    public Transaction( Date newDate, int usr, Boolean exp, double amt, int cat,String com)
     {
         date=newDate;
         expense=exp;
         amount=amt;
         categoryID=cat;
         userID=usr;
+        comments = com;
     }
 
     public int getTransactionID()
@@ -47,7 +49,7 @@ public class Transaction
     }
 
     public Transaction clone(){
-        return new Transaction( date, userID, expense, amount, categoryID );
+        return new Transaction( date, userID, expense, amount, categoryID ,comments);
     }
 
     public void setTransactionID(int transID)
