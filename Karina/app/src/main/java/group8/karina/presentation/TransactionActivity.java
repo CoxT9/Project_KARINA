@@ -37,9 +37,9 @@ public class TransactionActivity extends AppCompatActivity
     private TextView userSpinnerText;
     private TextView categorySpinnerText;
     private AccessUsers accessUsers;
-    private AccessCategories accessCategories;
     private EditText setDate;
 
+    protected AccessCategories accessCategories;
     protected AccessTransactions accessTransactions;
     protected List<User> users;
     protected List<Category> categories;
@@ -73,7 +73,7 @@ public class TransactionActivity extends AppCompatActivity
         List<String> list;
 
         list = new ArrayList<String>();
-        categories = accessCategories.getAllCategories();
+        categories = getCategories();
 
         for (Category cat : categories)
         {
@@ -228,5 +228,9 @@ public class TransactionActivity extends AppCompatActivity
         }
 
         return date;
+    }
+
+    protected List<Category> getCategories(){
+        return accessCategories.getAllCategories();
     }
 }
