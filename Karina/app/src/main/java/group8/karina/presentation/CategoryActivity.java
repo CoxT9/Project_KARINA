@@ -14,9 +14,7 @@ import group8.karina.R;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
 
-/**
- * Created by Mike on 5/27/2016.
- */
+
 public class CategoryActivity extends AppCompatActivity
 {
     private EditText editCategory;

@@ -10,9 +10,7 @@ import android.widget.Spinner;
 import group8.karina.R;
 import group8.karina.objects.Transaction;
 
-/**
- * Created by Mike on 5/27/2016.
- */
+
 public class IncomeActivity extends TransactionActivity
 {
 
