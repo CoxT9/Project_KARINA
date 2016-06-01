@@ -19,6 +19,10 @@ public class User
     {
         return (userName);
     }
+    public void setUserID(int newID)
+    {
+        userID = newID;
+    }
 
     public User clone() { return new User( userName ); }
 
