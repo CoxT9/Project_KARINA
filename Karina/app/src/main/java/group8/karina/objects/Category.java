@@ -19,6 +19,11 @@ public class Category
         return catID;
     }
 
+    public void setCategoryID(int newID)
+    {
+        catID = newID;
+    }
+
     public String getCategoryName()
     {
         return catName;
