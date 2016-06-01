@@ -11,8 +11,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import group8.karina.R;
 import group8.karina.business.AccessCategories;
@@ -36,8 +38,7 @@ public class TransactionActivity extends AppCompatActivity
     private TextView categorySpinnerText;
     private AccessUsers accessUsers;
     private AccessCategories accessCategories;
-    private TextView titleErrorText;
-    private TextView valueErrorText;
+    private EditText setDate;
 
     protected AccessTransactions accessTransactions;
     protected List<User> users;
@@ -60,8 +61,7 @@ public class TransactionActivity extends AppCompatActivity
         comments = (EditText)findViewById(R.id.commentText);
         userSpinnerText = (TextView)findViewById(R.id.userSpinnerText);
         categorySpinnerText = (TextView)findViewById(R.id.categorySpinnerText);
-        titleErrorText = (TextView)findViewById(R.id.titleErrorText);
-        valueErrorText = (TextView)findViewById(R.id.valueErrorText);
+        setDate = (EditText)findViewById(R.id.setDate);
 
         fillUserSpinner();
         fillCategorySpinner();
@@ -152,23 +152,23 @@ public class TransactionActivity extends AppCompatActivity
 
         if(title.getText() == null || title.getText().toString().isEmpty())
         {
-            titleErrorText.setText("(required)");
-            titleErrorText.setTextColor(Color.RED);
             result = false;
         }
 
         if(value.getText() == null || value.getText().toString().isEmpty())
         {
-            valueErrorText.setText("(required)");
-            valueErrorText.setTextColor(Color.RED);
             result = false;
         }
         else if(!value.getText().toString().matches("[0-9]*\\.[0-9][0-9]"))
         {
-            valueErrorText.setText("invalid money amount");
-            valueErrorText.setTextColor(Color.RED);
             result = false;
         }
+
+        if(!setDate.getText().toString().matches("[0-3][0-9]-[0-1]?[1-9]-[0-9][0-9][0-9][0-9]"))
+        {
+            result = false;
+        }
+
 
         return result;
     }
@@ -211,5 +211,22 @@ public class TransactionActivity extends AppCompatActivity
     protected String getComments()
     {
         return comments.getText().toString();
+    }
+
+    protected Date getSelectedDate()
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        Date date;
+
+        try
+        {
+            date = dateFormat.parse(setDate.getText().toString());
+        }
+        catch(Exception e)
+        {
+            date = null;
+        }
+
+        return date;
     }
 }

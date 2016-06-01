@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
     }
 
-    public void onAddUserClicked(View view)
+    public void onUserListClicked(View view)
     {
-        startActivity(new Intent(this, UserActivity.class));
+        startActivity(new Intent(this, UserList.class));
     }
 
-    public void onAddCategoryClicked(View view)
+    public void onCategoryListClicked(View view)
     {
-        startActivity(new Intent(this, CategoryActivity.class));
+        startActivity(new Intent(this, CategoryList.class));
     }
 
     public void onAddExpenseClicked(View view)

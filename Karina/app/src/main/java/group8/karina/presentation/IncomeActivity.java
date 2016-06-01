@@ -20,7 +20,9 @@ public class IncomeActivity extends TransactionActivity
     {
         if(validateForSave())
         {
-            Transaction t = new Transaction(null,getSelectedUser(),false,getEnteredAmount(),getSelectedCategory(),getComments());
+            Transaction t = new Transaction(getSelectedDate(),getSelectedUser(),false,getEnteredAmount(),getSelectedCategory(),getComments());
+            accessTransactions.insertTransaction(t);
+
             startActivity(new Intent(this, MainActivity.class));
         }
     }

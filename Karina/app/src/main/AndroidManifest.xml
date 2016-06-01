@@ -12,13 +12,16 @@
 
         <activity android:name=".presentation.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".presentation.UserActivity"/>
+        <activity android:name=".presentation.UserList"/>
         <activity android:name=".presentation.ExpenseActivity"/>
         <activity android:name=".presentation.CategoryActivity"/>
+        <activity android:name=".presentation.CategoryList"/>
         <activity android:name=".presentation.IncomeActivity"/>
     </application>
 
