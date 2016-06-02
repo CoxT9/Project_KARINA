@@ -109,7 +109,7 @@ public class DataAccessStub
 	}
 
 
-	public String insertUser(User currentUser) throws DuplicateEntryException
+	public void insertUser(User currentUser) throws DuplicateEntryException
 	{
         int index = users.indexOf(currentUser);
 
@@ -120,32 +120,6 @@ public class DataAccessStub
 		currentUser.setUserID(nextUserID);
 		nextUserID++;
 		users.add(currentUser);
-
-		return null;
-	}
-
-	public String updateUser(User currentUser)
-	{
-		int index;
-		
-		index = users.indexOf(currentUser);
-		if (index >= 0)
-		{
-			users.set(index, currentUser);
-		}
-		return null;
-	}
-
-	public String deleteUser(User currentUser)
-	{
-		int index;
-		
-		index = users.indexOf(currentUser);
-		if (index >= 0)
-		{
-			users.remove(index);
-		}
-		return null;
 	}
 
 	public User getUserByName(String targetName)
@@ -240,93 +214,12 @@ public class DataAccessStub
 
 	}
 
-	public String updateCategory(Category currentCategory)
-	{
-		int index;
-		
-		index = categories.indexOf(currentCategory);
-		if (index >= 0)
-		{
-			categories.set(index, currentCategory);
-		}
-		return null;
-	}
-
-	public String deleteCategory(Category currentCategory)
-	{
-		int index;
-		
-		index = categories.indexOf(currentCategory);
-		if (index >= 0)
-		{
-			categories.remove(index);
-		}
-		return null;
-	}
-
-    public String insertTransaction(Transaction currentTransaction)
+    public void insertTransaction(Transaction currentTransaction)
     {
         // don't bother checking for duplicates
 		currentTransaction.setTransactionID(nextTransactionID);
         transactions.add(currentTransaction);
 		nextTransactionID++;
-        return null;
-    }
-
-    public String updateTransaction(Transaction currentTransaction)
-    {
-        int index;
-
-        index = transactions.indexOf(currentTransaction);
-        if (index >= 0)
-        {
-            transactions.set(index, currentTransaction);
-        }
-        return null;
-    }
-
-    public String deleteTransaction(Transaction currentTransaction)
-    {
-        int index;
-
-        index = transactions.indexOf(currentTransaction);
-        if (index >= 0)
-        {
-            transactions.remove(index);
-        }
-        return null;
-    }
-
-	public ArrayList<Transaction> getUserTransactions(Transaction currentTransaction)
-	{
-		ArrayList<Transaction> newTransactions;
-		Transaction transaction;
-		int counter;
-		
-		// get the Transaction objects with the same userID as currentTransaction
-		newTransactions = new ArrayList<Transaction>();
-		for (counter=0; counter<transactions.size(); counter++)
-		{
-			transaction = transactions.get(counter);
-			if (transaction.getUserID()==currentTransaction.getUserID())
-			{
-				newTransactions.add(transactions.get(counter));
-			}
-		}
-		return newTransactions;
-	}
-
-    public ArrayList<Transaction> getTransactionsByCategory(Category currentCategory)
-    {
-        ArrayList<Transaction> result = new ArrayList<Transaction>();
-		for( Transaction tr : transactions )
-		{
-			if( tr.getCategoryID() == currentCategory.getCategoryID() )
-			{
-				result.add(tr.clone());
-			}
-		}
-		return result;
     }
 
 	public List<Transaction> getTransactionsByType(boolean isExpense)

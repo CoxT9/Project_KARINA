@@ -41,13 +41,4 @@ public class AccessCategories
 
         dataAccess.insertCategory(currentCategory);
     }
-    public void updateCategory(Category currentCategory)
-    {
-        dataAccess.updateCategory(currentCategory);
-    }
-
-    public void deleteCategory(Category currentCategory)
-    {
-        dataAccess.deleteCategory(currentCategory);
-    }
 }

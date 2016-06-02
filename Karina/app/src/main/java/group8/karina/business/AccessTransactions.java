@@ -9,18 +9,10 @@ import group8.karina.persistence.DataAccessStub;
 public class AccessTransactions
 {
     private DataAccessStub dataAccess;
-    private List<Transaction> Transactions;
-    private Transaction Transaction;
-    private boolean isExpense;
 
     public AccessTransactions()
     {
         dataAccess = Services.getDataAccess();
-    }
-
-    public List<Transaction> getAllTransactions()
-    {
-        return dataAccess.getAllTransactions();
     }
 
     public List<Transaction> getTransactionsByType(boolean isExpense)
@@ -28,9 +20,9 @@ public class AccessTransactions
         return dataAccess.getTransactionsByType(isExpense);
     }
 
-    public String insertTransaction(Transaction currentTransaction)
+    public void insertTransaction(Transaction currentTransaction)
     {
-        return dataAccess.insertTransaction(currentTransaction);
+        dataAccess.insertTransaction(currentTransaction);
     }
 
     public double totalExpenses()
