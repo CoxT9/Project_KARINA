@@ -24,7 +24,6 @@ public class AccessCategoriesTests
     {
         dataAccess = Services.getDataAccess();
         accessCategories = new AccessCategories();
-
     }
 
     @After
