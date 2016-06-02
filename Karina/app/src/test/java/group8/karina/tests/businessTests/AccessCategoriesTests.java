@@ -29,7 +29,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 		Services.closeDataAccess();
 	}
 
-	public void test_insert_category_inserts_categories()
+	public void testInsertCategoryInsertsCategories()
 	{
 		Category expectedCategory = new Category("definitelynotinthedatabase", true);
 		Category actualCategory;
@@ -50,7 +50,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 
 	}
 
-	public void test_insert_Category_throws_exception_with_null_CategoryName()
+	public void testInsertCategoryThrowsExceptionWithNullCategoryName()
 	{
 		Category expectedCategory = new Category(null, true);
 		try
@@ -66,7 +66,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 		}
 	}
 
-	public void test_insert_user_throws_exception_with_empty_username()
+	public void testInsertUserThrowsExceptionWithEmptyUsername()
 	{
 		Category expectedCategory = new Category("", true);
 		try
@@ -82,7 +82,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 		}
 	}
 
-	public void test_get_users_returns_right_users()
+	public void testGetUsersReturnsRightUsers()
 	{
 		try
 		{

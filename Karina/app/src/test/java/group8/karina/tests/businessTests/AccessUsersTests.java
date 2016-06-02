@@ -48,7 +48,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 		assertEquals(actualUser.getUserName(), expectedUser.getUserName());
 	}
 
-	public void test_insert_user_throws_exception_with_null_username()
+	public void testInsertUserThrowsExceptionWithNullUsername()
 	{
 		User expectedUser = new User(null);
 		try
@@ -64,7 +64,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 		}
 	}
 
-	public void test_insert_user_throws_exception_with_empty_username()
+	public void testInsertUserThrowsExceptionWithEmptyUsername()
 	{
 		User expectedUser = new User("");
 		try
@@ -80,7 +80,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 		}
 	}
 
-	public void test_get_users_returns_right_users()
+	public void testGetUsersReturnsRightUsers()
 	{
 		try
 		{

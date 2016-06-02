@@ -69,8 +69,7 @@ public class TransactionTests extends junit.framework.TestCase
 
 	}
 
-	public void testCloning()
-	{
+	public void testCloning() {
 		otherTrans = trans.clone();
 		assertEquals(trans.isExpense(), TRANS_ORIGINAL_ISEXP);
 		assertEquals(trans.getTransactionID(), TRANS_ORIGINAL_ID);

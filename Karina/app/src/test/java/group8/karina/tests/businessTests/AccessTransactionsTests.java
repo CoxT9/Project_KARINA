@@ -33,7 +33,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	}
 
 	@Test
-	public void test_get_transactions_by_type_returns_expense_transactions()
+	public void testGetTransactionsByTypeReturnsExpenseTransactions()
 	{
 		int expectedSize = 4; //from seed data
 		List<Transaction> expenseTransactions = accessTransactions.getTransactionsByType(true);
@@ -47,7 +47,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	}
 
 	@Test
-	public void test_get_transactions_by_type_returns_income_transactions()
+	public void testGetTransactionsByTypeReturnsIncomeTransactions()
 	{
 		int expectedSize = 2; //from seed data
 		List<Transaction> incomeTransactions = accessTransactions.getTransactionsByType(false);
@@ -61,7 +61,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	}
 
 	@Test
-	public void test_insert_transaction_inserts_transaction()
+	public void testInsertTransactionInsertsTransaction()
 	{
 		Transaction expectedTransaction = new Transaction(null, 8, true, 1.12, 1, "hello world");
 		expectedTransaction.setTransactionID(123);
@@ -77,5 +77,21 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		assertEquals(expectedTransaction.getCategoryID(), actualTransaction.getCategoryID());
 		assertEquals(expectedTransaction.getComments(), actualTransaction.getComments());
 
+	}
+
+	@Test
+	public void testGetIncomeReturnsTotalIncome()
+	{
+		double expectedValue = 151.34; // from seed data
+		double actualValue = accessTransactions.totalIncome();
+		assertEquals(expectedValue, actualValue, 0.0);
+	}
+
+	@Test
+	public void testGetExpensesReturnsTotalExpenses()
+	{
+		double expectedValue = 172.75; // from seed data
+		double actualValue = accessTransactions.totalExpenses();
+		assertEquals(expectedValue, actualValue, 0.0);
 	}
 }
