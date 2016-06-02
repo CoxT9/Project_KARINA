@@ -1,14 +1,11 @@
-package group8.karina.businessTests.objectsTests;
+package group8.karina.tests.objectsTests;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import group8.karina.objects.Category;
-
-import static org.junit.Assert.*;
 
 public class CategoryTests extends junit.framework.TestCase
 {

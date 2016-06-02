@@ -1,21 +1,13 @@
-package group8.karina.businessTests.objectsTests;
+package group8.karina.tests.objectsTests;
 
 import org.junit.Before;
-import org.junit.Test;
 
-import group8.karina.objects.Transaction;
 import group8.karina.objects.Transaction;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import org.junit.Test;
-
 import java.util.Date;
-
-import group8.karina.objects.User;
-
-import static org.junit.Assert.*;
 
 public class TransactionTests extends junit.framework.TestCase
 {

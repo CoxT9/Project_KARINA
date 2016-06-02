@@ -1,18 +1,15 @@
-package group8.karina.businessTests.businessTests;
+package group8.karina.tests.businessTests;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Date;
 import java.util.List;
 
 import group8.karina.application.Services;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 import group8.karina.persistence.DataAccessStub;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Malcolm on 2016-06-01.
