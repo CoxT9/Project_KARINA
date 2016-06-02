@@ -17,61 +17,61 @@ import group8.karina.objects.Category;
 
 public class CategoryActivity extends AppCompatActivity
 {
-    private EditText editCategory;
-    private TextView addCategoryText;
-    private TextView errorText;
-    private AccessCategories access;
-    private RadioButton expenseRadio;
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+	private EditText editCategory;
+	private TextView addCategoryText;
+	private TextView errorText;
+	private AccessCategories access;
+	private RadioButton expenseRadio;
 
-        access = new AccessCategories();
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_category);
 
-        editCategory = (EditText) findViewById(R.id.editCategory);
-        addCategoryText = (TextView) findViewById(R.id.addCategoryText);
-        errorText = (TextView) findViewById(R.id.errorText);
-        expenseRadio = (RadioButton) findViewById(R.id.expenseRadioButton);
-    }
+		access = new AccessCategories();
 
-    public void saveButtonClicked(View view)
-    {
-        if(validateForSave())
-        {
-            Category category = new Category(editCategory.getText().toString(),expenseRadio.isChecked());
+		editCategory = (EditText) findViewById(R.id.editCategory);
+		addCategoryText = (TextView) findViewById(R.id.addCategoryText);
+		errorText = (TextView) findViewById(R.id.errorText);
+		expenseRadio = (RadioButton) findViewById(R.id.expenseRadioButton);
+	}
 
-            try
-            {
-                access.insertCategory(category);
-                startActivity(new Intent(this, MainActivity.class));
-            }
-            catch(DuplicateEntryException dupEx)
-            {
-                writeDuplicateMessage();
-            }
+	public void saveButtonClicked(View view)
+	{
+		if (validateForSave())
+		{
+			Category category = new Category(editCategory.getText().toString(), expenseRadio.isChecked());
 
-        }
-    }
+			try
+			{
+				access.insertCategory(category);
+				startActivity(new Intent(this, MainActivity.class));
+			} catch (DuplicateEntryException dupEx)
+			{
+				writeDuplicateMessage();
+			}
 
-    private boolean validateForSave()
-    {
-        if(editCategory.getText().toString() == null || editCategory.getText().toString().isEmpty())
-        {
-            errorText.setText("Cannot have a blank name");
-            errorText.setTextColor(Color.RED);
+		}
+	}
 
-            return false;
-        }
+	private boolean validateForSave()
+	{
+		if (editCategory.getText().toString() == null || editCategory.getText().toString().isEmpty())
+		{
+			errorText.setText("Cannot have a blank name");
+			errorText.setTextColor(Color.RED);
 
-        return true;
-    }
+			return false;
+		}
 
-    private void writeDuplicateMessage()
-    {
-        errorText.setText("A category already exists with that name");
-        errorText.setTextColor(Color.RED);
-    }
+		return true;
+	}
+
+	private void writeDuplicateMessage()
+	{
+		errorText.setText("A category already exists with that name");
+		errorText.setTextColor(Color.RED);
+	}
 
 }

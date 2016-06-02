@@ -17,15 +17,15 @@ import group8.karina.objects.Transaction;
 
 public class IncomeList extends AppCompatActivity
 {
-    private ListView listView;
-    private AccessTransactions access;
+	private ListView listView;
+	private AccessTransactions access;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_income_list);
 
         listView = (ListView) findViewById(R.id.incomeList);
 
@@ -45,10 +45,10 @@ public class IncomeList extends AppCompatActivity
 
 
 
-    }
+	}
 
-    public void addIncomeClicked(View view)
-    {
-        startActivity(new Intent(this, IncomeActivity.class));
-    }
+	public void addIncomeClicked(View view)
+	{
+		startActivity(new Intent(this, IncomeActivity.class));
+	}
 }

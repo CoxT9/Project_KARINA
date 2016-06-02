@@ -17,19 +17,20 @@ import group8.karina.objects.Category;
 public class CategoryList extends AppCompatActivity
 {
 
-    private AccessCategories access;
+	private RelativeLayout card;
+	private AccessCategories access;
     private ListView listView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_category_list);
 
-        listView = (ListView) findViewById(R.id.categoryList);
+		listView = (ListView) findViewById(R.id.categoryList);
 
         ArrayList<String> values = new ArrayList<String>();
-        access = new AccessCategories();
+		access = new AccessCategories();
         List<Category> categories = access.getAllCategories();
 
         for (Category cat : categories)
@@ -41,12 +42,12 @@ public class CategoryList extends AppCompatActivity
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
         listView.setAdapter(adapter);
 
-    }
+	}
 
 
-    public void addCategoryClicked(View view)
-    {
-        startActivity(new Intent(this, CategoryActivity.class));
-    }
+	public void addCategoryClicked(View view)
+	{
+		startActivity(new Intent(this, CategoryActivity.class));
+	}
 
 }

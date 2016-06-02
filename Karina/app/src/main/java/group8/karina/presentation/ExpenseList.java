@@ -17,17 +17,17 @@ import group8.karina.objects.Transaction;
 
 public class ExpenseList extends AppCompatActivity
 {
-    private ListView listView;
-    private AccessTransactions access;
+	private ListView listView;
+	private AccessTransactions access;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_expense_list);
 
-        listView = (ListView) findViewById(R.id.expenseList);
+		listView = (ListView) findViewById(R.id.expenseList);
 
 		ArrayList<String> values = new ArrayList<String>();
 		access = new AccessTransactions();
@@ -42,10 +42,10 @@ public class ExpenseList extends AppCompatActivity
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
 		listView.setAdapter(adapter);
 
-    }
+	}
 
-    public void addExpenseClicked(View view)
-    {
-        startActivity(new Intent(this, ExpenseActivity.class));
-    }
+	public void addExpenseClicked(View view)
+	{
+		startActivity(new Intent(this, ExpenseActivity.class));
+	}
 }

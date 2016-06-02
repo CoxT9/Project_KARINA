@@ -20,11 +20,11 @@ public class UserList extends AppCompatActivity
     private ListView listView;
     private AccessUsers access;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_user_list);
 
         listView = (ListView) findViewById(R.id.userList);
 
@@ -43,8 +43,8 @@ public class UserList extends AppCompatActivity
     }
 
 
-    public void addUserClicked(View view)
-    {
-        startActivity(new Intent(this, UserActivity.class));
-    }
+	public void addUserClicked(View view)
+	{
+		startActivity(new Intent(this, UserActivity.class));
+	}
 }

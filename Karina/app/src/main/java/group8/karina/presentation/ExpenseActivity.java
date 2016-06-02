@@ -16,24 +16,23 @@ import group8.karina.objects.Category;
 import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
 
-/**
- * Created by Mike on 5/27/2016.
- */
+
 public class ExpenseActivity extends TransactionActivity
 {
 
-    public void saveButtonClicked(View view)
-    {
-        if(validateForSave())
-        {
-            Transaction t = new Transaction(getSelectedDate(),getSelectedUser(),true,(-1.0*getEnteredAmount()),getSelectedCategory(),getComments());
-            accessTransactions.insertTransaction(t);
+	public void saveButtonClicked(View view)
+	{
+		if (validateForSave())
+		{
+			Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), true, (-1.0 * getEnteredAmount()), getSelectedCategory(), getComments());
+			accessTransactions.insertTransaction(t);
 
-            startActivity(new Intent(this, MainActivity.class));
-        }
-    }
+			startActivity(new Intent(this, MainActivity.class));
+		}
+	}
 
-    protected List<Category> getCategories(){
-        return accessCategories.getExpenseCategories();
-    }
+	protected List<Category> getCategories()
+	{
+		return accessCategories.getExpenseCategories();
+	}
 }
