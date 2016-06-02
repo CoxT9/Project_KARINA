@@ -7,31 +7,8 @@
     tools:context="group8.karina.presentation.IncomeActivity"
     android:layout_height="match_parent">
 
-    <!--Title (text), value (text), date (datepicker), user (dropdown), comment(text), category(dropdown)-->
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title: "
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center_vertical"
-        android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@+id/titleText"
-        android:layout_alignParentTop="true" />
-    <EditText
-        android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/setDate"
-        android:layout_alignStart="@+id/setDate" />
-
-
     <TextView
         android:id="@+id/value"
-        android:layout_below="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Value: "
@@ -43,14 +20,12 @@
     <EditText
         android:id="@+id/valueText"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/titleText"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/titleText"
-        android:layout_alignStart="@+id/titleText" />
-
-    <!--Title (text), value (text), date (datepicker), user (dropdown), comment(text), category(dropdown)-->
+        android:layout_alignLeft="@+id/setDate"
+        android:layout_alignStart="@+id/setDate"
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/date"
@@ -61,7 +36,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@+id/setDate" />
+        android:layout_alignBottom="@+id/setDate"
+        android:layout_alignParentEnd="false" />
 
     <EditText
         android:id="@+id/setDate"
