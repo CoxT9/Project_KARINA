@@ -5,15 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import group8.karina.R;
-import group8.karina.business.AccessCategories;
+import group8.karina.business.AccessTransactions;
+import group8.karina.objects.Transaction;
 
 public class ExpenseList extends AppCompatActivity
 {
-    private RelativeLayout expenseCard;
-    private AccessCategories access;
+    private ListView listView;
+    private AccessTransactions access;
 
 
     @Override
@@ -22,7 +27,20 @@ public class ExpenseList extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_list);
 
-        expenseCard = (RelativeLayout) findViewById(R.id.expenseCard);
+        listView = (ListView) findViewById(R.id.expenseList);
+
+		ArrayList<String> values = new ArrayList<String>();
+		access = new AccessTransactions();
+		List<Transaction> transactions = access.getTransactionsByType(true);
+
+		for (Transaction tr : transactions)
+		{
+			values.add("$" + tr.getAmount() + " on " + tr.getDate());
+		}
+
+
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
+		listView.setAdapter(adapter);
 
     }
 

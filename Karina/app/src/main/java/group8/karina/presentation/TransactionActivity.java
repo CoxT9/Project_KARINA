@@ -26,7 +26,6 @@ import group8.karina.objects.User;
  */
 public class TransactionActivity extends AppCompatActivity
 {
-    private EditText title;
     private EditText value;
     private Spinner userSpinner;
     private Spinner categorySpinner;
@@ -146,10 +145,6 @@ public class TransactionActivity extends AppCompatActivity
     {
         boolean result = true;
 
-        if(title.getText() == null || title.getText().toString().isEmpty())
-        {
-            result = false;
-        }
 
         if(value.getText() == null || value.getText().toString().isEmpty())
         {
