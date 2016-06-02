@@ -12,7 +12,6 @@ public class Transaction
     private String comments;
 
     public Transaction( Date newDate, int usr, Boolean exp, double amt, int cat,String com)
-
     {
         date=newDate;
         expense=exp;

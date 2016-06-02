@@ -3,12 +3,8 @@ package group8.karina.businessTests.objectsTests;
 import org.junit.Before;
 import org.junit.Test;
 
-import group8.karina.objects.Transaction;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-
-import org.junit.Test;
 
 import group8.karina.objects.Category;
 

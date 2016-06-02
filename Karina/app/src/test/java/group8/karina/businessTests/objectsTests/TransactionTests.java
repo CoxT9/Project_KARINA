@@ -24,6 +24,7 @@ public class TransactionTests {
     private final int TRANS_ORIGINAL_CAT_ID = 1;
     private final int TRANS_ORIGINAL_USER_ID = 1;
     private final Date TRANS_ORIGINAL_DATE = new Date();
+    private final String TRANS_ORIGINAL_COMMENT = "HI THERE";
     private final int TRANS_INITIAL_ID = -1;
 
     private Transaction trans;
@@ -31,7 +32,7 @@ public class TransactionTests {
 
     @Before
     public void setUp() {
-        trans = new Transaction(TRANS_ORIGINAL_DATE, TRANS_ORIGINAL_USER_ID, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID);
+        trans = new Transaction(TRANS_ORIGINAL_DATE, TRANS_ORIGINAL_USER_ID, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID, TRANS_ORIGINAL_COMMENT);
         trans.setTransactionID(TRANS_ORIGINAL_ID);
 
     }
@@ -40,7 +41,7 @@ public class TransactionTests {
     public void equality() {
 
         //equals compares transaction ids
-        otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID);
+        otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID, TRANS_ORIGINAL_COMMENT);
         otherTrans.setTransactionID(TRANS_ORIGINAL_ID);
 
         assertTrue(otherTrans.equals(trans));
@@ -53,7 +54,7 @@ public class TransactionTests {
 
     @Test
     public void GettersGetCorrectValues() {
-        otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID);
+        otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID, TRANS_ORIGINAL_COMMENT);
         assertEquals(otherTrans.getTransactionID(), TRANS_INITIAL_ID);
 
         assertEquals(trans.isExpense(), TRANS_ORIGINAL_ISEXP);

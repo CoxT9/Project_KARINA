@@ -29,8 +29,7 @@ public class Category
     {
         return catName;
     }
-
-
+    
     public boolean isExpense() {return catExpense;}
 
     public Category clone() { return new Category( catName, catExpense ); }
