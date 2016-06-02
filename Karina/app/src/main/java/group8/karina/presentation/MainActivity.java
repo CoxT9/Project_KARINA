@@ -10,35 +10,35 @@ import group8.karina.R;
 public class MainActivity extends AppCompatActivity
 {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
 
-    public void onUserListClicked(View view)
-    {
-        startActivity(new Intent(this, UserList.class));
-    }
+	public void onUserListClicked(View view)
+	{
+		startActivity(new Intent(this, UserList.class));
+	}
 
-    public void onCategoryListClicked(View view)
-    {
-        startActivity(new Intent(this, CategoryList.class));
-    }
+	public void onCategoryListClicked(View view)
+	{
+		startActivity(new Intent(this, CategoryList.class));
+	}
 
-    public void onExpenseListClicked(View view)
-    {
-        startActivity(new Intent(this, ExpenseList.class));
-    }
+	public void onExpenseListClicked(View view)
+	{
+		startActivity(new Intent(this, ExpenseList.class));
+	}
 
-    public void onIncomeListClicked(View view)
-    {
-        startActivity(new Intent(this, IncomeList.class));
-    }
+	public void onIncomeListClicked(View view)
+	{
+		startActivity(new Intent(this, IncomeList.class));
+	}
 
-    public void onStatisticsClicked(View view)
-    {
-       startActivity(new Intent(this, StatisticsActivity.class));
-    }
+	public void onStatisticsClicked(View view)
+	{
+		startActivity(new Intent(this, StatisticsActivity.class));
+	}
 }
