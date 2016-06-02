@@ -22,9 +22,17 @@ public class DataAccessStub
 	private ArrayList<Category> categories;
 	private ArrayList<Transaction> transactions;
 
+	private int nextCategoryID;
+	private int nextUserID;
+	private int nextTransactionID;
+
+
 	public DataAccessStub(String dbName)
 	{
 		this.dbName = dbName;
+		nextCategoryID =1;
+		nextTransactionID =1;
+		nextUserID =1;
 	}
 
 	public DataAccessStub()
@@ -37,46 +45,51 @@ public class DataAccessStub
 		User user;
 		Category category;
 		Transaction myTransaction;
-
 		users = new ArrayList<User>();
-		user = new User("Jon");
-		users.add(user);
-		user = new User("Bran");
-		users.add(user);
-		user = new User("Aria");
-		users.add(user);
-		user = new User("Sansa");
-		users.add(user);
-        user = new User("default");
-        users.add(user);
-
 		categories = new ArrayList<Category>();
-
-		category = new Category( "groceries", true);
-		categories.add(category);
-		category = new Category( "weapons", true);
-		categories.add(category);
-		category = new Category( "entertainment", true);
-		categories.add(category);
-		category = new Category( "income", false);
-		categories.add(category);
-        category = new Category( "default", true);
-        categories.add(category);
-
 		transactions = new ArrayList<Transaction>();
-		myTransaction = new Transaction( new Date(), 1, true, 50, 1);
-		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 4, true, 30, 3);
-		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 3, true, 80, 2);
-		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 2, true, 12.75, 1);
-		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 1, false, 100, 4);
-		transactions.add(myTransaction);
-		myTransaction = new Transaction( new Date(), 4, false, 51.34, 4);
-		transactions.add(myTransaction);
+		try
+		{
+			user = new User("Jon");
+			insertUser(user);
+			user = new User("Bran");
+			insertUser(user);
+			user = new User("Aria");
+			insertUser(user);
+			user = new User("Sansa");
+			insertUser(user);
+			user = new User("default");
+			insertUser(user);
 
+			category = new Category( "groceries", true);
+			insertCategory(category);
+			category = new Category( "weapons", true);
+			insertCategory(category);
+			category = new Category( "entertainment", true);
+			insertCategory(category);
+			category = new Category( "income", false);
+			insertCategory(category);
+			category = new Category( "default", true);
+			insertCategory(category);
+
+
+			myTransaction = new Transaction( new Date(), 1, true, 50, 1,null);
+			insertTransaction(myTransaction);
+			myTransaction = new Transaction( new Date(), 4, true, 30, 3,null);
+			insertTransaction(myTransaction);
+			myTransaction = new Transaction( new Date(), 3, true, 80, 2,null);
+			insertTransaction(myTransaction);
+			myTransaction = new Transaction( new Date(), 2, true, 12.75, 1,null);
+			insertTransaction(myTransaction);
+			myTransaction = new Transaction( new Date(), 1, false, 100, 4,null);
+			insertTransaction(myTransaction);
+			myTransaction = new Transaction( new Date(), 4, false, 51.34, 4,null);
+			insertTransaction(myTransaction);
+
+		} catch (DuplicateEntryException e)
+		{
+			e.printStackTrace();
+		}
 		System.out.println("Opened " +dbType +" database " +dbName);
 	}
 
@@ -104,7 +117,8 @@ public class DataAccessStub
 		{
 			throw new DuplicateEntryException("Duplicate detected when entering user into database");
 		}
-
+		currentUser.setUserID(nextUserID);
+		nextUserID++;
 		users.add(currentUser);
 
 		return null;
@@ -214,7 +228,10 @@ public class DataAccessStub
 		Category found = getCategoryByNameAndIsExpense(currentCategory.getCategoryName(), currentCategory.isExpense());
 		if (found == null)
 		{
+			currentCategory.setCategoryID(nextCategoryID);
 			categories.add(currentCategory);
+			nextCategoryID++;
+
 		}
 		else
 		{
@@ -264,7 +281,9 @@ public class DataAccessStub
     public String insertTransaction(Transaction currentTransaction)
     {
         // don't bother checking for duplicates
+		currentTransaction.setTransactionID(nextTransactionID);
         transactions.add(currentTransaction);
+		nextTransactionID++;
         return null;
     }
 
