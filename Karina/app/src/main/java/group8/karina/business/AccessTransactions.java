@@ -43,16 +43,29 @@ public class AccessTransactions
         return dataAccess.deleteTransaction(currentTransaction);
     }
 
-    public int totalExpenses()
+    public double totalExpenses()
     {
-       // for t in transcation: if t is exp, add to total. return total
-        return -1;
+        double sumExp = 0;
+        for( Transaction tr : getAllTransactions() )
+        {
+            if(tr.isExpense())
+            {
+                sumExp += tr.getAmount();
+            }
+        }
+        return sumExp;
     }
 
-    public int totalIncome()
+    public double totalIncome()
     {
-        // for t in transcations: if t is income, add to total. return total
-        return -1;
+        double sumInc = 0;
+        for( Transaction tr : getAllTransactions() )
+        {
+            if(!tr.isExpense())
+            {
+                sumInc += tr.getAmount();
+            }
+        }
+        return sumInc;
     }
-    // Also have to do expense by user and expense by category
 }
