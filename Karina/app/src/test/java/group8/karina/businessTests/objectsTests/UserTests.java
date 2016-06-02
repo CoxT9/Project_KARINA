@@ -32,7 +32,7 @@ public class UserTests
     public void equality()
     {
 
-        //equals compares useregory ids
+        //equals compares user ids
         otherUser = new User("otherName");
         otherUser.setUserID(USER_ORIGINAL_ID);
 
