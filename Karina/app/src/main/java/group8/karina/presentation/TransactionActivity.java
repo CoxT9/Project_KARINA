@@ -21,12 +21,8 @@ import group8.karina.business.AccessUsers;
 import group8.karina.objects.Category;
 import group8.karina.objects.User;
 
-/**
- * Created by Malcolm on 2016-05-30.
- */
 public class TransactionActivity extends AppCompatActivity
 {
-    private EditText title;
     private EditText value;
     private Spinner userSpinner;
     private Spinner categorySpinner;
@@ -40,6 +36,8 @@ public class TransactionActivity extends AppCompatActivity
     protected AccessTransactions accessTransactions;
     protected List<User> users;
     protected List<Category> categories;
+    protected TextView errorValue;
+    protected TextView errorDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,6 +56,8 @@ public class TransactionActivity extends AppCompatActivity
         userSpinnerText = (TextView)findViewById(R.id.userSpinnerText);
         categorySpinnerText = (TextView)findViewById(R.id.categorySpinnerText);
         setDate = (EditText)findViewById(R.id.setDate);
+        errorValue = (TextView) findViewById(R.id.errorValue);
+        errorDate = (TextView) findViewById(R.id.errorDate);
 
         fillUserSpinner();
         fillCategorySpinner();
@@ -146,23 +146,42 @@ public class TransactionActivity extends AppCompatActivity
     {
         boolean result = true;
 
-        if(title.getText() == null || title.getText().toString().isEmpty())
-        {
-            result = false;
-        }
-
         if(value.getText() == null || value.getText().toString().isEmpty())
         {
+            errorValue.setText("Required");
+            errorValue.setVisibility(View.VISIBLE);
+
             result = false;
         }
-        else if(!value.getText().toString().matches("[0-9]*\\.[0-9][0-9]"))
+        else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
         {
+            errorValue.setText("Value must be a dollar amount");
+            errorValue.setVisibility(View.VISIBLE);
+
             result = false;
+        }
+        else
+        {
+            errorValue.setVisibility(View.GONE);
         }
 
-        if(!setDate.getText().toString().matches("[0-3][0-9]-[0-1]?[1-9]-[0-9][0-9][0-9][0-9]"))
+        if(setDate.getText() == null || setDate.getText().toString().isEmpty())
         {
+            errorDate.setText("Required");
+            errorDate.setVisibility(View.VISIBLE);
+
             result = false;
+        }
+        else if(!setDate.getText().toString().matches("[0-3][0-9]/[0-1]?[1-9]/[0-9][0-9][0-9][0-9]"))
+        {
+            errorDate.setText("Date must be DD/MM/YYYY");
+            errorDate.setVisibility(View.VISIBLE);
+
+            result = false;
+        }
+        else
+        {
+            errorDate.setVisibility(View.GONE);
         }
 
 
@@ -211,7 +230,7 @@ public class TransactionActivity extends AppCompatActivity
 
     protected Date getSelectedDate()
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         Date date;
 
         try
