@@ -229,7 +229,7 @@ public class TransactionActivity extends AppCompatActivity
 
 	protected Date getSelectedDate()
 	{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 		Date date;
 
 		try
