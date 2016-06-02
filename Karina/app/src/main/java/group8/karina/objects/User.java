@@ -8,6 +8,7 @@ public class User
     public User(String newUserName)
     {
         userName = newUserName;
+        userID = -1;
     }
 
     public int getUserID()
@@ -19,10 +20,6 @@ public class User
     {
         return (userName);
     }
-    public void setUserID(int newID)
-    {
-        userID = newID;
-    }
 
     public User clone() { return new User( userName ); }
 
@@ -31,15 +28,17 @@ public class User
         boolean result;
         User u;
 
-        if ( object instanceof User)
+        result = false;
+
+        if (object instanceof User)
         {
             u = (User) object;
-
-            return u.getUserName() != null && this.userName != null && this.userName.equals(u.getUserName());
-
+            if (u.userID==userID)
+            {
+                result = true;
+            }
         }
-
-        return false;
+        return result;
     }
 
 }

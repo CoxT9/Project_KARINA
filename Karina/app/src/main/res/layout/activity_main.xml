@@ -25,19 +25,19 @@
         android:layout_centerHorizontal="true"
         android:onClick="onCategoryListClicked"/>
     <Button
-        android:id="@+id/incomeListButton"
+        android:id="@+id/addIncomeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Income"
         android:layout_below="@+id/categoryListButton"
         android:layout_centerHorizontal="true"
-        android:onClick="onIncomeListClicked"/>
+        android:onClick="onAddIncomeClicked"/>
     <Button
-        android:id="@+id/expenseListButton"
+        android:id="@+id/addExpenseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Expense"
-        android:layout_below="@id/incomeListButton"
+        android:layout_below="@id/addIncomeButton"
         android:layout_centerHorizontal="true"
-        android:onClick="onExpenseListClicked"/>
+        android:onClick="onAddExpenseClicked"/>
 </RelativeLayout>

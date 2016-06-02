@@ -9,8 +9,10 @@ import android.widget.RelativeLayout;
 import group8.karina.R;
 import group8.karina.business.AccessCategories;
 
-public class CategoryList extends AppCompatActivity
-{
+/**
+ * Created by Mike on 5/30/2016.
+ */
+public class CategoryList extends AppCompatActivity{
 
     private RelativeLayout card;
     private AccessCategories access;
@@ -29,7 +31,7 @@ public class CategoryList extends AppCompatActivity
 
     public void addCategoryClicked(View view)
     {
-        startActivity(new Intent(this, CategoryActivity.class));
+        startActivity(new Intent(this, UserActivity.class));
     }
 
 }

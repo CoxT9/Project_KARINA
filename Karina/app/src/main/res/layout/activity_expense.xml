@@ -19,7 +19,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignBottom="@+id/titleText"
         android:layout_alignParentTop="true" />
-
     <EditText
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
@@ -29,16 +28,17 @@
         android:layout_alignLeft="@+id/valueText"
         android:layout_alignStart="@+id/valueText" />
 
+
     <TextView
         android:id="@+id/value"
+        android:layout_below="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Value: "
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
-        android:layout_alignBottom="@+id/valueText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/valueText" />
 
     <EditText
         android:id="@+id/valueText"
@@ -92,8 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/setDate"
         android:layout_alignLeft="@+id/categorySpinner"
-        android:layout_alignStart="@+id/categorySpinner"
-        android:spinnerMode="dropdown"/>
+        android:layout_alignStart="@+id/categorySpinner" />
 
     <TextView
         android:id="@+id/category"
@@ -137,35 +136,7 @@
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_below="@+id/commentText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=""
-        android:id="@+id/userSpinnerText"
-        android:layout_alignTop="@+id/userSpinner"
-        android:layout_alignLeft="@+id/userSpinner"
-        android:layout_alignStart="@+id/userSpinner"
-        android:layout_above="@+id/categorySpinner"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=""
-        android:id="@+id/categorySpinnerText"
-        android:layout_alignTop="@+id/categorySpinner"
-        android:layout_alignLeft="@+id/categorySpinner"
-        android:layout_alignStart="@+id/categorySpinner"
-        android:layout_above="@+id/commentText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@id/commentText"
+        android:text="Save"/>
 
 </RelativeLayout>

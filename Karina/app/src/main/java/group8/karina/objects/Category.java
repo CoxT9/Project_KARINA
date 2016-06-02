@@ -11,6 +11,7 @@ public class Category
     {
         catName = newCatName;
         catExpense = exp;
+        catID = -1;
 
     }
 

@@ -139,35 +139,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/commentText"
-        android:text="Save"
-        android:onClick="saveButtonClicked"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=""
-        android:id="@+id/userSpinnerText"
-        android:layout_alignTop="@+id/userSpinner"
-        android:layout_alignLeft="@+id/userSpinner"
-        android:layout_alignStart="@+id/userSpinner"
-        android:layout_above="@+id/categorySpinner"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=""
-        android:id="@+id/categorySpinnerText"
-        android:layout_alignTop="@+id/categorySpinner"
-        android:layout_alignLeft="@+id/categorySpinner"
-        android:layout_alignStart="@+id/categorySpinner"
-        android:layout_above="@+id/commentText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Save"/>
 
 
 </RelativeLayout>
