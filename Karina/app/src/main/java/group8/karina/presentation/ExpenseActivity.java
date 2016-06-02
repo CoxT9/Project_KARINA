@@ -16,9 +16,7 @@ import group8.karina.objects.Category;
 import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
 
-/**
- * Created by Mike on 5/27/2016.
- */
+
 public class ExpenseActivity extends TransactionActivity
 {
 

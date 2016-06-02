@@ -26,7 +26,22 @@
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/setDate"
         android:layout_alignStart="@+id/setDate"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/errorValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Required"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/valueText"
+        android:layout_alignLeft="@id/valueText"
+        android:layout_alignStart="@id/valueText"
+        android:gravity="left"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/date"
@@ -49,7 +64,22 @@
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/userSpinner"
         android:layout_alignStart="@+id/userSpinner"
-        android:hint="DD-MM-YYYY" />
+        android:hint="DD/MM/YYYY" />
+
+    <TextView
+        android:id="@+id/errorDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Required"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/setDate"
+        android:layout_alignLeft="@id/setDate"
+        android:layout_alignStart="@id/setDate"
+        android:gravity="left"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/user"

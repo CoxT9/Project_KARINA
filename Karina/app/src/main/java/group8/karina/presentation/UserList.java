@@ -8,14 +8,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import group8.karina.R;
-import group8.karina.business.AccessCategories;
+import group8.karina.business.AccessUsers;
 
 public class UserList extends AppCompatActivity
 {
 
-	private RelativeLayout card;
-	private AccessCategories access;
-	private TextView name;
+    private RelativeLayout card;
+    private AccessUsers access;
+    private TextView name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -26,8 +26,8 @@ public class UserList extends AppCompatActivity
 		card = (RelativeLayout) findViewById(R.id.userCard);
 		name = (TextView) findViewById(R.id.userName);
 
-		access = new AccessCategories();
-	}
+        access = new AccessUsers();
+    }
 
 
 	public void addUserClicked(View view)

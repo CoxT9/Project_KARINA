@@ -21,25 +21,23 @@ import group8.karina.business.AccessUsers;
 import group8.karina.objects.Category;
 import group8.karina.objects.User;
 
-/**
- * Created by Malcolm on 2016-05-30.
- */
 public class TransactionActivity extends AppCompatActivity
 {
-	private EditText title;
-	private EditText value;
-	private Spinner userSpinner;
-	private Spinner categorySpinner;
-	private EditText comments;
-	private TextView userSpinnerText;
-	private TextView categorySpinnerText;
-	private AccessUsers accessUsers;
-	private EditText setDate;
+    private EditText value;
+    private Spinner userSpinner;
+    private Spinner categorySpinner;
+    private EditText comments;
+    private TextView userSpinnerText;
+    private TextView categorySpinnerText;
+    private AccessUsers accessUsers;
+    private EditText setDate;
 
-	protected AccessCategories accessCategories;
-	protected AccessTransactions accessTransactions;
-	protected List<User> users;
-	protected List<Category> categories;
+    protected AccessCategories accessCategories;
+    protected AccessTransactions accessTransactions;
+    protected List<User> users;
+    protected List<Category> categories;
+    protected TextView errorValue;
+    protected TextView errorDate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -51,13 +49,15 @@ public class TransactionActivity extends AppCompatActivity
 		accessCategories = new AccessCategories();
 		accessTransactions = new AccessTransactions();
 
-		value = (EditText) findViewById(R.id.valueText);
-		userSpinner = (Spinner) findViewById(R.id.userSpinner);
-		categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
-		comments = (EditText) findViewById(R.id.commentText);
-		userSpinnerText = (TextView) findViewById(R.id.userSpinnerText);
-		categorySpinnerText = (TextView) findViewById(R.id.categorySpinnerText);
-		setDate = (EditText) findViewById(R.id.setDate);
+        value = (EditText) findViewById(R.id.valueText);
+        userSpinner = (Spinner) findViewById(R.id.userSpinner);
+        categorySpinner = (Spinner)findViewById(R.id.categorySpinner);
+        comments = (EditText)findViewById(R.id.commentText);
+        userSpinnerText = (TextView)findViewById(R.id.userSpinnerText);
+        categorySpinnerText = (TextView)findViewById(R.id.categorySpinnerText);
+        setDate = (EditText)findViewById(R.id.setDate);
+        errorValue = (TextView) findViewById(R.id.errorValue);
+        errorDate = (TextView) findViewById(R.id.errorDate);
 
 		fillUserSpinner();
 		fillCategorySpinner();
@@ -146,24 +146,43 @@ public class TransactionActivity extends AppCompatActivity
 	{
 		boolean result = true;
 
-		if (title.getText() == null || title.getText().toString().isEmpty())
-		{
-			result = false;
-		}
+        if(value.getText() == null || value.getText().toString().isEmpty())
+        {
+            errorValue.setText("Required");
+            errorValue.setVisibility(View.VISIBLE);
 
-		if (value.getText() == null || value.getText().toString().isEmpty())
-		{
-			result = false;
-		} else if (!value.getText().toString().matches("[0-9]*\\.[0-9][0-9]"))
-		{
-			result = false;
-		}
+            result = false;
+        }
+        else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
+        {
+            errorValue.setText("Value must be a dollar amount");
+            errorValue.setVisibility(View.VISIBLE);
 
-		if (!setDate.getText().toString().matches("[0-3][0-9]-[0-1]?[1-9]-[0-9][0-9][0-9][0-9]"))
-		{
-			result = false;
-		}
+            result = false;
+        }
+        else
+        {
+            errorValue.setVisibility(View.GONE);
+        }
 
+        if(setDate.getText() == null || setDate.getText().toString().isEmpty())
+        {
+            errorDate.setText("Required");
+            errorDate.setVisibility(View.VISIBLE);
+
+            result = false;
+        }
+        else if(!setDate.getText().toString().matches("[0-3][0-9]/[0-1]?[1-9]/[0-9][0-9][0-9][0-9]"))
+        {
+            errorDate.setText("Date must be DD/MM/YYYY");
+            errorDate.setVisibility(View.VISIBLE);
+
+            result = false;
+        }
+        else
+        {
+            errorDate.setVisibility(View.GONE);
+        }
 
 		return result;
 	}
