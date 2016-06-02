@@ -10,7 +10,7 @@ import group8.karina.objects.Category;
 
 import static org.junit.Assert.*;
 
-public class CategoryTests
+public class CategoryTests extends junit.framework.TestCase
 {
     private final int CAT_ORIGINAL_ID = 1;
     private final String CAT_ORIGINAL_NAME = "expense";
@@ -27,8 +27,9 @@ public class CategoryTests
         cat.setCategoryID(CAT_ORIGINAL_ID);
 
     }
-    @Test
-    public void equality()
+
+
+    public void testEquality()
     {
 
         //equals compares category ids
@@ -43,8 +44,7 @@ public class CategoryTests
         assertFalse(cat.equals(null));
     }
 
-    @Test
-    public void GettersGetCorrectValues()
+    public void testGettersGetCorrectValues()
     {
         otherCat = new Category("name", true);
         assertEquals(otherCat.getCategoryID(), INITIAL_CAT_ID);
@@ -54,8 +54,7 @@ public class CategoryTests
         assertEquals(cat.getCategoryName(), CAT_ORIGINAL_NAME);
     }
 
-    @Test
-    public void SetIDSetsIDs()
+    public void testSetIDSetsIDs()
     {
         cat.setCategoryID(2);
         assertNotEquals(cat.getCategoryID(), CAT_ORIGINAL_ID);
@@ -65,7 +64,6 @@ public class CategoryTests
 
     }
 
-    @Test
     public void testCloning()
     {
         otherCat = cat.clone();

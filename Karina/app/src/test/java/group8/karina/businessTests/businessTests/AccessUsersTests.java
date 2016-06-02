@@ -14,7 +14,7 @@ import group8.karina.persistence.DataAccessStub;
 
 import static org.junit.Assert.*;
 
-public class AccessUsersTests
+public class AccessUsersTests extends junit.framework.TestCase
 {
     AccessUsers accessUsers;
     DataAccessStub dataAccess;
@@ -24,7 +24,6 @@ public class AccessUsersTests
     {
         dataAccess = Services.getDataAccess();
         accessUsers = new AccessUsers();
-
     }
 
     @After
@@ -33,8 +32,7 @@ public class AccessUsersTests
         Services.closeDataAccess();
     }
 
-    @Test
-    public void insert_user_inserts_user()
+    public void test_insert_user_inserts_user()
     {
         User expectedUser = new User("bob");
         User actualUser;
@@ -54,8 +52,7 @@ public class AccessUsersTests
         assertEquals(actualUser.getUserName(),expectedUser.getUserName());
     }
 
-    @Test
-    public void insert_user_throws_exception_with_null_username()
+    public void test_insert_user_throws_exception_with_null_username()
     {
         User expectedUser = new User(null);
         try
@@ -73,8 +70,7 @@ public class AccessUsersTests
         }
     }
 
-    @Test
-    public void insert_user_throws_exception_with_empty_username()
+    public void test_insert_user_throws_exception_with_empty_username()
     {
         User expectedUser = new User("");
         try
@@ -92,8 +88,7 @@ public class AccessUsersTests
         }
     }
 
-    @Test
-    public void get_users_returns_right_users()
+    public void test_get_users_returns_right_users()
     {
         try
         {

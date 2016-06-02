@@ -34,7 +34,7 @@ public class Transaction
         return (userID);
     }
 
-    public Boolean isExpense()
+    public boolean isExpense()
     {
         return (expense);
     }

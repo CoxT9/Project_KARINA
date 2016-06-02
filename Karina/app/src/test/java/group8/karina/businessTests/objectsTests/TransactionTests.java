@@ -17,7 +17,8 @@ import group8.karina.objects.User;
 
 import static org.junit.Assert.*;
 
-public class TransactionTests {
+public class TransactionTests extends junit.framework.TestCase
+{
     private final int TRANS_ORIGINAL_ID = 1;
     private final boolean TRANS_ORIGINAL_ISEXP = true;
     private final double TRANS_ORIGINAL_AMOUNT = 100.5;
@@ -31,14 +32,15 @@ public class TransactionTests {
     private Transaction otherTrans;
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         trans = new Transaction(TRANS_ORIGINAL_DATE, TRANS_ORIGINAL_USER_ID, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID, TRANS_ORIGINAL_COMMENT);
         trans.setTransactionID(TRANS_ORIGINAL_ID);
 
     }
 
-    @Test
-    public void equality() {
+    public void testEquality()
+    {
 
         //equals compares transaction ids
         otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID, TRANS_ORIGINAL_COMMENT);
@@ -52,8 +54,8 @@ public class TransactionTests {
         assertFalse(trans.equals(null));
     }
 
-    @Test
-    public void GettersGetCorrectValues() {
+    public void testGettersGetCorrectValues()
+    {
         otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID, TRANS_ORIGINAL_COMMENT);
         assertEquals(otherTrans.getTransactionID(), TRANS_INITIAL_ID);
 
@@ -65,8 +67,8 @@ public class TransactionTests {
         assertEquals(trans.getDate(), TRANS_ORIGINAL_DATE);
     }
 
-    @Test
-    public void SetIDSetsIDs() {
+    public void testSetIDSetsIDs()
+    {
         trans.setTransactionID(2);
         assertNotEquals(trans.getTransactionID(), TRANS_ORIGINAL_ID);
         assertEquals(trans.getTransactionID(), 2);
@@ -75,8 +77,8 @@ public class TransactionTests {
 
     }
 
-    @Test
-    public void testCloning() {
+    public void testCloning()
+    {
         otherTrans = trans.clone();
         assertEquals(trans.isExpense(), TRANS_ORIGINAL_ISEXP);
         assertEquals(trans.getTransactionID(), TRANS_ORIGINAL_ID);

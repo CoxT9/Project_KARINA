@@ -12,7 +12,7 @@ import group8.karina.objects.User;
 
 import static org.junit.Assert.*;
 
-public class UserTests
+public class UserTests extends junit.framework.TestCase
 {
     private final int USER_ORIGINAL_ID = 1;
     private final String USER_ORIGINAL_NAME = "name";
@@ -28,8 +28,8 @@ public class UserTests
         user.setUserID(USER_ORIGINAL_ID);
 
     }
-    @Test
-    public void equality()
+
+    public void testEquality()
     {
 
         //equals compares useregory ids
@@ -44,8 +44,7 @@ public class UserTests
         assertFalse(user.equals(null));
     }
 
-    @Test
-    public void GettersGetCorrectValues()
+    public void testGettersGetCorrectValues()
     {
         otherUser = new User("name");
         assertEquals(otherUser.getUserID(), INITIAL_USER_ID);
@@ -54,8 +53,7 @@ public class UserTests
         assertEquals(user.getUserName(), USER_ORIGINAL_NAME);
     }
 
-    @Test
-    public void SetIDSetsIDs()
+    public void testSetIDSetsIDs()
     {
         user.setUserID(2);
         assertNotEquals(user.getUserID(), USER_ORIGINAL_ID);

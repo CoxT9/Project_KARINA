@@ -14,7 +14,7 @@ import group8.karina.persistence.DataAccessStub;
 
 import static org.junit.Assert.*;
 
-public class AccessCategoriesTests
+public class AccessCategoriesTests extends junit.framework.TestCase
 {
     AccessCategories accessCategories;
     DataAccessStub dataAccess;
@@ -32,8 +32,7 @@ public class AccessCategoriesTests
         Services.closeDataAccess();
     }
 
-    @Test
-    public void insert_category_inserts_categories()
+    public void test_insert_category_inserts_categories()
     {
         Category expectedCategory = new Category("definitelynotinthedatabase", true);
         Category actualCategory;
@@ -55,8 +54,7 @@ public class AccessCategoriesTests
 
     }
 
-    @Test
-    public void insert_Category_throws_exception_with_null_CategoryName()
+    public void test_insert_Category_throws_exception_with_null_CategoryName()
     {
         Category expectedCategory = new Category(null, true);
         try
@@ -74,8 +72,7 @@ public class AccessCategoriesTests
         }
     }
 
-    @Test
-    public void insert_user_throws_exception_with_empty_username()
+    public void test_insert_user_throws_exception_with_empty_username()
     {
         Category expectedCategory = new Category("", true);
         try
@@ -93,8 +90,7 @@ public class AccessCategoriesTests
         }
     }
 
-    @Test
-    public void get_users_returns_right_users()
+    public void test_get_users_returns_right_users()
     {
         try
         {

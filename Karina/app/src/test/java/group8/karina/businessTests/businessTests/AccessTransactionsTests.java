@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Malcolm on 2016-06-01.
  */
-public class AccessTransactionsTests
+public class AccessTransactionsTests extends junit.framework.TestCase
 {
     private DataAccessStub dataAccess;
     private AccessTransactions accessTransactions;
@@ -36,7 +36,7 @@ public class AccessTransactionsTests
     }
 
     @Test
-    public void get_transactions_by_type_returns_expense_transactions()
+    public void test_get_transactions_by_type_returns_expense_transactions()
     {
         int expectedSize = 4; //from seed data
         List<Transaction> expenseTransactions = accessTransactions.getTransactionsByType(true);
@@ -50,7 +50,7 @@ public class AccessTransactionsTests
     }
 
     @Test
-    public void get_transactions_by_type_returns_income_transactions()
+    public void test_get_transactions_by_type_returns_income_transactions()
     {
         int expectedSize = 2; //from seed data
         List<Transaction> incomeTransactions = accessTransactions.getTransactionsByType(false);
@@ -64,7 +64,7 @@ public class AccessTransactionsTests
     }
 
     @Test
-    public void insert_transaction_inserts_transaction()
+    public void test_insert_transaction_inserts_transaction()
     {
         Transaction expectedTransaction = new Transaction(null,8,true,1.12,1,"hello world");
         expectedTransaction.setTransactionID(123);
