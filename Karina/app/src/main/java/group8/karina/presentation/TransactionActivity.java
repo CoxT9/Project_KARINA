@@ -1,6 +1,5 @@
 package group8.karina.presentation;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,12 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessCategories;
@@ -30,7 +28,6 @@ public class TransactionActivity extends AppCompatActivity
 {
     private EditText title;
     private EditText value;
-    //TODO: datepicker
     private Spinner userSpinner;
     private Spinner categorySpinner;
     private EditText comments;
@@ -54,7 +51,6 @@ public class TransactionActivity extends AppCompatActivity
         accessCategories = new AccessCategories();
         accessTransactions = new AccessTransactions();
 
-        title = (EditText) findViewById(R.id.titleText);
         value = (EditText) findViewById(R.id.valueText);
         userSpinner = (Spinner) findViewById(R.id.userSpinner);
         categorySpinner = (Spinner)findViewById(R.id.categorySpinner);
