@@ -369,4 +369,17 @@ public class DataAccessStub
 		}
 		return result;
 	}
+
+	public Transaction getTransactionByID(int id)
+	{
+		for( Transaction tr : transactions)
+		{
+			if(tr.getTransactionID() == id)
+			{
+				return tr.clone();
+			}
+		}
+
+		return null;
+	}
 }
