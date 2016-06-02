@@ -20,9 +20,11 @@
         <activity android:name=".presentation.UserActivity"/>
         <activity android:name=".presentation.UserList"/>
         <activity android:name=".presentation.ExpenseActivity"/>
+        <activity android:name=".presentation.ExpenseList"/>
         <activity android:name=".presentation.CategoryActivity"/>
         <activity android:name=".presentation.CategoryList"/>
         <activity android:name=".presentation.IncomeActivity"/>
+        <activity android:name=".presentation.IncomeList"/>
     </application>
 
 </manifest>

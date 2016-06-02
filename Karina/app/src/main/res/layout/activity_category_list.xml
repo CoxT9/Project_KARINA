@@ -15,8 +15,18 @@
             android:id="@+id/categoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
+            android:textSize="14sp"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginBottom="@dimen/margin"
             android:text="Category Name Here"/>
+
+        <View android:layout_width="match_parent"
+            android:id="@+id/linebreak"
+            android:layout_below="@id/categoryName"
+            android:layout_height="1dip"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginBottom="@dimen/margin"
+            android:background="#61000000" />
 
     </RelativeLayout>
 

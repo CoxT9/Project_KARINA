@@ -10,10 +10,8 @@ import android.widget.TextView;
 import group8.karina.R;
 import group8.karina.business.AccessCategories;
 
-/**
- * Created by Mike on 5/30/2016.
- */
-public class UserList extends AppCompatActivity {
+public class UserList extends AppCompatActivity
+{
 
     private RelativeLayout card;
     private AccessCategories access;
