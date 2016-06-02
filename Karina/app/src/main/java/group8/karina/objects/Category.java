@@ -11,6 +11,7 @@ public class Category
     {
         catName = newCatName;
         catExpense = exp;
+        catID = -1;
 
     }
 
@@ -28,8 +29,7 @@ public class Category
     {
         return catName;
     }
-
-
+    
     public boolean isExpense() {return catExpense;}
 
     public Category clone() { return new Category( catName, catExpense ); }

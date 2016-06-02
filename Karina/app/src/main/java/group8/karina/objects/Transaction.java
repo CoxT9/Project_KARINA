@@ -18,6 +18,7 @@ public class Transaction
         amount=amt;
         categoryID=cat;
         userID=usr;
+        transID=-1;
         comments = com;
     }
 
@@ -55,5 +56,23 @@ public class Transaction
     public void setTransactionID(int transID)
     {
         this.transID = transID;
+    }
+
+    public boolean equals(Object object)
+    {
+        boolean result;
+        Transaction t;
+
+        result = false;
+
+        if (object instanceof Transaction)
+        {
+            t = (Transaction) object;
+            if (t.transID==transID)
+            {
+                result = true;
+            }
+        }
+        return result;
     }
 }
