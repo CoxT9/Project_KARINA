@@ -6,7 +6,8 @@
     android:layout_margin="@dimen/margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="group8.karina.presentation.UserActivity">
+    tools:context="group8.karina.presentation.UserActivity"
+    android:visibility="visible">
 
     <TextView
         android:id="@+id/addUserText"
@@ -28,6 +29,7 @@
         android:layout_alignBottom="@+id/editName"
         android:layout_alignParentTop="true" />
 
+
     <EditText
         android:id="@+id/editName"
         android:layout_width="match_parent"
@@ -36,12 +38,27 @@
         android:inputType="textPersonName"
         android:ems="10" />
 
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Required"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editName"
+        android:layout_alignLeft="@+id/editName"
+        android:layout_alignStart="@+id/editName"
+        android:gravity="center_horizontal"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:layout_below="@id/editName"
+        android:layout_below="@id/errorText"
         android:onClick="saveButtonClicked"/>
 
 
