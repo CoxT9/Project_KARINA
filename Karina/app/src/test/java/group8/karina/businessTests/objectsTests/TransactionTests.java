@@ -24,6 +24,7 @@ public class TransactionTests {
     private final int TRANS_ORIGINAL_CAT_ID = 1;
     private final int TRANS_ORIGINAL_USER_ID = 1;
     private final Date TRANS_ORIGINAL_DATE = new Date();
+    private final int TRANS_INITIAL_ID = -1;
 
     private Transaction trans;
     private Transaction otherTrans;
@@ -39,7 +40,7 @@ public class TransactionTests {
     public void equality() {
 
         //equals compares transaction ids
-        otherTrans = new Transaction("otherstuff", false);
+        otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID);
         otherTrans.setTransactionID(TRANS_ORIGINAL_ID);
 
         assertTrue(otherTrans.equals(trans));
@@ -52,15 +53,15 @@ public class TransactionTests {
 
     @Test
     public void GettersGetCorrectValues() {
-        otherTrans = new Transaction("name", true);
-        assertEquals(otherTrans.getTransactionID(), INITIAL_TRANS_ID);
+        otherTrans = new Transaction(TRANS_ORIGINAL_DATE, 14, TRANS_ORIGINAL_ISEXP, TRANS_ORIGINAL_AMOUNT, TRANS_ORIGINAL_CAT_ID);
+        assertEquals(otherTrans.getTransactionID(), TRANS_INITIAL_ID);
 
         assertEquals(trans.isExpense(), TRANS_ORIGINAL_ISEXP);
         assertEquals(trans.getTransactionID(), TRANS_ORIGINAL_ID);
-        assertEquals(trans.getAmount(), TRANS_ORIGINAL_NAME);
-        assertEquals(trans.getCategoryID(), TRANS_ORIGINAL_NAME);
-        assertEquals(trans.getUserID(), TRANS_ORIGINAL_NAME);
-        assertEquals(trans.getDate(), TRANS_ORIGINAL_NAME);
+        assertEquals(trans.getAmount(), TRANS_ORIGINAL_AMOUNT, 1);
+        assertEquals(trans.getCategoryID(), TRANS_ORIGINAL_CAT_ID);
+        assertEquals(trans.getUserID(), TRANS_ORIGINAL_USER_ID);
+        assertEquals(trans.getDate(), TRANS_ORIGINAL_DATE);
     }
 
     @Test
@@ -78,7 +79,10 @@ public class TransactionTests {
         otherTrans = trans.clone();
         assertEquals(trans.isExpense(), TRANS_ORIGINAL_ISEXP);
         assertEquals(trans.getTransactionID(), TRANS_ORIGINAL_ID);
-        assertEquals(trans.getTransactionName(), TRANS_ORIGINAL_NAME);
+        assertEquals(trans.getAmount(), TRANS_ORIGINAL_AMOUNT, 1);
+        assertEquals(trans.getCategoryID(), TRANS_ORIGINAL_CAT_ID);
+        assertEquals(trans.getUserID(), TRANS_ORIGINAL_USER_ID);
+        assertEquals(trans.getDate(), TRANS_ORIGINAL_DATE);
 
         otherTrans.setTransactionID(2);//separate from original
         assertFalse(trans.equals(otherTrans));

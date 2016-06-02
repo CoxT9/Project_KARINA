@@ -55,4 +55,22 @@ public class Transaction
     {
         this.transID = transID;
     }
+
+    public boolean equals(Object object)
+    {
+        boolean result;
+        Transaction t;
+
+        result = false;
+
+        if (object instanceof Transaction)
+        {
+            t = (Transaction) object;
+            if (t.transID==transID)
+            {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
