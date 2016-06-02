@@ -264,20 +264,6 @@ public class DataAccessStub
 		return null;
 	}
 
-    public ArrayList<Transaction> getTransactionRandom(Transaction currentTransaction)
-    {
-        ArrayList<Transaction> newTransactions;
-        int index;
-
-        newTransactions = new ArrayList<Transaction>();
-        index = transactions.indexOf(currentTransaction);
-        if (index >= 0)
-        {
-            newTransactions.add(transactions.get(index));
-        }
-        return newTransactions;
-    }
-
     public String insertTransaction(Transaction currentTransaction)
     {
         // don't bother checking for duplicates
