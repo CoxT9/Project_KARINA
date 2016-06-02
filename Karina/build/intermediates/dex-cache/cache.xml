@@ -40,7 +40,7 @@
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="5b1419d60eaeacdb62ba1ac3e71625b43c53a5cb">
+        sha1="18a2fbbb435c50b13f0eb0eb5c02cd2a4525f962">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_eb0b85571819d80859146dfca1b9e7cc37242f47\classes.dex" />
     </item>
     <item
@@ -54,7 +54,7 @@
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="4e2bcbf22450e2985a51f1fcc33715e9451cd00e">
+        sha1="c6930b1218f4e8cccfbdaaaef6c721dc0d48ae0c">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_43673ed8dd2ab516148c436d3ff24295f77c34ca\classes.dex" />
     </item>
 

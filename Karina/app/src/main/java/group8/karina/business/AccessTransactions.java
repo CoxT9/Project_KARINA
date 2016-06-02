@@ -46,12 +46,9 @@ public class AccessTransactions
     public double totalExpenses()
     {
         double sumExp = 0;
-        for( Transaction tr : getAllTransactions() )
+        for( Transaction tr : getTransactionsByType(true) )
         {
-            if(tr.isExpense())
-            {
                 sumExp += tr.getAmount();
-            }
         }
         return sumExp;
     }
@@ -59,12 +56,9 @@ public class AccessTransactions
     public double totalIncome()
     {
         double sumInc = 0;
-        for( Transaction tr : getAllTransactions() )
+        for( Transaction tr : getTransactionsByType(false) )
         {
-            if(!tr.isExpense())
-            {
                 sumInc += tr.getAmount();
-            }
         }
         return sumInc;
     }
