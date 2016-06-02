@@ -18,7 +18,6 @@ import group8.karina.objects.Category;
 public class CategoryActivity extends AppCompatActivity
 {
 	private EditText editCategory;
-	private TextView addCategoryText;
 	private TextView errorText;
 	private AccessCategories access;
 	private RadioButton expenseRadio;
@@ -32,7 +31,6 @@ public class CategoryActivity extends AppCompatActivity
 		access = new AccessCategories();
 
 		editCategory = (EditText) findViewById(R.id.editCategory);
-		addCategoryText = (TextView) findViewById(R.id.addCategoryText);
 		errorText = (TextView) findViewById(R.id.errorText);
 		expenseRadio = (RadioButton) findViewById(R.id.expenseRadioButton);
 	}
