@@ -12,22 +12,22 @@ import group8.karina.business.AccessCategories;
 
 public class IncomeList extends AppCompatActivity
 {
-    private RelativeLayout incomeCard;
-    private AccessCategories access;
+	private RelativeLayout incomeCard;
+	private AccessCategories access;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_income_list);
 
-        incomeCard = (RelativeLayout) findViewById(R.id.incomeCard);
+		incomeCard = (RelativeLayout) findViewById(R.id.incomeCard);
 
-    }
+	}
 
-    public void addIncomeClicked(View view)
-    {
-        startActivity(new Intent(this, IncomeActivity.class));
-    }
+	public void addIncomeClicked(View view)
+	{
+		startActivity(new Intent(this, IncomeActivity.class));
+	}
 }

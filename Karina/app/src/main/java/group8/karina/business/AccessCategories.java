@@ -9,45 +9,36 @@ import group8.karina.persistence.DataAccessStub;
 
 public class AccessCategories
 {
-    private DataAccessStub dataAccess;
+	private DataAccessStub dataAccess;
 
-    public AccessCategories()
-    {
-        dataAccess = Services.getDataAccess();
-    }
+	public AccessCategories()
+	{
+		dataAccess = Services.getDataAccess();
+	}
 
-    public List<Category> getAllCategories()
-    {
-        return dataAccess.getAllCategories();
-    }
+	public List<Category> getAllCategories()
+	{
+		return dataAccess.getAllCategories();
+	}
 
-    public List<Category> getIncomeCategories()
-    {
-        return dataAccess.getIncomeCategories();
-    }
+	public List<Category> getIncomeCategories()
+	{
+		return dataAccess.getIncomeCategories();
+	}
 
-    public List<Category> getExpenseCategories()
-    {
-        return dataAccess.getExpenseCategories();
-    }
+	public List<Category> getExpenseCategories()
+	{
+		return dataAccess.getExpenseCategories();
+	}
 
 
-    public void insertCategory(Category currentCategory) throws DuplicateEntryException
-    {
-        if(currentCategory.getCategoryName() == null || currentCategory.getCategoryName().isEmpty())
-        {
-            throw new IllegalArgumentException("Null or empty value for Category");
-        }
+	public void insertCategory(Category currentCategory) throws DuplicateEntryException
+	{
+		if (currentCategory.getCategoryName() == null || currentCategory.getCategoryName().isEmpty())
+		{
+			throw new IllegalArgumentException("Null or empty value for Category");
+		}
 
-        dataAccess.insertCategory(currentCategory);
-    }
-    public void updateCategory(Category currentCategory)
-    {
-        dataAccess.updateCategory(currentCategory);
-    }
-
-    public void deleteCategory(Category currentCategory)
-    {
-        dataAccess.deleteCategory(currentCategory);
-    }
+		dataAccess.insertCategory(currentCategory);
+	}
 }

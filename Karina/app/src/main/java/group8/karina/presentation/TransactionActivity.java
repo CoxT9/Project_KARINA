@@ -39,15 +39,15 @@ public class TransactionActivity extends AppCompatActivity
     protected TextView errorValue;
     protected TextView errorDate;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_income);
 
-        accessUsers = new AccessUsers();
-        accessCategories = new AccessCategories();
-        accessTransactions = new AccessTransactions();
+		accessUsers = new AccessUsers();
+		accessCategories = new AccessCategories();
+		accessTransactions = new AccessTransactions();
 
         value = (EditText) findViewById(R.id.valueText);
         userSpinner = (Spinner) findViewById(R.id.userSpinner);
@@ -59,92 +59,92 @@ public class TransactionActivity extends AppCompatActivity
         errorValue = (TextView) findViewById(R.id.errorValue);
         errorDate = (TextView) findViewById(R.id.errorDate);
 
-        fillUserSpinner();
-        fillCategorySpinner();
-    }
+		fillUserSpinner();
+		fillCategorySpinner();
+	}
 
-    private void fillCategorySpinner()
-    {
-        ArrayAdapter<String> adapter;
-        List<String> list;
+	private void fillCategorySpinner()
+	{
+		ArrayAdapter<String> adapter;
+		List<String> list;
 
-        list = new ArrayList<String>();
-        categories = getCategories();
+		list = new ArrayList<String>();
+		categories = getCategories();
 
-        for (Category cat : categories)
-        {
-            list.add(cat.getCategoryName());
-        }
+		for (Category cat : categories)
+		{
+			list.add(cat.getCategoryName());
+		}
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorySpinner.setAdapter(adapter);
+		adapter = new ArrayAdapter<String>(getApplicationContext(),
+				android.R.layout.simple_spinner_item, list);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		categorySpinner.setAdapter(adapter);
 
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                String item = parent.getItemAtPosition(position).toString();
+		categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+			{
+				String item = parent.getItemAtPosition(position).toString();
 
-                if(categorySpinnerText != null) //have to do null check to avoid problems when initially opening the page
-                {
-                    categorySpinnerText.setText(item);
-                }
-            }
+				if (categorySpinnerText != null) //have to do null check to avoid problems when initially opening the page
+				{
+					categorySpinnerText.setText(item);
+				}
+			}
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+			@Override
+			public void onNothingSelected(AdapterView<?> parent)
+			{
 
-            }
-        });
-    }
+			}
+		});
+	}
 
-    private void fillUserSpinner()
-    {
-        ArrayAdapter<String> adapter;
-        List<String> list;
+	private void fillUserSpinner()
+	{
+		ArrayAdapter<String> adapter;
+		List<String> list;
 
-        users = accessUsers.getUsers();
+		users = accessUsers.getUsers();
 
-        list = new ArrayList<String>();
+		list = new ArrayList<String>();
 
-        for (User user : users)
-        {
-            list.add(user.getUserName());
-        }
+		for (User user : users)
+		{
+			list.add(user.getUserName());
+		}
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        userSpinner.setAdapter(adapter);
+		adapter = new ArrayAdapter<String>(getApplicationContext(),
+				android.R.layout.simple_spinner_item, list);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		userSpinner.setAdapter(adapter);
 
-        userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                String item = parent.getItemAtPosition(position).toString();
+		userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+			{
+				String item = parent.getItemAtPosition(position).toString();
 
-                if(userSpinnerText != null) //have to do null check to avoid problems when initially opening the page
-                {
-                    userSpinnerText.setText(item);
-                }
-            }
+				if (userSpinnerText != null) //have to do null check to avoid problems when initially opening the page
+				{
+					userSpinnerText.setText(item);
+				}
+			}
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+			@Override
+			public void onNothingSelected(AdapterView<?> parent)
+			{
 
-            }
-        });
-    }
+			}
+		});
+	}
 
-    protected boolean validateForSave()
-    {
-        boolean result = true;
+	protected boolean validateForSave()
+	{
+		boolean result = true;
 
         if(value.getText() == null || value.getText().toString().isEmpty())
         {
@@ -184,68 +184,67 @@ public class TransactionActivity extends AppCompatActivity
             errorDate.setVisibility(View.GONE);
         }
 
+		return result;
+	}
 
-        return result;
-    }
+	protected int getSelectedUser()
+	{
+		String selectedUser = (String) userSpinner.getSelectedItem();
 
-    protected int getSelectedUser()
-    {
-        String selectedUser = (String) userSpinner.getSelectedItem();
+		for (User u : users)
+		{
+			if (u.getUserName().equals(selectedUser))
+			{
+				return u.getUserID();
+			}
+		}
 
-        for(User u : users)
-        {
-            if(u.getUserName().equals(selectedUser))
-            {
-                return u.getUserID();
-            }
-        }
+		return -1;
+	}
 
-        return -1;
-    }
+	protected int getSelectedCategory()
+	{
+		String selectedCategory = (String) categorySpinner.getSelectedItem();
 
-    protected int getSelectedCategory()
-    {
-        String selectedCategory = (String) categorySpinner.getSelectedItem();
+		for (Category c : categories)
+		{
+			if (c.getCategoryName().equals(selectedCategory))
+			{
+				return c.getCategoryID();
+			}
+		}
 
-        for(Category c : categories)
-        {
-            if(c.getCategoryName().equals(selectedCategory))
-            {
-                return c.getCategoryID();
-            }
-        }
+		return -1;
+	}
 
-        return -1;
-    }
+	protected double getEnteredAmount()
+	{
+		return Double.parseDouble(value.getText().toString());
+	}
 
-    protected double getEnteredAmount()
-    {
-        return Double.parseDouble(value.getText().toString());
-    }
+	protected String getComments()
+	{
+		return comments.getText().toString();
+	}
 
-    protected String getComments()
-    {
-        return comments.getText().toString();
-    }
+	protected Date getSelectedDate()
+	{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+		Date date;
 
-    protected Date getSelectedDate()
-    {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-        Date date;
+		try
+		{
+			date = dateFormat.parse(setDate.getText().toString());
+		} catch (Exception e)
+		{
+			date = null;
+		}
 
-        try
-        {
-            date = dateFormat.parse(setDate.getText().toString());
-        }
-        catch(Exception e)
-        {
-            date = null;
-        }
+		return date;
+	}
 
-        return date;
-    }
-
-    protected List<Category> getCategories(){
-        return accessCategories.getAllCategories();
-    }
+	protected List<Category> getCategories()
+	{
+		return accessCategories.getAllCategories();
+	}
 }

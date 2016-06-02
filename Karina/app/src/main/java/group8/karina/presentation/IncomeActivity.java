@@ -17,18 +17,19 @@ import group8.karina.objects.Transaction;
 public class IncomeActivity extends TransactionActivity
 {
 
-    public void saveButtonClicked(View view)
-    {
-        if(validateForSave())
-        {
-            Transaction t = new Transaction(getSelectedDate(),getSelectedUser(),false,getEnteredAmount(),getSelectedCategory(),getComments());
-            accessTransactions.insertTransaction(t);
+	public void saveButtonClicked(View view)
+	{
+		if (validateForSave())
+		{
+			Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), false, getEnteredAmount(), getSelectedCategory(), getComments());
+			accessTransactions.insertTransaction(t);
 
-            startActivity(new Intent(this, MainActivity.class));
-        }
-    }
+			startActivity(new Intent(this, MainActivity.class));
+		}
+	}
 
-    protected List<Category> getCategories(){
-        return accessCategories.getIncomeCategories();
-    }
+	protected List<Category> getCategories()
+	{
+		return accessCategories.getIncomeCategories();
+	}
 }

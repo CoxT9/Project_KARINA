@@ -17,21 +17,21 @@ public class UserList extends AppCompatActivity
     private AccessUsers access;
     private TextView name;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_user_list);
 
-        card = (RelativeLayout) findViewById(R.id.userCard);
-        name = (TextView) findViewById(R.id.userName);
+		card = (RelativeLayout) findViewById(R.id.userCard);
+		name = (TextView) findViewById(R.id.userName);
 
         access = new AccessUsers();
     }
 
 
-    public void addUserClicked(View view)
-    {
-        startActivity(new Intent(this, UserActivity.class));
-    }
+	public void addUserClicked(View view)
+	{
+		startActivity(new Intent(this, UserActivity.class));
+	}
 }

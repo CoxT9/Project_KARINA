@@ -14,62 +14,61 @@ import group8.karina.objects.User;
 
 public class UserActivity extends AppCompatActivity
 {
-    private EditText editName;
-    private TextView nameText;
-    private AccessUsers access;
-    private TextView errorText;
+	private EditText editName;
+	private TextView nameText;
+	private AccessUsers access;
+	private TextView errorText;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_user);
 
-        access = new AccessUsers();
+		access = new AccessUsers();
 
-        editName = (EditText) findViewById(R.id.editName);
-        nameText = (TextView) findViewById(R.id.nameText);
-        errorText = (TextView) findViewById(R.id.errorText);
-    }
+		editName = (EditText) findViewById(R.id.editName);
+		nameText = (TextView) findViewById(R.id.nameText);
+		errorText = (TextView) findViewById(R.id.errorText);
+	}
 
-    public void saveButtonClicked(View view)
-    {
-        if(validateForSave())
-        {
-            User user = new User(editName.getText().toString());
-            try
-            {
-                if(errorText.getVisibility()== View.VISIBLE)
-                {
-                    errorText.setVisibility(View.GONE);
-                }
+	public void saveButtonClicked(View view)
+	{
+		if (validateForSave())
+		{
+			User user = new User(editName.getText().toString());
+			try
+			{
+				if (errorText.getVisibility() == View.VISIBLE)
+				{
+					errorText.setVisibility(View.GONE);
+				}
 
-                access.insertUser(user);
-                startActivity(new Intent(this, MainActivity.class));
-            }
-            catch(DuplicateEntryException dupEx)
-            {
-                writeDuplicateMessage();
-            }
-        }
-    }
+				access.insertUser(user);
+				startActivity(new Intent(this, MainActivity.class));
+			} catch (DuplicateEntryException dupEx)
+			{
+				writeDuplicateMessage();
+			}
+		}
+	}
 
-    private boolean validateForSave()
-    {
-        if(editName.getText().toString() == null || editName.getText().toString().isEmpty())
-        {
-            errorText.setText("Required");
-            errorText.setVisibility(View.VISIBLE);
+	private boolean validateForSave()
+	{
+		if (editName.getText().toString() == null || editName.getText().toString().isEmpty())
+		{
+			errorText.setText("Required");
+			errorText.setVisibility(View.VISIBLE);
 
-            return false;
-        }
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    private void writeDuplicateMessage()
-    {
-        errorText.setText("A user already exists with that name");
-        errorText.setVisibility(View.VISIBLE);
-    }
+	private void writeDuplicateMessage()
+	{
+		errorText.setText("A user already exists with that name");
+		errorText.setVisibility(View.VISIBLE);
+	}
 }
