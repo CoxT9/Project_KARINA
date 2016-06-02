@@ -24,7 +24,6 @@ public class AccessCategoriesTests extends junit.framework.TestCase
     {
         dataAccess = Services.getDataAccess();
         accessCategories = new AccessCategories();
-
     }
 
     @After

@@ -18,7 +18,7 @@ public class AccessTransactions
         dataAccess = Services.getDataAccess();
     }
 
-    public List<Transaction> getAllTransactions() // Why does it pass in a list to get a list?
+    public List<Transaction> getAllTransactions()
     {
         return dataAccess.getAllTransactions();
     }
@@ -31,16 +31,6 @@ public class AccessTransactions
     public String insertTransaction(Transaction currentTransaction)
     {
         return dataAccess.insertTransaction(currentTransaction);
-    }
-
-    public String updateTransaction(Transaction currentTransaction)
-    {
-        return dataAccess.updateTransaction(currentTransaction);
-    }
-
-    public String deleteTransaction(Transaction currentTransaction)
-    {
-        return dataAccess.deleteTransaction(currentTransaction);
     }
 
     public int totalExpenses()

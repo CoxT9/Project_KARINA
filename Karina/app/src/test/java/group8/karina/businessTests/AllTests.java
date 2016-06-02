@@ -4,7 +4,10 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import group8.karina.businessTests.businessTests.AccessCategoriesTests;
+import group8.karina.businessTests.businessTests.AccessTransactionsTests;
 import group8.karina.businessTests.businessTests.AccessUsersTests;
+import group8.karina.businessTests.objectsTests.CategoryTests;
+import group8.karina.businessTests.objectsTests.TransactionTests;
 import group8.karina.businessTests.objectsTests.UserTests;
 
 public class AllTests
@@ -23,11 +26,14 @@ public class AllTests
     private static void testObjects()
     {
         suite.addTestSuite(UserTests.class);
+        suite.addTestSuite(TransactionTests.class);
+        suite.addTestSuite(CategoryTests.class);
     }
 
     private static void testBusiness()
     {
         suite.addTestSuite(AccessUsersTests.class);
         suite.addTestSuite(AccessCategoriesTests.class);
+        suite.addTestSuite(AccessTransactionsTests.class);
     }
 }
