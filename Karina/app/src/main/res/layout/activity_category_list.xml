@@ -5,38 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/categoryCard">
-
-        <TextView
-            android:id="@+id/categoryName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"
-            android:text="Category Name Here"/>
-
-        <View android:layout_width="match_parent"
-            android:id="@+id/linebreak"
-            android:layout_below="@id/categoryName"
-            android:layout_height="1dip"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"
-            android:background="#61000000" />
-
-    </RelativeLayout>
-
     <Button
         android:id="@+id/addCategoryButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:onClick="addCategoryClicked"
         android:text="Add Category"
         />
+
+    <ListView
+        android:id="@+id/categoryList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addCategoryButton" />
 
 </RelativeLayout>
