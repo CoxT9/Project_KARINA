@@ -56,4 +56,9 @@ public class Transaction
     {
         this.transID = transID;
     }
+
+    public String getComments()
+    {
+        return this.comments;
+    }
 }
