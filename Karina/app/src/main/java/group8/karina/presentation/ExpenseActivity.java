@@ -24,7 +24,7 @@ public class ExpenseActivity extends TransactionActivity
 	{
 		if (validateForSave())
 		{
-			Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), true, (-1.0 * getEnteredAmount()), getSelectedCategory(), getComments());
+			Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), true,  getEnteredAmount(), getSelectedCategory(), getComments());
 			accessTransactions.insertTransaction(t);
 
 			startActivity(new Intent(this, MainActivity.class));
