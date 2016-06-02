@@ -7,16 +7,32 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/titleCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Statistics"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/totalsCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleCard">
+
 
         <TextView
             android:id="@+id/incomeTotalLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:text="Total Income: "/>
 
         <TextView
@@ -25,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/incomeTotalLabel"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:text="Total Expenses: "/>
 
         <TextView
@@ -34,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/incomeTotalLabel"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:text="0"/>
 
         <TextView
@@ -44,7 +58,6 @@
             android:layout_below="@id/incomeTotalLabel"
             android:layout_toRightOf="@id/expenseTotalLabel"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:text="0"/>
 
     </RelativeLayout>

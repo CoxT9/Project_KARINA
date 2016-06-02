@@ -81,4 +81,20 @@ public class AccessTransactionsTests
         assertEquals(expectedTransaction.getComments(),actualTransaction.getComments());
 
     }
+
+    @Test
+    public void get_income_returns_total_income()
+    {
+        double expectedValue = 151.34; // from seed data
+        double actualValue = accessTransactions.totalIncome();
+        assertEquals(expectedValue, actualValue, 0.0);
+    }
+
+    @Test
+    public void get_expenses_returns_total_expenses()
+    {
+        double expectedValue = 172.75; // from seed data
+        double actualValue = accessTransactions.totalExpenses();
+        assertEquals(expectedValue, actualValue, 0.0);
+    }
 }
