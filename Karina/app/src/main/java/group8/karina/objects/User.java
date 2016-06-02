@@ -2,47 +2,48 @@ package group8.karina.objects;
 
 public class User
 {
-    private int userID;
-    private String userName;
+	private int userID;
+	private String userName;
 
-    public User(String newUserName)
-    {
-        userName = newUserName;
-        userID = -1;
-    }
+	public User(String newUserName)
+	{
+		userName = newUserName;
+		userID = -1;
+	}
 
-    public int getUserID()
-    {
-        return (userID);
-    }
+	public int getUserID()
+	{
+		return (userID);
+	}
 
-    public String getUserName()
-    {
-        return (userName);
-    }
-    public void setUserID(int newID)
-    {
-        userID = newID;
-    }
+	public String getUserName()
+	{
+		return (userName);
+	}
 
-    public User clone() { return new User( userName ); }
+	public void setUserID(int newID)
+	{
+		userID = newID;
+	}
 
-    public boolean equals(Object object)
-    {
-        boolean result;
-        User u;
+	public User clone() { return new User(userName); }
 
-        result = false;
+	public boolean equals(Object object)
+	{
+		boolean result;
+		User u;
 
-        if (object instanceof User)
-        {
-            u = (User) object;
-            if (u.userID==userID)
-            {
-                result = true;
-            }
-        }
-        return result;
-    }
+		result = false;
+
+		if (object instanceof User)
+		{
+			u = (User) object;
+			if (u.userID == userID)
+			{
+				result = true;
+			}
+		}
+		return result;
+	}
 
 }

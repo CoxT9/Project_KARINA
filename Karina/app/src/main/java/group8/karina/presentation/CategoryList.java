@@ -12,24 +12,24 @@ import group8.karina.business.AccessCategories;
 public class CategoryList extends AppCompatActivity
 {
 
-    private RelativeLayout card;
-    private AccessCategories access;
+	private RelativeLayout card;
+	private AccessCategories access;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_category_list);
 
-        card = (RelativeLayout) findViewById(R.id.categoryCard);
+		card = (RelativeLayout) findViewById(R.id.categoryCard);
 
-        access = new AccessCategories();
-    }
+		access = new AccessCategories();
+	}
 
 
-    public void addCategoryClicked(View view)
-    {
-        startActivity(new Intent(this, CategoryActivity.class));
-    }
+	public void addCategoryClicked(View view)
+	{
+		startActivity(new Intent(this, CategoryActivity.class));
+	}
 
 }

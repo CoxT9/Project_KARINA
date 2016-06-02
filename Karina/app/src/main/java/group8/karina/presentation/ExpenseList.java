@@ -12,22 +12,22 @@ import group8.karina.business.AccessCategories;
 
 public class ExpenseList extends AppCompatActivity
 {
-    private RelativeLayout expenseCard;
-    private AccessCategories access;
+	private RelativeLayout expenseCard;
+	private AccessCategories access;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_expense_list);
 
-        expenseCard = (RelativeLayout) findViewById(R.id.expenseCard);
+		expenseCard = (RelativeLayout) findViewById(R.id.expenseCard);
 
-    }
+	}
 
-    public void addExpenseClicked(View view)
-    {
-        startActivity(new Intent(this, ExpenseActivity.class));
-    }
+	public void addExpenseClicked(View view)
+	{
+		startActivity(new Intent(this, ExpenseActivity.class));
+	}
 }
