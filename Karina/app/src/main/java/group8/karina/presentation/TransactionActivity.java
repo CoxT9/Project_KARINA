@@ -147,12 +147,10 @@ public class TransactionActivity extends AppCompatActivity
 		boolean result = true;
 
         if(value.getText() == null || value.getText().toString().isEmpty())
-        {
-            errorValue.setText("Required");
-            errorValue.setVisibility(View.VISIBLE);
-
-            result = false;
-        }
+		{
+			errorValue.setText("Required");
+			errorValue.setVisibility(View.VISIBLE);
+		}
         else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
         {
             errorValue.setText("Value must be a dollar amount");
