@@ -127,6 +127,30 @@ public class DataAccessStub
 		return null;
 	}
 
+	public User getUserById(int uID)
+	{
+		for (User u : users)
+		{
+			if(u.getUserID() == uID)
+			{
+				return u;
+			}
+		}
+		return null;
+	}
+
+	public Category getCategoryById(int cID)
+	{
+		for(Category c : categories)
+		{
+			if(c.getCategoryID() == cID)
+			{
+				return c;
+			}
+		}
+		return null;
+	}
+
 	public List getAllCategories()
 	{
 		List<Category> result = new ArrayList<Category>();
