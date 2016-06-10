@@ -45,4 +45,9 @@ public class AccessTransactions
 		}
 		return sumInc;
 	}
+
+	public void deleteTransactionsByUserID(int userID)
+	{
+		dataAccess.deleteTransactionsByUserID(userID);
+	}
 }

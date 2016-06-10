@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.R;
+import group8.karina.business.AccessTransactions;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
 
@@ -51,6 +52,9 @@ public class UserActivity extends AppCompatActivity
 
 	public void deleteButtonClicked(View view)
 	{
+		AccessTransactions accessTransactions = new AccessTransactions();
+		accessTransactions.deleteTransactionsByUserID(editUser.getUserID());
+
 		access.deleteUserById(editUser.getUserID());
 		startActivity(new Intent(this, MainActivity.class));
 	}
@@ -67,7 +71,6 @@ public class UserActivity extends AppCompatActivity
 			{
 				insertNewUser();
 			}
-
 		}
 	}
 

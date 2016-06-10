@@ -268,7 +268,8 @@ public class DataAccessStub
 		}
 	}
 
-	public void updateUser(User user) throws unfoundResourceException {
+	public void updateUser(User user) throws unfoundResourceException
+	{
 		User editUser = null;
 
 		for(User u : users)
@@ -288,6 +289,24 @@ public class DataAccessStub
 		{
 			users.remove(editUser);
 			users.add(user);
+		}
+	}
+
+	public void deleteTransactionsByUserID(int userID)
+	{
+		ArrayList<Transaction> removalTransactions = new ArrayList<Transaction>();
+
+		for(Transaction t : transactions)
+		{
+			if(t.getUserID() == userID)
+			{
+				removalTransactions.add(t);
+			}
+		}
+
+		for(Transaction t : removalTransactions)
+		{
+			transactions.remove(t);
 		}
 	}
 }
