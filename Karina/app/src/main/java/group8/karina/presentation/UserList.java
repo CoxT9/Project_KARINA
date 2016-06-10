@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,23 +29,38 @@ public class UserList extends AppCompatActivity
 
         listView = (ListView) findViewById(R.id.userList);
 
-        ArrayList<String> values = new ArrayList<String>();
-        access = new AccessUsers();
-        List<User> users = access.getUsers();
-
-        for (User us : users)
-        {
-            values.add(us.getUserName());
-        }
-
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
-        listView.setAdapter(adapter);
+		populateListView();
+		setListViewOnItemClicked();
     }
 
+	private void setListViewOnItemClicked()
+	{
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+									long id)
+			{
+				User selectedUser = (User) parent.getItemAtPosition(position);
+				Intent editUser = new Intent(UserList.this,UserActivity.class);
+				editUser.putExtra("EditUser",selectedUser);
+
+				startActivity(editUser);
+			}
+		});
+	}
 
 	public void addUserClicked(View view)
 	{
 		startActivity(new Intent(this, UserActivity.class));
+	}
+
+	private void populateListView()
+	{
+		access = new AccessUsers();
+		List<User> users = access.getUsers();
+
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, users);
+		listView.setAdapter(adapter);
 	}
 }

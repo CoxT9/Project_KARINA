@@ -61,4 +61,13 @@
         android:layout_below="@+id/errorText"
         android:onClick="saveButtonClicked"/>
 
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:layout_below="@+id/saveButton"
+        android:onClick="deleteButtonClicked"
+        android:visibility="gone" />
+
 </RelativeLayout>

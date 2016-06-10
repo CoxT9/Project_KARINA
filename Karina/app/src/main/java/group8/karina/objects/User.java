@@ -1,6 +1,8 @@
 package group8.karina.objects;
 
-public class User
+import java.io.Serializable;
+
+public class User implements Serializable
 {
 	private int userID;
 	private String userName;
@@ -26,7 +28,13 @@ public class User
 		userID = newID;
 	}
 
-	public User clone() { return new User(userName); }
+	public User clone()
+	{
+		User u = new User(userName);
+		u.setUserID(this.userID);
+
+		return u;
+	}
 
 	public boolean equals(Object object)
 	{
@@ -46,4 +54,13 @@ public class User
 		return result;
 	}
 
+	public String toString()
+	{
+		return userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
 }

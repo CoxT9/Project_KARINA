@@ -3,6 +3,7 @@ package group8.karina.business;
 import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.Services;
 import group8.karina.objects.User;
 import group8.karina.persistence.DataAccessStub;
@@ -29,5 +30,15 @@ public class AccessUsers
 		}
 
 		dataAccess.insertUser(currentUser);
+	}
+
+	public void deleteUserById(int userId)
+	{
+		dataAccess.deleteUserById(userId);
+	}
+
+	public void updateUser(User user) throws unfoundResourceException
+	{
+		dataAccess.updateUser(user);
 	}
 }
