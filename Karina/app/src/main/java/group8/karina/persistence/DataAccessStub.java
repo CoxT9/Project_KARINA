@@ -11,7 +11,7 @@ import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
 
 
-public class DataAccessStub
+public class DataAccessStub implements Database
 {
 	private String dbName;
 	private String dbType = "stub";
@@ -139,6 +139,30 @@ public class DataAccessStub
 			}
 		}
 
+		return null;
+	}
+
+	public User getUserById(int uID)
+	{
+		for (User u : users)
+		{
+			if(u.getUserID() == uID)
+			{
+				return u;
+			}
+		}
+		return null;
+	}
+
+	public Category getCategoryById(int cID)
+	{
+		for(Category c : categories)
+		{
+			if(c.getCategoryID() == cID)
+			{
+				return c;
+			}
+		}
 		return null;
 	}
 

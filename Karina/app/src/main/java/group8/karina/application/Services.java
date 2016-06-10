@@ -1,12 +1,14 @@
 package group8.karina.application;
 
 import group8.karina.persistence.DataAccessStub;
+import group8.karina.persistence.Database;
 
 public class Services
 {
-	private static DataAccessStub dataAccessService = null;
+//	private static DataAccessStub dataAccessService = null;
+	private static Database dataAccessService = null;
 
-	public static DataAccessStub createDataAccess()
+	public static Database createDataAccess()
 	{
 		if (dataAccessService == null)
 		{
@@ -16,7 +18,7 @@ public class Services
 		return dataAccessService;
 	}
 
-	public static DataAccessStub getDataAccess()
+	public static Database getDataAccess()
 	{
 		if (dataAccessService == null)
 		{

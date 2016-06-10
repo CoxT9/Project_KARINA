@@ -9,12 +9,12 @@ import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.application.Services;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.persistence.Database;
 
 public class AccessUsersTests extends junit.framework.TestCase
 {
 	AccessUsers accessUsers;
-	DataAccessStub dataAccess;
+	Database dataAccess;
 
 	@Before
 	public void setUp()
