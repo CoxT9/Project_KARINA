@@ -10,7 +10,7 @@ import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
 
 
-public class DataAccessStub
+public class DataAccessStub implements Database
 {
 	private String dbName;
 	private String dbType = "stub";

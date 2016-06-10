@@ -5,11 +5,11 @@ import java.util.List;
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.application.Services;
 import group8.karina.objects.User;
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.persistence.Database;
 
 public class AccessUsers
 {
-	private DataAccessStub dataAccess;
+	private Database dataAccess;
 
 	public AccessUsers()
 	{
