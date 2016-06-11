@@ -3,6 +3,7 @@ package group8.karina.persistence;
 import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.objects.Category;
 import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
@@ -24,4 +25,7 @@ public interface Database
 	void insertTransaction(Transaction currentTransaction);
 	List<Transaction> getTransactionsByType(boolean isExpense);
 	Transaction getTransactionByID(int id);
+	void deleteUserById(int UserId);
+	void updateUser(User user) throws unfoundResourceException;
+	void deleteTransactionsByUserID(int userId);
 }

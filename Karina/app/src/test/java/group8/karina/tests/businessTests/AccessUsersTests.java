@@ -6,6 +6,7 @@ import org.junit.Before;
 import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.Services;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
@@ -94,5 +95,54 @@ public class AccessUsersTests extends junit.framework.TestCase
 
 		assertEquals(6, users.size()); //this is 6 because we have some seed data in the database and out inserted data
 	}
+
+	public void testDeleteUserByIdDeletes()
+	{
+		User u = new User("Bob");
+
+		try
+		{
+			dataAccess.insertUser(u);
+		}
+		catch(Exception e)
+		{
+			fail("This should not throw an exception");
+		}
+
+		u = dataAccess.getUserByName("Bob");
+
+		accessUsers.deleteUserById(u.getUserID());
+		assertNull(dataAccess.getUserByName(u.getUserName()));
+	}
+
+	public void testUpdateUserUpdatesUser()
+	{
+		User u = new User("Bob");
+		String expectedUserName = "Joe";
+
+		try
+		{
+			dataAccess.insertUser(u);
+		}
+		catch(Exception e)
+		{
+			fail("This should not throw an exception");
+		}
+
+		u = dataAccess.getUserByName("Bob");
+		u.setUserName(expectedUserName);
+
+		try
+		{
+			accessUsers.updateUser(u);
+		}
+		catch (unfoundResourceException e)
+		{
+			fail("This should not throw an exception");
+		}
+
+		assertEquals(expectedUserName,dataAccess.getUserById(u.getUserID()).getUserName());
+	}
+
 
 }
