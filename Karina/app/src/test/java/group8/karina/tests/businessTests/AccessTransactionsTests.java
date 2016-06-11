@@ -98,7 +98,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		accessTransactions.insertTransaction(testTransaction);
 
 		accessTransactions.unassignTransactionsByCategoryID(testCatID);
-		assertEquals(testTransaction.getCategoryID(), -1);
+		assertEquals(testTransaction.getCategoryID(), 1);
 	}
 
 	public void testDeleteTransactionsByCategoryDeletesAll()
@@ -112,5 +112,30 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		accessTransactions.deleteTransactionsByCategoryID(testCatID);
 		List<Transaction> finalTransactions = accessTransactions.getTransactionsByType(true);
 		assertTrue(!finalTransactions.contains(testTransaction));
+	}
+
+	public void testDeleteTransactionsByUserDeletesAll()
+	{
+		int testUserID = -10;
+		Transaction testTransaction = new Transaction(null, testUserID, true, 5.5,8 , "test transaction");
+		testTransaction.setTransactionID(-50);
+
+		accessTransactions.insertTransaction(testTransaction);
+
+		accessTransactions.deleteTransactionsByUserID(testUserID);
+		List<Transaction> finalTransactions = accessTransactions.getTransactionsByType(true);
+		assertTrue(!finalTransactions.contains(testTransaction));
+	}
+
+	public void testUnassignTransactionsByUserUnassigns()
+	{
+		int testUserID = -10;
+		Transaction testTransaction = new Transaction(null,testUserID , true, 5.5, 8, "test transaction");
+		testTransaction.setTransactionID(15);
+
+		accessTransactions.insertTransaction(testTransaction);
+
+		accessTransactions.unassignTransactionsByUserID(testUserID);
+		assertEquals(dataAccess.getTransactionByID(testTransaction.getTransactionID()).getUserID(), 1);
 	}
 }
