@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Date;
 
 import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.objects.Category;
 import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
@@ -43,14 +44,28 @@ public class DataAccessStub implements Database
 		try
 		{
 			user = new User("Jon");
+			user.setUserID(nextUserID);
+			nextUserID++;
 			insertUser(user);
+
 			user = new User("Bran");
+			user.setUserID(nextUserID);
+			nextUserID++;
 			insertUser(user);
+
 			user = new User("Aria");
+			user.setUserID(nextUserID);
+			nextUserID++;
 			insertUser(user);
+
 			user = new User("Sansa");
+			user.setUserID(nextUserID);
+			nextUserID++;
 			insertUser(user);
+
 			user = new User("default");
+			user.setUserID(nextUserID);
+			nextUserID++;
 			insertUser(user);
 
 			category = new Category("groceries", true);
@@ -263,5 +278,59 @@ public class DataAccessStub implements Database
 		}
 
 		return null;
+	}
+
+	public void deleteUserById(int userId)
+	{
+		for(User u : users)
+		{
+			if(u.getUserID() == userId)
+			{
+				users.remove(u);
+				break;
+			}
+		}
+	}
+
+	public void updateUser(User user) throws unfoundResourceException
+	{
+		User editUser = null;
+
+		for(User u : users)
+		{
+			if(u.getUserID() == user.getUserID())
+			{
+				editUser = u;
+				break;
+			}
+		}
+
+		if(editUser == null)
+		{
+			throw new unfoundResourceException("Could not find user : "+user.getUserName());
+		}
+		else
+		{
+			users.remove(editUser);
+			users.add(user);
+		}
+	}
+
+	public void deleteTransactionsByUserID(int userID)
+	{
+		ArrayList<Transaction> removalTransactions = new ArrayList<Transaction>();
+
+		for(Transaction t : transactions)
+		{
+			if(t.getUserID() == userID)
+			{
+				removalTransactions.add(t);
+			}
+		}
+
+		for(Transaction t : removalTransactions)
+		{
+			transactions.remove(t);
+		}
 	}
 }
