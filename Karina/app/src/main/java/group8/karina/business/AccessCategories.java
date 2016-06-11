@@ -3,6 +3,7 @@ package group8.karina.business;
 import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.Services;
 import group8.karina.objects.Category;
 import group8.karina.persistence.Database;
@@ -40,5 +41,15 @@ public class AccessCategories
 		}
 
 		dataAccess.insertCategory(currentCategory);
+	}
+
+	public void deleteCategoryById(int categoryID)
+	{
+		dataAccess.deleteCategoryById(categoryID);
+	}
+
+	public void updateCategory(Category category) throws unfoundResourceException
+	{
+		dataAccess.updateCategory(category);
 	}
 }

@@ -6,6 +6,7 @@ import org.junit.Before;
 import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.Services;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
@@ -95,6 +96,54 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 		List<Category> categories = accessCategories.getAllCategories();
 
 		assertEquals(6, categories.size()); //this is 6 because we have some seed data in the database and our inserted data
+	}
+
+	public void testDeleteCategoryByIdDeletes()
+	{
+		Category c = new Category("Stuff", true);
+
+		try
+		{
+			dataAccess.insertCategory(c);
+		}
+		catch(Exception e)
+		{
+			fail("This should not throw an exception");
+		}
+
+		c = dataAccess.getCategoryByNameAndIsExpense("Stuff", true);
+
+		accessCategories.deleteCategoryById(c.getCategoryID());
+		assertNull(dataAccess.getCategoryByNameAndIsExpense(c.getCategoryName(), c.isExpense()));
+	}
+
+	public void testUpdateCategoryUpdatesCategory()
+	{
+		Category c = new Category("Stuff", true);
+		String expectedCategoryName = "Things";
+
+		try
+		{
+			dataAccess.insertCategory(c);
+		}
+		catch(Exception e)
+		{
+			fail("This should not throw an exception");
+		}
+
+		c = dataAccess.getCategoryByNameAndIsExpense("Stuff", true);
+		c.setCategoryName(expectedCategoryName);
+
+		try
+		{
+			accessCategories.updateCategory(c);
+		}
+		catch (unfoundResourceException e)
+		{
+			fail("This should not throw an exception");
+		}
+
+		assertEquals(expectedCategoryName,dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
 	}
 
 }

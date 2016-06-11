@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -30,19 +31,36 @@ public class CategoryList extends AppCompatActivity
 
 		listView = (ListView) findViewById(R.id.categoryList);
 
-        ArrayList<String> values = new ArrayList<String>();
+		populateListView();
+		setListViewOnItemClicked();
+
+	}
+
+	public void populateListView()
+	{
 		access = new AccessCategories();
-        List<Category> categories = access.getAllCategories();
+		List<Category> categories = access.getAllCategories();
+		// Originally the list view showed only strings (Category name). This caused problems with extracting categories and was inconsistent with the rest of the design
+		// Let's re-visit why these were being saved as Strings (Comment attribute in category?)
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, categories);
+		listView.setAdapter(adapter);
+	}
 
-        for (Category cat : categories)
-        {
-            values.add(cat.getCategoryName());
-        }
+	public void setListViewOnItemClicked()
+	{
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+									long id)
+			{
+				Category selectedCategory = (Category) parent.getItemAtPosition(position);
+				Intent editCategory = new Intent(CategoryList.this,CategoryActivity.class);
+				editCategory.putExtra("EditCategory",selectedCategory);
 
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
-        listView.setAdapter(adapter);
-
+				startActivity(editCategory);
+			}
+		});
 	}
 
 

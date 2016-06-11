@@ -32,7 +32,6 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		Services.closeDataAccess();
 	}
 
-	@Test
 	public void testGetTransactionsByTypeReturnsExpenseTransactions()
 	{
 		int expectedSize = 4; //from seed data
@@ -46,7 +45,6 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		}
 	}
 
-	@Test
 	public void testGetTransactionsByTypeReturnsIncomeTransactions()
 	{
 		int expectedSize = 2; //from seed data
@@ -60,7 +58,6 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		}
 	}
 
-	@Test
 	public void testInsertTransactionInsertsTransaction()
 	{
 		Transaction expectedTransaction = new Transaction(null, 8, true, 1.12, 1, "hello world");
@@ -79,19 +76,41 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 
 	}
 
-	@Test
 	public void testGetIncomeReturnsTotalIncome()
 	{
 		double expectedValue = 151.34; // from seed data
 		double actualValue = accessTransactions.totalIncome();
 		assertEquals(expectedValue, actualValue, 0.0);
 	}
-
-	@Test
 	public void testGetExpensesReturnsTotalExpenses()
 	{
 		double expectedValue = 172.75; // from seed data
 		double actualValue = accessTransactions.totalExpenses();
 		assertEquals(expectedValue, actualValue, 0.0);
+	}
+
+	public void testUnassignTransactionsByCategoryUnassigns()
+	{
+		int testCatID = -10;
+		Transaction testTransaction = new Transaction(null, 8, true, 5.5, testCatID, "test transaction");
+		testTransaction.setTransactionID(-50);
+
+		accessTransactions.insertTransaction(testTransaction);
+
+		accessTransactions.unassignTransactionsByCategoryID(testCatID);
+		assertEquals(testTransaction.getCategoryID(), -1);
+	}
+
+	public void testDeleteTransactionsByCategoryDeletesAll()
+	{
+		int testCatID = -10;
+		Transaction testTransaction = new Transaction(null, 8, true, 5.5, testCatID, "test transaction");
+		testTransaction.setTransactionID(-50);
+
+		accessTransactions.insertTransaction(testTransaction);
+
+		accessTransactions.deleteTransactionsByCategoryID(testCatID);
+		List<Transaction> finalTransactions = accessTransactions.getTransactionsByType(true);
+		assertTrue(!finalTransactions.contains(testTransaction));
 	}
 }

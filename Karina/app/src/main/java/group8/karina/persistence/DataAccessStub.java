@@ -166,7 +166,7 @@ public class DataAccessStub implements Database
 		return null;
 	}
 
-	public List getAllCategories()
+	public List<Category> getAllCategories()
 	{
 		List<Category> result = new ArrayList<Category>();
 		for (Category cat : categories)
@@ -176,7 +176,7 @@ public class DataAccessStub implements Database
 		return result;
 	}
 
-	public List getIncomeCategories()
+	public List<Category> getIncomeCategories()
 	{
 		List<Category> incomeCategories = getAllCategories();
 		int count = 0;
@@ -195,7 +195,7 @@ public class DataAccessStub implements Database
 		return (incomeCategories);
 	}
 
-	public List getExpenseCategories()
+	public List<Category> getExpenseCategories()
 	{
 		List<Category> expenseCategories = getAllCategories();
 		int count = 0;
@@ -241,6 +241,42 @@ public class DataAccessStub implements Database
 			throw new DuplicateEntryException("Duplicate detected when entering category into database");
 		}
 
+	}
+
+	public void deleteCategoryById(int categoryID)
+	{
+		for(Category c : categories)
+		{
+			if(c.getCategoryID() == categoryID)
+			{
+				categories.remove(c);
+				break;
+			}
+		}
+	}
+
+	public void updateCategory(Category category) throws unfoundResourceException
+	{
+		Category editCat = null;
+
+		for(Category c : categories)
+		{
+			if(c.getCategoryID() == category.getCategoryID())
+			{
+				editCat = c;
+				break;
+			}
+		}
+
+		if(editCat == null)
+		{
+			throw new unfoundResourceException("Could not find category ID: "+category.getCategoryID());
+		}
+		else
+		{
+			categories.remove(editCat);
+			categories.add(category);
+		}
 	}
 
 	public void insertTransaction(Transaction currentTransaction)
@@ -334,6 +370,24 @@ public class DataAccessStub implements Database
 		}
 	}
 
+	public void deleteTransactionsByCategoryID(int categoryId)
+	{
+		ArrayList<Transaction> removalTransactions = new ArrayList<Transaction>();
+
+		for(Transaction t : transactions)
+		{
+			if(t.getCategoryID() == categoryId)
+			{
+				removalTransactions.add(t);
+			}
+		}
+
+		for(Transaction t : removalTransactions)
+		{
+			transactions.remove(t);
+		}
+	}
+
 	@Override
 	public void unassignTransactionsByUserID(int userID)
 	{
@@ -342,6 +396,18 @@ public class DataAccessStub implements Database
 			if(t.getUserID() == userID)
 			{
 				t.setUserID(1);
+			}
+		}
+	}
+
+	@Override
+	public void unassignTransactionsByCategoryID(int categoryID)
+	{
+		for(Transaction t : transactions)
+		{
+			if(t.getCategoryID() == categoryID)
+			{
+				t.setCategoryID(-1);
 			}
 		}
 	}

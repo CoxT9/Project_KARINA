@@ -1,6 +1,8 @@
 package group8.karina.objects;
 
-public class Category
+import java.io.Serializable;
+
+public class Category implements Serializable
 {
 	private int catID;
 	private String catName;
@@ -29,9 +31,16 @@ public class Category
 		return catName;
 	}
 
+	public void setCategoryName(String categoryName) { catName = categoryName; }
+
 	public boolean isExpense() {return catExpense;}
 
-	public Category clone() { return new Category(catName, catExpense); }
+	public Category clone()
+	{
+		Category c = new Category(this.catName, this.catExpense);
+		c.setCategoryID(this.getCategoryID());
+		return c;
+	}
 
 	public boolean equals(Object object)
 	{
@@ -50,4 +59,6 @@ public class Category
 		}
 		return result;
 	}
+
+	public String toString() { return catName; }
 }
