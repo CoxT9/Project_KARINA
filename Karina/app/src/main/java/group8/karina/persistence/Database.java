@@ -32,4 +32,5 @@ public interface Database
 	void deleteTransactionsByUserID(int userId);
 	void deleteTransactionsByCategoryID(int categoryId);
 	void unassignTransactionsByUserID(int userID);
+	void unassignTransactionsByCategoryID(int categoryID);
 }

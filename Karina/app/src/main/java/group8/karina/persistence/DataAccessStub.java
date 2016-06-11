@@ -261,8 +261,6 @@ public class DataAccessStub implements Database
 
 		for(Category c : categories)
 		{
-			System.out.println(c.getCategoryName() + ", " + category.getCategoryName());
-			System.out.println(c.getCategoryID() + ", " + category.getCategoryID());
 			if(c.getCategoryID() == category.getCategoryID())
 			{
 				editCat = c;
@@ -398,6 +396,18 @@ public class DataAccessStub implements Database
 			if(t.getUserID() == userID)
 			{
 				t.setUserID(1);
+			}
+		}
+	}
+
+	@Override
+	public void unassignTransactionsByCategoryID(int categoryID)
+	{
+		for(Transaction t : transactions)
+		{
+			if(t.getCategoryID() == categoryID)
+			{
+				t.setCategoryID(-1);
 			}
 		}
 	}

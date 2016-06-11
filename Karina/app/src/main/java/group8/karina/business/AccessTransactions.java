@@ -57,4 +57,9 @@ public class AccessTransactions
 	{
 		dataAccess.unassignTransactionsByUserID(userID);
 	}
+
+	public void unassignTransactionsByCategoryID(int categoryID)
+	{
+		dataAccess.unassignTransactionsByCategoryID(categoryID);
+	}
 }

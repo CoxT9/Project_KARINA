@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Category;
 
 
-public class CategoryActivity extends AppCompatActivity
+public class CategoryActivity extends AppCompatActivity implements DeleteDialogCaller
 {
 	private EditText editName;
 	private TextView errorText;
@@ -111,11 +112,8 @@ public class CategoryActivity extends AppCompatActivity
 
 	public void deleteButtonClicked(View view)
 	{
-		AccessTransactions accessTransactions = new AccessTransactions();
-		accessTransactions.deleteTransactionsByCategoryID(editCategory.getCategoryID());
-
-		access.deleteCategoryById(editCategory.getCategoryID());
-		startActivity(new Intent(this, MainActivity.class));
+		DeletionDialog d = new DeletionDialog(this,"category");
+		d.show();
 	}
 
 	private boolean validateForSave()
@@ -135,6 +133,26 @@ public class CategoryActivity extends AppCompatActivity
 	{
 		errorText.setText("A category already exists with that name");
 		errorText.setTextColor(Color.RED);
+	}
+
+	@Override
+	public void deleteDialogDeleteButtonClicked()
+	{
+		AccessTransactions accessTransactions = new AccessTransactions();
+		accessTransactions.deleteTransactionsByCategoryID(editCategory.getCategoryID());
+
+		access.deleteCategoryById(editCategory.getCategoryID());
+		startActivity(new Intent(this,MainActivity.class));
+	}
+
+	@Override
+	public void deleteDialogUnassignButtonClicked()
+	{
+		AccessTransactions accessTransactions = new AccessTransactions();
+		accessTransactions.unassignTransactionsByCategoryID(editCategory.getCategoryID());
+
+		access.deleteCategoryById(editCategory.getCategoryID());
+		startActivity(new Intent(this,MainActivity.class));
 	}
 
 }

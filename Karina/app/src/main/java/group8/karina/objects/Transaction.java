@@ -88,4 +88,6 @@ public class Transaction
 	{
 		this.userID = userID;
 	}
+
+	public void setCategoryID(int categoryID) { this.categoryID = categoryID; }
 }
