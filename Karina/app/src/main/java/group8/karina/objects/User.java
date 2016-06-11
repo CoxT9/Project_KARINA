@@ -7,6 +7,11 @@ public class User implements Serializable
 	private int userID;
 	private String userName;
 
+	public User(int newUserID,String newUserName)
+	{
+		userName = newUserName;
+		userID = newUserID;
+	}
 	public User(String newUserName)
 	{
 		userName = newUserName;
