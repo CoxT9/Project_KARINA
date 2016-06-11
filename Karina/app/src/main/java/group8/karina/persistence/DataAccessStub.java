@@ -43,6 +43,11 @@ public class DataAccessStub implements Database
 		transactions = new ArrayList<Transaction>();
 		try
 		{
+			user = new User("default");
+			user.setUserID(nextUserID);
+			nextUserID++;
+			insertUser(user);
+
 			user = new User("Jon");
 			user.setUserID(nextUserID);
 			nextUserID++;
@@ -59,11 +64,6 @@ public class DataAccessStub implements Database
 			insertUser(user);
 
 			user = new User("Sansa");
-			user.setUserID(nextUserID);
-			nextUserID++;
-			insertUser(user);
-
-			user = new User("default");
 			user.setUserID(nextUserID);
 			nextUserID++;
 			insertUser(user);
@@ -331,6 +331,18 @@ public class DataAccessStub implements Database
 		for(Transaction t : removalTransactions)
 		{
 			transactions.remove(t);
+		}
+	}
+
+	@Override
+	public void unassignTransactionsByUserID(int userID)
+	{
+		for(Transaction t : transactions)
+		{
+			if(t.getUserID() == userID)
+			{
+				t.setUserID(1);
+			}
 		}
 	}
 }

@@ -49,4 +49,9 @@ public class AccessTransactions
 	{
 		dataAccess.deleteTransactionsByUserID(userID);
 	}
+
+	public void unassignTransactionsByUserID(int userID)
+	{
+		dataAccess.unassignTransactionsByUserID(userID);
+	}
 }
