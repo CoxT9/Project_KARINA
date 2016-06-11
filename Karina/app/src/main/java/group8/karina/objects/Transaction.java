@@ -83,4 +83,9 @@ public class Transaction
 		return this.comments;
 
 	}
+
+	public void setUserID(int userID)
+	{
+		this.userID = userID;
+	}
 }

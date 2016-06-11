@@ -31,4 +31,5 @@ public interface Database
 	void updateUser(User user) throws unfoundResourceException;
 	void deleteTransactionsByUserID(int userId);
 	void deleteTransactionsByCategoryID(int categoryId);
+	void unassignTransactionsByUserID(int userID);
 }
