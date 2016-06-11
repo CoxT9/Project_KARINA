@@ -68,15 +68,26 @@ public class DataAccessStub implements Database
 			nextUserID++;
 			insertUser(user);
 
+			category = new Category("default", true);
+			category.setCategoryID(nextCategoryID);
+			nextCategoryID++;
+			insertCategory(category);
+
 			category = new Category("groceries", true);
+			category.setCategoryID(nextCategoryID);
+			nextCategoryID++;
 			insertCategory(category);
 			category = new Category("weapons", true);
+			category.setCategoryID(nextCategoryID);
+			nextCategoryID++;
 			insertCategory(category);
 			category = new Category("entertainment", true);
+			category.setCategoryID(nextCategoryID);
+			nextCategoryID++;
 			insertCategory(category);
 			category = new Category("income", false);
-			insertCategory(category);
-			category = new Category("default", true);
+			category.setCategoryID(nextCategoryID);
+			nextCategoryID++;
 			insertCategory(category);
 
 
@@ -407,7 +418,7 @@ public class DataAccessStub implements Database
 		{
 			if(t.getCategoryID() == categoryID)
 			{
-				t.setCategoryID(-1);
+				t.setCategoryID(1);
 			}
 		}
 	}
