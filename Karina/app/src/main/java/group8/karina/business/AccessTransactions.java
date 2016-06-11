@@ -49,4 +49,9 @@ public class AccessTransactions
 	{
 		dataAccess.deleteTransactionsByUserID(userID);
 	}
+
+	public void deleteTransactionsByCategoryID(int categoryID)
+	{
+		dataAccess.deleteTransactionsByCategoryID(categoryID);
+	}
 }

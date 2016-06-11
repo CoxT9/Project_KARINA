@@ -17,15 +17,18 @@ public interface Database
 	User getUserByName(String targetName);
 	User getUserById(int uID);
 	Category getCategoryById(int cID);
-	List getAllCategories();
-	List getIncomeCategories();
-	List getExpenseCategories();
+	List<Category> getAllCategories();
+	List<Category> getIncomeCategories();
+	List<Category> getExpenseCategories();
 	Category getCategoryByNameAndIsExpense(String targetName, boolean isExpense);
 	void insertCategory(Category currentCategory) throws DuplicateEntryException;
+	void deleteCategoryById(int categoryId);
+	void updateCategory(Category category) throws unfoundResourceException;
 	void insertTransaction(Transaction currentTransaction);
 	List<Transaction> getTransactionsByType(boolean isExpense);
 	Transaction getTransactionByID(int id);
 	void deleteUserById(int UserId);
 	void updateUser(User user) throws unfoundResourceException;
 	void deleteTransactionsByUserID(int userId);
+	void deleteTransactionsByCategoryID(int categoryId);
 }
