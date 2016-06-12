@@ -132,7 +132,7 @@ public class DataAccessObjectTests
 		newCat = null;
 		newCat = test.getCategoryByNameAndIsExpense("tester", true);
 		assertNotNull(newCat);
-		test.deleteCategoryByID(newCat.getCategoryID());
+		test.deleteCategoryById(newCat.getCategoryID());
 		newCat = null;
 		assertNull(test.getCategoryByNameAndIsExpense("tester", true));
 	}
@@ -141,7 +141,7 @@ public class DataAccessObjectTests
 	public void getTransactionsTest()
 	{
 		List<Transaction> trans = test.getTransactionsByType(true);
-		assertEquals(trans.get(0).getUserID(), 1);
+		assertEquals(trans.get(0).getUserID(), 4);
 		assertEquals(trans.get(1).getAmount(), 95.5, .1);
 		assertNotEquals(trans.size(), 1);
 
@@ -155,14 +155,67 @@ public class DataAccessObjectTests
 	}
 
 	@Test
-	public void insertTransactionsTest()
+	public void insertDeleteTransactionsTest()
 	{
-		Transaction newTrans = new Transaction(new Date(), 4, true, 39.95, 1, "comment");
+		Transaction newTrans = new Transaction(new Date(), 1, true, 39.95, 1, "comment");
 		assertEquals(test.getTransactionsByType(true).size(), 2);
 		test.insertTransaction(newTrans);
 		assertEquals(test.getTransactionsByType(true).size(), 3);
-		assertNotNull(newTrans);
-		test.deleteTransactionsByUserID(4);
+		test.deleteTransactionsByUserID(1);
 		assertEquals(test.getTransactionsByType(true).size(), 2);
+
+		test.insertTransaction(newTrans);
+		assertEquals(test.getTransactionsByType(true).size(), 3);
+		test.deleteTransactionsByCategoryID(1);
+		assertEquals(test.getTransactionsByType(true).size(), 2);
+
+	}
+
+	@Test
+	public void changeTransactionsTest()
+	{
+		Transaction oldTrans = test.getTransactionByID(1);
+		Transaction newTrans = new Transaction(1, new Date(), 3, true, 49.8, 3, "hi");
+
+		try
+		{
+			test.updateTransaction(newTrans);
+		} catch (unfoundResourceException e)
+		{
+			fail("Transaction 1 should be in the database");
+		}
+
+		newTrans = null;
+		newTrans = test.getTransactionByID(1);
+		assertNotEquals(newTrans.getAmount(), oldTrans.getAmount());
+
+		try
+		{
+			test.updateTransaction(oldTrans);
+		} catch (unfoundResourceException e)
+		{
+			fail("Transaction 1 should still be in the database");
+		}
+
+		assertEquals(test.getTransactionsByType(true).size(), 2);
+		oldTrans = new Transaction (new Date(), 3, true, 49.8, 3, "hi");
+		test.insertTransaction(oldTrans);
+		assertEquals(test.getTransactionsByType(true).size(), 3);
+		test.unassignTransactionsByCategoryID(3);
+		assertEquals(test.getTransactionsByType(true).get(2).getCategoryID(), 1);
+		assertEquals(test.getTransactionsByType(true).get(2).getUserID(), 3);
+		test.deleteTransactionsByUserID(3);
+
+		assertEquals(test.getTransactionsByType(true).size(), 2);
+		oldTrans = new Transaction (new Date(), 3, true, 49.8, 3, "hi");
+		test.insertTransaction(oldTrans);
+		assertEquals(test.getTransactionsByType(true).size(), 3);
+		test.unassignTransactionsByUserID(3);
+		assertEquals(test.getTransactionsByType(true).get(2).getUserID(), 1);
+		assertEquals(test.getTransactionsByType(true).get(2).getCategoryID(), 3);
+		test.deleteTransactionsByCategoryID(3);
+		assertEquals(test.getTransactionsByType(true).size(), 2);
+
+
 	}
 }

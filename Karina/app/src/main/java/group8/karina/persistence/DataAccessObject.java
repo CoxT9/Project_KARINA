@@ -364,6 +364,42 @@ public class DataAccessObject implements Database
 			processSQLError(e);
 		}
 	}
+
+
+	public void deleteCategoryById(int categoryId)
+	{
+		try
+		{
+			cmdString = "Delete from Categories where CategoryID=" +categoryId;
+			st1.executeUpdate(cmdString);
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+	}
+
+	@Override
+	public void updateCategory(Category category) throws unfoundResourceException
+	{
+		if (getCategoryById(category.getCategoryID())==null)
+		{
+			throw new unfoundResourceException("Category "+ category.getCategoryID()+ "not found.");
+		}
+		else
+		{
+			try
+			{
+				cmdString = "Update Categories Set categoryName='" + category.getCategoryName() + "', categoryIsExpense="
+						+ category.isExpense() + " where categoryID=" + category.getCategoryID();
+				st1.executeUpdate(cmdString);
+			} catch (Exception e)
+			{
+				processSQLError(e);
+			}
+		}
+	}
+
 	public void insertTransaction(Transaction currentTransaction)
 	{
 		try
@@ -477,15 +513,20 @@ public class DataAccessObject implements Database
 
 	public void updateUser(User user) throws unfoundResourceException
 	{
-		result = null;
-		try
+		if (getUserById(user.getUserID())==null)
 		{
-			cmdString = "Update Users Set userName='" +user.getUserName() +"' where UserID=" +user.getUserID();
-			st1.executeUpdate(cmdString);
+			throw new unfoundResourceException("User "+ user.getUserID()+ "not found.");
 		}
-		catch (Exception e)
+		else
 		{
-			processSQLError(e);
+			try
+			{
+				cmdString = "Update Users Set userName='" + user.getUserName() + "' where UserID=" + user.getUserID();
+				st1.executeUpdate(cmdString);
+			} catch (Exception e)
+			{
+				processSQLError(e);
+			}
 		}
 	}
 	public void deleteTransactionsByUserID(int userId)
@@ -501,6 +542,87 @@ public class DataAccessObject implements Database
 		}
 	}
 
+	@Override
+	public void deleteTransactionsByCategoryID(int categoryId)
+	{
+		try
+		{
+			cmdString = "Delete from Transactions where transCategoryID=" +categoryId;
+			st1.executeUpdate(cmdString);
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+	}
+
+	@Override
+	public void unassignTransactionsByUserID(int userID)
+	{
+		try
+		{
+			cmdString = "Update Transactions Set transUserID = 1 where transUserID=" +userID;
+			st1.executeUpdate(cmdString);
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+	}
+
+	@Override
+	public void unassignTransactionsByCategoryID(int categoryID)
+	{
+		try
+		{
+			cmdString = "Update Transactions Set transCategoryID = 1 where transCategoryID=" +categoryID;
+			st1.executeUpdate(cmdString);
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+	}
+
+	@Override
+	public void deleteTransactionByID(int transID)
+	{
+		try
+		{
+			cmdString = "Delete from Transactions where transID=" +transID;
+			st1.executeUpdate(cmdString);
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+	}
+
+	@Override
+	public void updateTransaction(Transaction trans) throws unfoundResourceException
+	{
+		if (getTransactionByID(trans.getTransactionID())==null)
+		{
+			throw new unfoundResourceException("User "+ trans.getTransactionID()+ "not found.");
+		}
+		else
+		{
+			try
+			{
+				cmdString = "Update Transactions Set transDate = '"+ new java.sql.Date(trans.getDate().getTime())
+						+ "', transAmount = " + trans.getAmount() + ", transIsExpense = "+ trans.isExpense()
+						+  ", transComment = '"+ trans.getComments() + "', transCategoryID = "+ trans.getCategoryID()
+						+ ", transUserID = " + trans.getUserID() + " where transID = " + trans.getTransactionID();
+				rs2 = st1.executeQuery(cmdString);
+
+				rs2.close();
+			} catch (SQLException e)
+			{
+				processSQLError(e);
+			}
+		}
+	}
+
 	public String processSQLError(Exception e)
 	{
 		String result = "*** SQL Error: " + e.getMessage();
@@ -511,16 +633,4 @@ public class DataAccessObject implements Database
 		return result;
 	}
 
-	public void deleteCategoryByID(int catId)
-	{
-		try
-		{
-			cmdString = "Delete from Categories where CategoryID=" +catId;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
-	}
 }
