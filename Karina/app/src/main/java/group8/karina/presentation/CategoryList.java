@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import group8.karina.R;
+import group8.karina.application.Services;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
 
@@ -38,7 +39,7 @@ public class CategoryList extends AppCompatActivity
 
 	public void populateListView()
 	{
-		access = new AccessCategories();
+		access = new AccessCategories(Services.getDataAccess());
 		List<Category> categories = access.getAllCategories();
 		// Originally the list view showed only strings (Category name). This caused problems with extracting categories and was inconsistent with the rest of the design
 		// Let's re-visit why these were being saved as Strings (Comment attribute in category?)

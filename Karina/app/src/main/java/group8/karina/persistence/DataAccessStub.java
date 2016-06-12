@@ -13,7 +13,6 @@ import group8.karina.objects.User;
 
 public class DataAccessStub implements Database
 {
-	private String dbName;
 	private String dbType = "stub";
 
 	private ArrayList<User> users;
@@ -25,9 +24,8 @@ public class DataAccessStub implements Database
 	private int nextTransactionID;
 
 
-	public DataAccessStub(String dbName)
+	public DataAccessStub()
 	{
-		this.dbName = dbName;
 		nextCategoryID = 1;
 		nextTransactionID = 1;
 		nextUserID = 1;
@@ -88,12 +86,11 @@ public class DataAccessStub implements Database
 		{
 			e.printStackTrace();
 		}
-		System.out.println("Opened " + dbType + " database " + dbName);
 	}
 
 	public void close()
 	{
-		System.out.println("Closed " + dbType + " database " + dbName);
+
 	}
 
 	public List<User> getUserSequential()

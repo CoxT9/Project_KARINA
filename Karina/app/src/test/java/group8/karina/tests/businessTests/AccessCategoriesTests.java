@@ -10,6 +10,7 @@ import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.Services;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
 public class AccessCategoriesTests extends junit.framework.TestCase
@@ -20,8 +21,8 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		dataAccess = Services.getDataAccess();
-		accessCategories = new AccessCategories();
+		dataAccess = new DataAccessStub();
+		accessCategories = new AccessCategories(dataAccess);
 	}
 
 	@After

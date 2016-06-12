@@ -12,9 +12,9 @@ public class AccessUsers
 {
 	private Database dataAccess;
 
-	public AccessUsers()
+	public AccessUsers(Database dataBase)
 	{
-		dataAccess = Services.getDataAccess();
+		dataAccess = dataBase;
 	}
 
 	public List<User> getUsers()

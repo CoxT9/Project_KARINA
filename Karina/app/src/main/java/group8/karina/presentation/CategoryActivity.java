@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.R;
+import group8.karina.application.Services;
 import group8.karina.business.AccessCategories;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Category;
@@ -37,7 +38,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category);
 
-		access = new AccessCategories();
+		access = new AccessCategories(Services.getDataAccess());
 
 		editName = (EditText) findViewById(R.id.editCategory);
 		errorText = (TextView) findViewById(R.id.errorText);
@@ -138,7 +139,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 	@Override
 	public void deleteDialogDeleteButtonClicked()
 	{
-		AccessTransactions accessTransactions = new AccessTransactions();
+		AccessTransactions accessTransactions = new AccessTransactions(Services.getDataAccess());
 		accessTransactions.deleteTransactionsByCategoryID(editCategory.getCategoryID());
 
 		access.deleteCategoryById(editCategory.getCategoryID());
@@ -148,7 +149,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 	@Override
 	public void deleteDialogUnassignButtonClicked()
 	{
-		AccessTransactions accessTransactions = new AccessTransactions();
+		AccessTransactions accessTransactions = new AccessTransactions(Services.getDataAccess());
 		accessTransactions.unassignTransactionsByCategoryID(editCategory.getCategoryID());
 
 		access.deleteCategoryById(editCategory.getCategoryID());

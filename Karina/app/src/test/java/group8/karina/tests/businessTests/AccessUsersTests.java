@@ -21,7 +21,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 	public void setUp()
 	{
 		dataAccess = Services.getDataAccess();
-		accessUsers = new AccessUsers();
+		accessUsers = new AccessUsers(dataAccess);
 	}
 
 	@After
