@@ -15,6 +15,13 @@ public class Category implements Serializable
 		catID = -1;
 
 	}
+	public Category(int newCatID, String newCatName, Boolean exp)
+	{
+		catName = newCatName;
+		catExpense = exp;
+		catID = newCatID;
+
+	}
 
 	public int getCategoryID()
 	{

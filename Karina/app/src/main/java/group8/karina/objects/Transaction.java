@@ -23,6 +23,16 @@ public class Transaction implements Serializable
 		transID = -1;
 		comments = com;
 	}
+	public Transaction(int id, Date newDate, int usr, Boolean exp, double amt, int cat, String com)
+	{
+		date = newDate;
+		expense = exp;
+		amount = amt;
+		categoryID = cat;
+		userID = usr;
+		transID = id;
+		comments = com;
+	}
 
 	public int getTransactionID()
 	{
