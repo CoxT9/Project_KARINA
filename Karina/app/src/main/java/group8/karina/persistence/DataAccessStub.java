@@ -44,50 +44,30 @@ public class DataAccessStub implements Database
 		try
 		{
 			user = new User("default");
-			user.setUserID(nextUserID);
-			nextUserID++;
 			insertUser(user);
 
 			user = new User("Jon");
-			user.setUserID(nextUserID);
-			nextUserID++;
 			insertUser(user);
 
 			user = new User("Bran");
-			user.setUserID(nextUserID);
-			nextUserID++;
 			insertUser(user);
 
 			user = new User("Aria");
-			user.setUserID(nextUserID);
-			nextUserID++;
 			insertUser(user);
 
 			user = new User("Sansa");
-			user.setUserID(nextUserID);
-			nextUserID++;
 			insertUser(user);
 
 			category = new Category("default", true);
-			category.setCategoryID(nextCategoryID);
-			nextCategoryID++;
 			insertCategory(category);
 
 			category = new Category("groceries", true);
-			category.setCategoryID(nextCategoryID);
-			nextCategoryID++;
 			insertCategory(category);
 			category = new Category("weapons", true);
-			category.setCategoryID(nextCategoryID);
-			nextCategoryID++;
 			insertCategory(category);
 			category = new Category("entertainment", true);
-			category.setCategoryID(nextCategoryID);
-			nextCategoryID++;
 			insertCategory(category);
 			category = new Category("income", false);
-			category.setCategoryID(nextCategoryID);
-			nextCategoryID++;
 			insertCategory(category);
 
 
