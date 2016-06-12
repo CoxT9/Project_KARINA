@@ -22,7 +22,7 @@ public class DataAccessObjectTests
 	@Before
 	public void setUp()
 	{
-		test = new DataAccessObject("database");
+		test = new DataAccessObject();
 		test.open("database/db1");
 	}
 
@@ -124,7 +124,8 @@ public class DataAccessObjectTests
 		try
 		{
 			test.insertCategory(newCat);
-		} catch (DuplicateEntryException e)
+		}
+		catch (DuplicateEntryException e)
 		{
 			fail("inserting a valid category should not throw an exception");
 		}

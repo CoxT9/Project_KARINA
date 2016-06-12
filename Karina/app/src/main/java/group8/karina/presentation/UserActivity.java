@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.R;
+import group8.karina.application.Services;
 import group8.karina.business.AccessTransactions;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
@@ -29,7 +30,7 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user);
 
-		access = new AccessUsers();
+		access = new AccessUsers(Services.getDataAccess());
 
 		editName = (EditText) findViewById(R.id.editName);
 		nameText = (TextView) findViewById(R.id.nameText);
@@ -126,7 +127,7 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 	@Override
 	public void deleteDialogDeleteButtonClicked()
 	{
-		AccessTransactions accessTransactions = new AccessTransactions();
+		AccessTransactions accessTransactions = new AccessTransactions(Services.getDataAccess());
 		accessTransactions.deleteTransactionsByUserID(editUser.getUserID());
 
 		access.deleteUserById(editUser.getUserID());
@@ -136,7 +137,7 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 	@Override
 	public void deleteDialogUnassignButtonClicked()
 	{
-		AccessTransactions accessTransactions = new AccessTransactions();
+		AccessTransactions accessTransactions = new AccessTransactions(Services.getDataAccess());
 		accessTransactions.unassignTransactionsByUserID(editUser.getUserID());
 
 		access.deleteUserById(editUser.getUserID());

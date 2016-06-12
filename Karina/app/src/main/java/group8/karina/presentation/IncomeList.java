@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import group8.karina.R;
+import group8.karina.application.Services;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 
@@ -57,7 +58,7 @@ public class IncomeList extends AppCompatActivity
 
 	private void populateListView()
 	{
-		access = new AccessTransactions();
+		access = new AccessTransactions(Services.getDataAccess());
 		List<Transaction> transactions = access.getTransactionsByType(false);
 
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, transactions);

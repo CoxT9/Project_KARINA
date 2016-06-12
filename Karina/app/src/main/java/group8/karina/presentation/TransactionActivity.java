@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import group8.karina.R;
+import group8.karina.application.Services;
 import group8.karina.business.AccessCategories;
 import group8.karina.business.AccessTransactions;
 import group8.karina.business.AccessUsers;
@@ -50,9 +51,9 @@ public abstract class TransactionActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_income);
 
-		accessUsers = new AccessUsers();
-		accessCategories = new AccessCategories();
-		accessTransactions = new AccessTransactions();
+		accessUsers = new AccessUsers(Services.getDataAccess());
+		accessCategories = new AccessCategories(Services.getDataAccess());
+		accessTransactions = new AccessTransactions(Services.getDataAccess());
 
         value = (EditText) findViewById(R.id.valueText);
         userSpinner = (Spinner) findViewById(R.id.userSpinner);

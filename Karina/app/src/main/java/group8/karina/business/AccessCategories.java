@@ -12,9 +12,9 @@ public class AccessCategories
 {
 	private Database dataAccess;
 
-	public AccessCategories()
+	public AccessCategories(Database dataBase)
 	{
-		dataAccess = Services.getDataAccess();
+		dataAccess = dataBase;
 	}
 
 	public List<Category> getAllCategories()

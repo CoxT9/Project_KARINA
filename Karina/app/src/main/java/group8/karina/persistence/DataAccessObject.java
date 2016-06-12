@@ -28,11 +28,6 @@ public class DataAccessObject implements Database
 	private List result;
 	private static String EOF = "  ";
 
-	public DataAccessObject(String dbName)
-	{
-		this.dbName = dbName;
-	}
-
 	public void open(String dbPath)
 	{
 		String url;

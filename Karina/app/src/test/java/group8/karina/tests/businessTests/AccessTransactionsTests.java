@@ -23,7 +23,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	public void setUp()
 	{
 		dataAccess = Services.getDataAccess();
-		accessTransactions = new AccessTransactions();
+		accessTransactions = new AccessTransactions(dataAccess);
 	}
 
 	@After
@@ -82,6 +82,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		double actualValue = accessTransactions.totalIncome();
 		assertEquals(expectedValue, actualValue, 0.0);
 	}
+
 	public void testGetExpensesReturnsTotalExpenses()
 	{
 		double expectedValue = 172.75; // from seed data

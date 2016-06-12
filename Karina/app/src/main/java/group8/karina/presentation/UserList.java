@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import group8.karina.R;
+import group8.karina.application.Services;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
 
@@ -57,7 +58,7 @@ public class UserList extends AppCompatActivity
 
 	private void populateListView()
 	{
-		access = new AccessUsers();
+		access = new AccessUsers(Services.getDataAccess());
 		List<User> users = access.getUsers();
 
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, users);

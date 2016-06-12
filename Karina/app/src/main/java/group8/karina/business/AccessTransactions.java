@@ -11,9 +11,9 @@ public class AccessTransactions
 {
 	private Database dataAccess;
 
-	public AccessTransactions()
+	public AccessTransactions(Database dataBase)
 	{
-		dataAccess = Services.getDataAccess();
+		dataAccess = dataBase;
 	}
 
 	public List<Transaction> getTransactionsByType(boolean isExpense)
