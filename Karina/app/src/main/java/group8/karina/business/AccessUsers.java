@@ -22,6 +22,8 @@ public class AccessUsers
 		return dataAccess.getUserSequential();
 	}
 
+	public User getUserByID(int uID) { return dataAccess.getUserById(uID); }
+
 	public void insertUser(User currentUser) throws DuplicateEntryException
 	{
 		if (currentUser.getUserName() == null || currentUser.getUserName().isEmpty())

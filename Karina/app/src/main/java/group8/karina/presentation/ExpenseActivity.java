@@ -6,7 +6,6 @@ import android.view.View;
 import java.util.List;
 
 import group8.karina.objects.Category;
-import group8.karina.objects.Transaction;
 
 
 public class ExpenseActivity extends TransactionActivity
@@ -16,11 +15,21 @@ public class ExpenseActivity extends TransactionActivity
 	{
 		if (validateForSave())
 		{
-			Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), true,  getEnteredAmount(), getSelectedCategory(), getComments());
-			accessTransactions.insertTransaction(t);
-
-			startActivity(new Intent(this, MainActivity.class));
+			if(editTransaction != null)
+			{
+				updateExistingTransaction(true);
+			}
+			else
+			{
+				insertNewTransaction(true);
+			}
 		}
+	}
+
+	public void deleteButtonClicked(View view)
+	{
+		accessTransactions.deleteTransactionByID(editTransaction.getTransactionID());
+		startActivity(new Intent(this, MainActivity.class));
 	}
 
 	protected List<Category> getCategories()

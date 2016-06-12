@@ -5,6 +5,7 @@ import java.util.List;
 import group8.karina.application.Services;
 import group8.karina.objects.Transaction;
 import group8.karina.persistence.Database;
+import group8.karina.Exceptions.unfoundResourceException;
 
 public class AccessTransactions
 {
@@ -53,5 +54,15 @@ public class AccessTransactions
 	public void unassignTransactionsByUserID(int userID)
 	{
 		dataAccess.unassignTransactionsByUserID(userID);
+	}
+
+	public void deleteTransactionByID(int transID)
+	{
+		dataAccess.deleteTransactionByID(transID);
+	}
+
+	public void updateTransaction(Transaction trans) throws unfoundResourceException
+	{
+		dataAccess.updateTransaction(trans);
 	}
 }

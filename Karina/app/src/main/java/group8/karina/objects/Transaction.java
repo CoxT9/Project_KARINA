@@ -1,8 +1,9 @@
 package group8.karina.objects;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class Transaction
+public class Transaction implements Serializable
 {
 	private int transID;
 	private Boolean expense;
@@ -50,14 +51,19 @@ public class Transaction
 		return (categoryID);
 	}
 
-	public Transaction clone()
+	public String getComments()
 	{
-		return new Transaction(date, userID, expense, amount, categoryID, comments);
+		return this.comments;
+
 	}
 
-	public void setTransactionID(int transID)
+	public Transaction clone()
 	{
-		this.transID = transID;
+		Transaction newTrans = new Transaction(date, userID, expense, amount, categoryID, comments);
+
+		newTrans.setTransactionID(getTransactionID());
+
+		return newTrans;
 	}
 
 	public boolean equals(Object object)
@@ -78,14 +84,26 @@ public class Transaction
 		return result;
 	}
 
-	public String getComments()
-	{
-		return this.comments;
-
-	}
 
 	public void setUserID(int userID)
 	{
 		this.userID = userID;
+	}
+
+	public void setIsExpense(boolean isExpense) { this.expense = isExpense; }
+
+	public void setComments(String comments) { this.comments = comments; }
+
+	public void setAmount(double amount) { this.amount = amount; }
+
+	public void setCategoryID(int categoryID) { this.categoryID = categoryID; }
+
+	public void setDate(Date date) { this.date = date; }
+
+	public void setTransactionID(int transID) { this.transID = transID; }
+
+	public String toString()
+	{
+		return "$" + getAmount() + " on " + getDate();
 	}
 }

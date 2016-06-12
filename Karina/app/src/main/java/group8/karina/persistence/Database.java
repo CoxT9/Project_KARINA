@@ -29,4 +29,6 @@ public interface Database
 	void updateUser(User user) throws unfoundResourceException;
 	void deleteTransactionsByUserID(int userId);
 	void unassignTransactionsByUserID(int userID);
+	void deleteTransactionByID(int transID);
+	void updateTransaction(Transaction trans) throws unfoundResourceException;
 }

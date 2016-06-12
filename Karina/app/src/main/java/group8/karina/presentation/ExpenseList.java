@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,23 +30,35 @@ public class ExpenseList extends AppCompatActivity
 
 		listView = (ListView) findViewById(R.id.expenseList);
 
-		ArrayList<String> values = new ArrayList<String>();
+		populateListView();
+		setListViewOnItemClicked();
+	}
+
+	private void setListViewOnItemClicked()
+	{
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+									long id)
+			{
+				Transaction selectedExpense = (Transaction) parent.getItemAtPosition(position);
+				Intent editExpense = new Intent(ExpenseList.this,ExpenseActivity.class);
+				editExpense.putExtra("EditTransaction", selectedExpense);
+
+				startActivity(editExpense);
+			}
+		});
+	}
+
+	public void addExpenseClicked(View view) { startActivity(new Intent(this, ExpenseActivity.class)); }
+
+	private void populateListView()
+	{
 		access = new AccessTransactions();
 		List<Transaction> transactions = access.getTransactionsByType(true);
 
-		for (Transaction tr : transactions)
-		{
-			values.add("$" + tr.getAmount() + " on " + tr.getDate());
-		}
-
-
-		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, transactions);
 		listView.setAdapter(adapter);
-
-	}
-
-	public void addExpenseClicked(View view)
-	{
-		startActivity(new Intent(this, ExpenseActivity.class));
 	}
 }

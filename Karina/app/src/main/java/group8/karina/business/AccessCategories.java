@@ -31,6 +31,8 @@ public class AccessCategories
 		return dataAccess.getExpenseCategories();
 	}
 
+	public Category getCategoryByID(int categoryID) { return dataAccess.getCategoryById(categoryID); }
+
 
 	public void insertCategory(Category currentCategory) throws DuplicateEntryException
 	{

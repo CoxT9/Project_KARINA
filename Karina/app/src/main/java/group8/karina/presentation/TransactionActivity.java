@@ -1,10 +1,12 @@
 package group8.karina.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,9 +21,10 @@ import group8.karina.business.AccessCategories;
 import group8.karina.business.AccessTransactions;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.Category;
+import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
 
-public class TransactionActivity extends AppCompatActivity
+public abstract class TransactionActivity extends AppCompatActivity
 {
     private EditText value;
     private Spinner userSpinner;
@@ -38,6 +41,8 @@ public class TransactionActivity extends AppCompatActivity
     protected List<Category> categories;
     protected TextView errorValue;
     protected TextView errorDate;
+	protected Button deleteButton;
+	protected Transaction editTransaction;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -58,9 +63,29 @@ public class TransactionActivity extends AppCompatActivity
         setDate = (EditText)findViewById(R.id.setDate);
         errorValue = (TextView) findViewById(R.id.errorValue);
         errorDate = (TextView) findViewById(R.id.errorDate);
+		deleteButton = (Button) findViewById(R.id.deleteButton);
+
+		editTransaction = (Transaction) getIntent().getSerializableExtra("EditTransaction");
 
 		fillUserSpinner();
 		fillCategorySpinner();
+
+		if(editTransaction != null)
+		{
+			setUpActivityForEdit();
+		}
+	}
+
+	private void setUpActivityForEdit()
+	{
+		String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(editTransaction.getDate());
+
+		value.setText(String.valueOf(editTransaction.getAmount()));
+		setDate.setText(formattedDate);
+		//userSpinnerText.setText(accessUsers.getUserByID(editTransaction.getUserID()).toString());
+		//categorySpinnerText.setText(accessCategories.getCategoryByID(editTransaction.getCategoryID()).toString());
+		comments.setText(editTransaction.getComments());
+		deleteButton.setVisibility(View.VISIBLE);
 	}
 
 	private void fillCategorySpinner()
@@ -140,6 +165,35 @@ public class TransactionActivity extends AppCompatActivity
 
 			}
 		});
+	}
+
+	protected void updateExistingTransaction(boolean isExpense)
+	{
+		try
+		{
+			editTransaction.setDate(getSelectedDate());
+			editTransaction.setUserID(getSelectedUser());
+			editTransaction.setIsExpense(isExpense);
+			editTransaction.setAmount(getEnteredAmount());
+			editTransaction.setCategoryID(getSelectedCategory());
+			editTransaction.setComments(getComments());
+
+			accessTransactions.updateTransaction(editTransaction);
+			startActivity(new Intent(this, MainActivity.class));
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Something strange happened when updating user");
+			ex.printStackTrace();
+		}
+	}
+
+	protected void insertNewTransaction(boolean isExpense)
+	{
+		Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), isExpense, getEnteredAmount(), getSelectedCategory(), getComments());
+		accessTransactions.insertTransaction(t);
+
+		startActivity(new Intent(this, MainActivity.class));
 	}
 
 	protected boolean validateForSave()
