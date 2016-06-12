@@ -33,4 +33,6 @@ public interface Database
 	void deleteTransactionsByCategoryID(int categoryId);
 	void unassignTransactionsByUserID(int userID);
 	void unassignTransactionsByCategoryID(int categoryID);
+	void deleteTransactionByID(int transID);
+	void updateTransaction(Transaction trans) throws unfoundResourceException;
 }

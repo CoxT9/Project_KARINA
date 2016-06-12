@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import group8.karina.R;
@@ -29,26 +29,38 @@ public class IncomeList extends AppCompatActivity
 
         listView = (ListView) findViewById(R.id.incomeList);
 
-        ArrayList<String> values = new ArrayList<String>();
-        access = new AccessTransactions();
-        List<Transaction> transactions = access.getTransactionsByType(false);
+        populateListView();
+		setListViewOnItemClicked();
+	}
 
-        for (Transaction tr : transactions)
-        {
-            values.add("$" + tr.getAmount() + " on " + tr.getDate());
-        }
+	private void setListViewOnItemClicked()
+	{
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+									long id)
+			{
+				Transaction selectedIncome = (Transaction) parent.getItemAtPosition(position);
+				Intent editIncome = new Intent(IncomeList.this,IncomeActivity.class);
+				editIncome.putExtra("EditTransaction", selectedIncome);
 
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
-        listView.setAdapter(adapter);
-
-
-
-
+				startActivity(editIncome);
+			}
+		});
 	}
 
 	public void addIncomeClicked(View view)
 	{
 		startActivity(new Intent(this, IncomeActivity.class));
+	}
+
+	private void populateListView()
+	{
+		access = new AccessTransactions();
+		List<Transaction> transactions = access.getTransactionsByType(false);
+
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, transactions);
+		listView.setAdapter(adapter);
 	}
 }

@@ -422,4 +422,38 @@ public class DataAccessStub implements Database
 			}
 		}
 	}
+
+	public void deleteTransactionByID(int transID){
+		for(Transaction t : transactions)
+		{
+			if(t.getTransactionID() == transID)
+			{
+				transactions.remove(t);
+			}
+		}
+	}
+
+	public void updateTransaction(Transaction trans) throws unfoundResourceException
+	{
+		Transaction editTrans = null;
+
+		for(Transaction t : transactions)
+		{
+			if(t.getTransactionID() == trans.getTransactionID())
+			{
+				editTrans = t;
+				break;
+			}
+		}
+
+		if(editTrans == null)
+		{
+			throw new unfoundResourceException("Could not find transaction #: "+trans.getTransactionID());
+		}
+		else
+		{
+			transactions.remove(editTrans);
+			transactions.add(trans);
+		}
+	}
 }
