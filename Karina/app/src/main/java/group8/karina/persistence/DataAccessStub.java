@@ -79,9 +79,9 @@ public class DataAccessStub implements Database
 			insertTransaction(myTransaction);
 			myTransaction = new Transaction(new Date(), 2, true, 12.75, 1, null);
 			insertTransaction(myTransaction);
-			myTransaction = new Transaction(new Date(), 1, false, 100, 4, null);
+			myTransaction = new Transaction(new Date(), 1, false, 100, 5, null);
 			insertTransaction(myTransaction);
-			myTransaction = new Transaction(new Date(), 4, false, 51.34, 4, null);
+			myTransaction = new Transaction(new Date(), 4, false, 51.34, 5, null);
 			insertTransaction(myTransaction);
 
 		} catch (DuplicateEntryException e)
