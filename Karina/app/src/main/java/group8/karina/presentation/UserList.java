@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import group8.karina.R;
@@ -59,6 +60,21 @@ public class UserList extends AppCompatActivity
 	{
 		access = new AccessUsers();
 		List<User> users = access.getUsers();
+
+		Iterator<User> userIterator = users.iterator();
+		User u;
+
+		while(userIterator.hasNext())
+		{
+			u = userIterator.next();
+
+			//user id of 1 means the default user, which we dont want the user to be able to edit or remove
+			if(u.getUserID() == 1)
+			{
+				userIterator.remove();
+				break; //no need to look at everything else in the list
+			}
+		}
 
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, users);
 		listView.setAdapter(adapter);

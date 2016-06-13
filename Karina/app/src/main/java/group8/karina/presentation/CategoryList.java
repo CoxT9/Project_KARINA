@@ -10,11 +10,13 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
+import group8.karina.objects.User;
 
 public class CategoryList extends AppCompatActivity
 {
@@ -40,8 +42,22 @@ public class CategoryList extends AppCompatActivity
 	{
 		access = new AccessCategories();
 		List<Category> categories = access.getAllCategories();
-		// Originally the list view showed only strings (Category name). This caused problems with extracting categories and was inconsistent with the rest of the design
-		// Let's re-visit why these were being saved as Strings (Comment attribute in category?)
+
+		Iterator<Category> categoryIterator = categories.iterator();
+		Category c;
+
+		while(categoryIterator.hasNext())
+		{
+			c = categoryIterator.next();
+
+			//user id of 1 means the default user, which we dont want the user to be able to edit or remove
+			if(c.getCategoryID() == 1)
+			{
+				categoryIterator.remove();
+				break; //no need to look at everything else in the list
+			}
+		}
+
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, categories);
 		listView.setAdapter(adapter);
 	}
