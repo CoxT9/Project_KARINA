@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity
 		startActivity(new Intent(this, IncomeList.class));
 	}
 
-	public void onStatisticsClicked(View view)
+	public void onReportsClicked(View view)
 	{
-		startActivity(new Intent(this, StatisticsActivity.class));
+		startActivity(new Intent(this, ReportsActivity.class));
 	}
 }

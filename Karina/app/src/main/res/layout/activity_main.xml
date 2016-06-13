@@ -41,11 +41,11 @@
         android:layout_centerHorizontal="true"
         android:onClick="onExpenseListClicked"/>
     <Button
-        android:id="@+id/statisticsButton"
+        android:id="@+id/reportsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Statistics"
+        android:text="Reports"
         android:layout_below="@id/expenseListButton"
         android:layout_centerHorizontal="true"
-        android:onClick="onStatisticsClicked"/>
+        android:onClick="onReportsClicked"/>
 </RelativeLayout>
