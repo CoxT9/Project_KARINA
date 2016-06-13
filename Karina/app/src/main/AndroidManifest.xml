@@ -25,7 +25,7 @@
         <activity android:name=".presentation.CategoryList"/>
         <activity android:name=".presentation.IncomeActivity"/>
         <activity android:name=".presentation.IncomeList"/>
-        <activity android:name=".presentation.StatisticsActivity"/>
+        <activity android:name=".presentation.ReportsActivity"/>
     </application>
 
 </manifest>
