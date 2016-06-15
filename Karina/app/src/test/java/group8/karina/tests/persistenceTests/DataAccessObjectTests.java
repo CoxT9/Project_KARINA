@@ -1,4 +1,4 @@
-package group8.karina.tests.persistanceTests;
+package group8.karina.tests.persistenceTests;
 
 import org.junit.Before;
 import org.junit.After;
@@ -22,8 +22,8 @@ public class DataAccessObjectTests
 	@Before
 	public void setUp()
 	{
-		test = new DataAccessObject("database");
-		test.open("database/db1");
+		test = new DataAccessObject("db");
+		test.open("src/test/java/database/db");
 	}
 
 	@After
@@ -62,6 +62,7 @@ public class DataAccessObjectTests
 
 		newUser = null;
 		newUser = test.getUserByName("tester");
+		assertEquals(newUser.getUserName(), "tester");
 		assertNotNull(newUser);
 		test.deleteUserById(newUser.getUserID());
 		newUser = null;

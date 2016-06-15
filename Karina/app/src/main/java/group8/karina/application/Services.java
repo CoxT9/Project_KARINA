@@ -1,6 +1,6 @@
 package group8.karina.application;
 
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.persistence.DataAccessObject;
 import group8.karina.persistence.Database;
 
 public class Services
@@ -12,8 +12,8 @@ public class Services
 	{
 		if (dataAccessService == null)
 		{
-			dataAccessService = new DataAccessStub(KarinaApp.dbName);
-			dataAccessService.open(KarinaApp.dbName);
+			dataAccessService = new DataAccessObject(KarinaApp.dbName);
+			dataAccessService.open(KarinaApp.dbPathName);
 		}
 		return dataAccessService;
 	}
