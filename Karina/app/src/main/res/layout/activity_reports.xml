@@ -21,46 +21,17 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/totalsCard"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titleCard">
-
-
-        <TextView
-            android:id="@+id/incomeTotalLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Total Income: "/>
-
-        <TextView
-            android:id="@+id/expenseTotalLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/incomeTotalLabel"
-            android:textSize="18sp"
-            android:text="Total Expenses: "/>
-
-        <TextView
-            android:id="@+id/incomeTotalValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/incomeTotalLabel"
-            android:textSize="18sp"
-            android:text="0"/>
-
-        <TextView
-            android:id="@+id/expenseTotalValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/incomeTotalLabel"
-            android:layout_toRightOf="@id/expenseTotalLabel"
-            android:textSize="18sp"
-            android:text="0"/>
-
-    </RelativeLayout>
+        android:text="Total Income and Expense"
+        android:id="@+id/totalTransactionReportButton"
+        android:layout_below="@+id/titleCard"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="totalTransactionReportButtonClicked"/>
 
 
 </RelativeLayout>
