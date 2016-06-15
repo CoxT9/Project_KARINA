@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_2aa5b2e6e45b6dd86c1a83e6e7598f9ec26e423a\classes.dex" />
-    </item>
-    <item
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_149fef3f1c2e5fe8bac836eb5e1e757f31493319\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_2aa5b2e6e45b6dd86c1a83e6e7598f9ec26e423a\classes.dex" />
     </item>
     <item
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
@@ -40,7 +40,7 @@
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="e30924fe95555cebb67682359c2126785e218459">
+        sha1="06431a1900f37c28505b332fcf4119457ce4da5b">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_eb0b85571819d80859146dfca1b9e7cc37242f47\classes.dex" />
     </item>
     <item
@@ -54,8 +54,15 @@
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="a73b82c4d405b81b8ed9e589a724580e651b7554">
+        sha1="491efc4b383e3b51168ba2dd6acbd8f40e26bf52">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_43673ed8dd2ab516148c436d3ff24295f77c34ca\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\libs\hsqldb.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5564c057c826418f8e32de5815a14aee91781b37">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\2\hsqldb_866938c360b7ce846c194ec74b4d9177e55aba40\classes.dex" />
     </item>
 
 </items>

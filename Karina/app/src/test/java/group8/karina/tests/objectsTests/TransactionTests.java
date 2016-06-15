@@ -22,6 +22,7 @@ public class TransactionTests extends junit.framework.TestCase
 
 	private Transaction trans;
 	private Transaction otherTrans;
+	private Object cloneTrans;
 
 	@Before
 	public void setUp()
@@ -70,13 +71,16 @@ public class TransactionTests extends junit.framework.TestCase
 	}
 
 	public void testCloning() {
-		otherTrans = trans.clone();
-		assertEquals(trans.isExpense(), TRANS_ORIGINAL_ISEXP);
-		assertEquals(trans.getTransactionID(), TRANS_ORIGINAL_ID);
-		assertEquals(trans.getAmount(), TRANS_ORIGINAL_AMOUNT, 1);
-		assertEquals(trans.getCategoryID(), TRANS_ORIGINAL_CAT_ID);
-		assertEquals(trans.getUserID(), TRANS_ORIGINAL_USER_ID);
-		assertEquals(trans.getDate(), TRANS_ORIGINAL_DATE);
+		cloneTrans = trans.clone();
+		assertTrue(cloneTrans instanceof Transaction);
+		otherTrans = (Transaction)cloneTrans;
+		assertEquals(otherTrans.isExpense(), TRANS_ORIGINAL_ISEXP);
+		assertEquals(otherTrans.getTransactionID(), TRANS_ORIGINAL_ID);
+		assertEquals(otherTrans.getAmount(), TRANS_ORIGINAL_AMOUNT, 1);
+		assertEquals(otherTrans.getCategoryID(), TRANS_ORIGINAL_CAT_ID);
+		assertEquals(otherTrans.getUserID(), TRANS_ORIGINAL_USER_ID);
+		assertEquals(otherTrans.getDate(), TRANS_ORIGINAL_DATE);
+		assertNotSame(trans, otherTrans);
 
 		otherTrans.setTransactionID(2);//separate from original
 		assertFalse(trans.equals(otherTrans));

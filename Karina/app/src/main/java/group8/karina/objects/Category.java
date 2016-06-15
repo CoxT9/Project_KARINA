@@ -2,7 +2,7 @@ package group8.karina.objects;
 
 import java.io.Serializable;
 
-public class Category implements Serializable
+public class Category implements Serializable, Cloneable
 {
 	private int catID;
 	private String catName;
@@ -42,11 +42,17 @@ public class Category implements Serializable
 
 	public boolean isExpense() {return catExpense;}
 
-	public Category clone()
+	public Object clone()
 	{
-		Category c = new Category(this.catName, this.catExpense);
-		c.setCategoryID(this.getCategoryID());
-		return c;
+		try
+		{
+			return super.clone();
+		}
+		catch(CloneNotSupportedException cns)
+		{
+			System.out.println("Clone not supported for Categories!");
+			return this;
+		}
 	}
 
 	public boolean equals(Object object)

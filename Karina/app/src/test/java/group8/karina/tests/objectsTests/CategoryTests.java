@@ -16,6 +16,7 @@ public class CategoryTests extends junit.framework.TestCase
 
 	private Category cat;
 	private Category otherCat;
+	private Object cloneCat;
 
 	@Before
 	public void setUp()
@@ -63,10 +64,13 @@ public class CategoryTests extends junit.framework.TestCase
 
 	public void testCloning()
 	{
-		otherCat = cat.clone();
-		assertEquals(cat.isExpense(), CAT_ORIGINAL_ISEXP);
-		assertEquals(cat.getCategoryID(), CAT_ORIGINAL_ID);
-		assertEquals(cat.getCategoryName(), CAT_ORIGINAL_NAME);
+		cloneCat = cat.clone();
+		assertTrue(cloneCat instanceof Category);
+		otherCat = (Category)cloneCat;
+		assertEquals(otherCat.isExpense(), CAT_ORIGINAL_ISEXP);
+		assertEquals(otherCat.getCategoryID(), CAT_ORIGINAL_ID);
+		assertEquals(otherCat.getCategoryName(), CAT_ORIGINAL_NAME);
+		assertNotSame(cat, otherCat);
 
 		otherCat.setCategoryID(2);//separate from original
 		assertFalse(cat.equals(otherCat));
