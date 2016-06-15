@@ -82,8 +82,6 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 		value.setText(String.valueOf(editTransaction.getAmount()));
 		setDate.setText(formattedDate);
-		//userSpinnerText.setText(accessUsers.getUserByID(editTransaction.getUserID()).toString());
-		//categorySpinnerText.setText(accessCategories.getCategoryByID(editTransaction.getCategoryID()).toString());
 		comments.setText(editTransaction.getComments());
 		deleteButton.setVisibility(View.VISIBLE);
 	}
