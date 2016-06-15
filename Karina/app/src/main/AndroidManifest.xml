@@ -26,6 +26,7 @@
         <activity android:name=".presentation.IncomeActivity"/>
         <activity android:name=".presentation.IncomeList"/>
         <activity android:name=".presentation.ReportsActivity"/>
+        <activity android:name=".presentation.TotalTransactionReportActivity"/>
     </application>
 
 </manifest>
