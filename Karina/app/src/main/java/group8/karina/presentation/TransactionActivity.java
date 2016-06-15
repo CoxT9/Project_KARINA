@@ -67,13 +67,13 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 		editTransaction = (Transaction) getIntent().getSerializableExtra("EditTransaction");
 
-		fillUserSpinner();
-		fillCategorySpinner();
-
 		if(editTransaction != null)
 		{
 			setUpActivityForEdit();
 		}
+
+		fillUserSpinner();
+		fillCategorySpinner();
 	}
 
 	private void setUpActivityForEdit()
@@ -82,8 +82,6 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 		value.setText(String.valueOf(editTransaction.getAmount()));
 		setDate.setText(formattedDate);
-		//userSpinnerText.setText(accessUsers.getUserByID(editTransaction.getUserID()).toString());
-		//categorySpinnerText.setText(accessCategories.getCategoryByID(editTransaction.getCategoryID()).toString());
 		comments.setText(editTransaction.getComments());
 		deleteButton.setVisibility(View.VISIBLE);
 	}
@@ -115,7 +113,14 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 				if (categorySpinnerText != null) //have to do null check to avoid problems when initially opening the page
 				{
-					categorySpinnerText.setText(item);
+					if(editTransaction != null)
+					{
+						categorySpinnerText.setText(accessCategories.getCategoryByID(editTransaction.getCategoryID()).toString());
+					}
+					else
+					{
+						categorySpinnerText.setText(item);
+					}
 				}
 			}
 
@@ -155,7 +160,14 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 				if (userSpinnerText != null) //have to do null check to avoid problems when initially opening the page
 				{
-					userSpinnerText.setText(item);
+					if(editTransaction != null)
+					{
+						userSpinnerText.setText(accessUsers.getUserByID(editTransaction.getUserID()).toString());
+					}
+					else
+					{
+						userSpinnerText.setText(item);
+					}
 				}
 			}
 
