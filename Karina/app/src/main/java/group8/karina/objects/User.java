@@ -2,7 +2,7 @@ package group8.karina.objects;
 
 import java.io.Serializable;
 
-public class User implements Serializable
+public class User implements Serializable, Cloneable
 {
 	private int userID;
 	private String userName;
@@ -33,12 +33,17 @@ public class User implements Serializable
 		userID = newID;
 	}
 
-	public User clone()
+	public Object clone()
 	{
-		User u = new User(userName);
-		u.setUserID(this.userID);
-
-		return u;
+		try
+		{
+			return super.clone();
+		}
+		catch(CloneNotSupportedException cns)
+		{
+			System.out.println("Cloning Not Supported For Users!");
+			return this;
+		}
 	}
 
 	public boolean equals(Object object)

@@ -16,6 +16,7 @@ public class UserTests extends junit.framework.TestCase
 
 	private User user;
 	private User otherUser;
+	private Object cloneUser;
 
 	@Before
 	public void setUp()
@@ -59,12 +60,14 @@ public class UserTests extends junit.framework.TestCase
 
 	}
 
-	@Test
 	public void testCloning()
 	{
-		otherUser = user.clone();
-		assertEquals(user.getUserID(), USER_ORIGINAL_ID);
-		assertEquals(user.getUserName(), USER_ORIGINAL_NAME);
+		cloneUser = user.clone();
+		assertTrue(cloneUser instanceof User);
+		otherUser = (User)cloneUser;
+		assertEquals(otherUser.getUserID(), USER_ORIGINAL_ID);
+		assertEquals(otherUser.getUserName(), USER_ORIGINAL_NAME);
+		assertNotSame(user, otherUser);
 
 		otherUser.setUserID(2);//separate from original
 		assertFalse(user.equals(otherUser));

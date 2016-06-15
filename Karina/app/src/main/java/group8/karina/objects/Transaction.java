@@ -3,7 +3,7 @@ package group8.karina.objects;
 import java.util.Date;
 import java.io.Serializable;
 
-public class Transaction implements Serializable
+public class Transaction implements Serializable, Cloneable
 {
 	private int transID;
 	private Boolean expense;
@@ -67,13 +67,17 @@ public class Transaction implements Serializable
 
 	}
 
-	public Transaction clone()
+	public Object clone()
 	{
-		Transaction newTrans = new Transaction(date, userID, expense, amount, categoryID, comments);
-
-		newTrans.setTransactionID(getTransactionID());
-
-		return newTrans;
+		try
+		{
+			return super.clone();
+		}
+		catch(CloneNotSupportedException cns)
+		{
+			System.out.println("Cloning not supported for Transactions!");
+			return this;
+		}
 	}
 
 	public boolean equals(Object object)

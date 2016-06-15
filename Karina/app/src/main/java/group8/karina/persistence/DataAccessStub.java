@@ -101,7 +101,7 @@ public class DataAccessStub implements Database
 		List<User> result = new ArrayList<User>();
 		for (User u : users)
 		{
-			result.add(u.clone());
+			result.add((User)u.clone());
 		}
 		return result;
 	}
@@ -162,7 +162,7 @@ public class DataAccessStub implements Database
 		List<Category> result = new ArrayList<Category>();
 		for (Category cat : categories)
 		{
-			result.add(cat.clone());
+			result.add((Category)cat.clone());
 		}
 		return result;
 	}
@@ -285,10 +285,10 @@ public class DataAccessStub implements Database
 		{
 			if (isExpense && tr.isExpense())
 			{
-				result.add(tr.clone());
+				result.add((Transaction)tr.clone());
 			} else if (!isExpense && !tr.isExpense())
 			{
-				result.add(tr.clone());
+				result.add((Transaction)tr.clone());
 			}
 		}
 		return result;
@@ -300,7 +300,7 @@ public class DataAccessStub implements Database
 		{
 			if (tr.getTransactionID() == id)
 			{
-				return tr.clone();
+				return (Transaction)tr.clone();
 			}
 		}
 
