@@ -81,10 +81,23 @@ public abstract class TransactionActivity extends AppCompatActivity
 	{
 		String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(editTransaction.getDate());
 
-		value.setText(String.valueOf(editTransaction.getAmount()));
+		value.setText(toStringremoveUnneededDecimal(editTransaction.getAmount()));
 		setDate.setText(formattedDate);
 		comments.setText(editTransaction.getComments());
 		deleteButton.setVisibility(View.VISIBLE);
+	}
+	private String toStringremoveUnneededDecimal(double amount)
+	{
+		String result = null;
+		if (editTransaction.getAmount()%1 == 0)//we don't need the decimal
+		{
+			result = String.valueOf((int)amount);
+		}
+		else
+		{
+			result = String.valueOf(amount);
+		}
+		return result;
 	}
 
 	private void fillCategorySpinner()
@@ -212,6 +225,7 @@ public abstract class TransactionActivity extends AppCompatActivity
 	protected boolean validateForSave()
 	{
 		boolean result = true;
+		final double A_BILLION = 1000000000;
 
         if(value.getText() == null || value.getText().toString().isEmpty())
 		{
@@ -227,14 +241,7 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 			result = false;
 		}
-		else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
-		{
-			errorValue.setText("Value must be a dollar amount");
-			errorValue.setVisibility(View.VISIBLE);
-
-			result = false;
-		}
-		else if(!amountWithinReason(value.getText().toString()))
+		else if(getEnteredAmount()>A_BILLION)
 		{
 			errorValue.setText("Value is too large");
 			errorValue.setVisibility(View.VISIBLE);
@@ -272,21 +279,6 @@ public abstract class TransactionActivity extends AppCompatActivity
             errorDate.setVisibility(View.GONE);
         }
 
-		return result;
-	}
-
-	private boolean amountWithinReason(String amount)
-	{
-		final double BILLION = 1000000000;
-		boolean result = false;
-
-		if (!(amount == null) && !amount.isEmpty())//make sure it's parsable
-		{
-			if (Double.parseDouble(amount)<=BILLION)
-			{
-				result = true;
-			}
-		}
 		return result;
 	}
 
