@@ -231,6 +231,8 @@ public abstract class TransactionActivity extends AppCompatActivity
 		{
 			errorValue.setText("Required");
 			errorValue.setVisibility(View.VISIBLE);
+
+			result = false;
 		}
         else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
 		{
