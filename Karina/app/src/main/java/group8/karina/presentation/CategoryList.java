@@ -8,22 +8,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
-import group8.karina.objects.User;
 
 public class CategoryList extends AppCompatActivity
 {
 
 	private RelativeLayout card;
 	private AccessCategories access;
-    private ListView listView;
+    private ListView incomeList;
+	private ListView expenseList;
+	private TextView incomeTitle;
+	private TextView expenseTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -31,18 +33,24 @@ public class CategoryList extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category_list);
 
-		listView = (ListView) findViewById(R.id.categoryList);
+		incomeList = (ListView) findViewById(R.id.incomeCategoryList);
+		expenseList = (ListView) findViewById(R.id.expenseCategoryList);
 
-		populateListView();
+		incomeTitle = (TextView) findViewById(R.id.incomeCategoryTitle);
+		expenseTitle = (TextView) findViewById(R.id.expenseCategoryTitle);
+
+		access = new AccessCategories();
+		List<Category> incomeCategories = access.getIncomeCategories();
+		List<Category> expenseCategories = access.getExpenseCategories();
+
+		populateListView(incomeCategories, true, access.getIncomeCategories().isEmpty());
+		populateListView(expenseCategories, false, access.getExpenseCategories().isEmpty());
+
 		setListViewOnItemClicked();
-
 	}
 
-	public void populateListView()
+	public void populateListView(List<Category> categories, boolean isIncome, boolean isEmpty)
 	{
-		access = new AccessCategories();
-		List<Category> categories = access.getAllCategories();
-
 		Iterator<Category> categoryIterator = categories.iterator();
 		Category c;
 
@@ -59,12 +67,46 @@ public class CategoryList extends AppCompatActivity
 		}
 
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, categories);
-		listView.setAdapter(adapter);
+		if(isIncome)
+		{
+			if(isEmpty)
+			{
+				incomeTitle.setVisibility(View.GONE);
+			}
+			else
+			{
+				incomeList.setAdapter(adapter);
+			}
+		}
+		else
+		{
+			if(isEmpty)
+			{
+				expenseTitle.setVisibility(View.GONE);
+			}
+			else
+			{
+				expenseList.setAdapter(adapter);
+			}
+		}
 	}
 
 	public void setListViewOnItemClicked()
 	{
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		incomeList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+									long id)
+			{
+				Category selectedCategory = (Category) parent.getItemAtPosition(position);
+				Intent editCategory = new Intent(CategoryList.this,CategoryActivity.class);
+				editCategory.putExtra("EditCategory",selectedCategory);
+
+				startActivity(editCategory);
+			}
+		});
+		expenseList.setOnItemClickListener(new AdapterView.OnItemClickListener()
 		{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,

@@ -3,8 +3,6 @@ package group8.karina.presentation;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +24,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 	private TextView errorText;
 	private AccessCategories access;
 	private RadioButton expenseRadio;
+	private RadioButton incomeRadio;
 	private TextView radioText;
 	private RadioGroup expenseRadioGrp;
 	private Button deleteButton;
@@ -42,6 +41,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 		editName = (EditText) findViewById(R.id.editCategory);
 		errorText = (TextView) findViewById(R.id.errorText);
 		expenseRadio = (RadioButton) findViewById(R.id.expenseRadioButton);
+		incomeRadio = (RadioButton) findViewById(R.id.incomeRadioButton2);
 		radioText = (TextView) findViewById(R.id.typeTextView);
 		deleteButton = (Button) findViewById(R.id.deleteButton);
 
@@ -94,7 +94,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 
 	public void insertNewCategory()
 	{
-		Category category = new Category(editName.getText().toString(), expenseRadio.isActivated());
+		Category category = new Category(editName.getText().toString(), expenseRadio.isChecked());
 		try
 		{
 			if (errorText.getVisibility() == View.VISIBLE)
