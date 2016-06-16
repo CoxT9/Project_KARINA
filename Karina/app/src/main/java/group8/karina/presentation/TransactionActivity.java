@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -218,12 +219,26 @@ public abstract class TransactionActivity extends AppCompatActivity
 			errorValue.setVisibility(View.VISIBLE);
 		}
         else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
-        {
-            errorValue.setText("Value must be a dollar amount");
-            errorValue.setVisibility(View.VISIBLE);
+		{
+			errorValue.setText("Value must be a dollar amount");
+			errorValue.setVisibility(View.VISIBLE);
 
-            result = false;
-        }
+			result = false;
+		}
+		else if(!value.getText().toString().matches("[0-9]+(\\.[0-9][0-9])?"))
+		{
+			errorValue.setText("Value must be a dollar amount");
+			errorValue.setVisibility(View.VISIBLE);
+
+			result = false;
+		}
+		else if(!amountWithinReason(value.getText().toString()))
+		{
+			errorValue.setText("Value is too large");
+			errorValue.setVisibility(View.VISIBLE);
+
+			result = false;
+		}
         else
         {
             errorValue.setVisibility(View.GONE);
@@ -237,18 +252,56 @@ public abstract class TransactionActivity extends AppCompatActivity
             result = false;
         }
         else if(!setDate.getText().toString().matches("[0-3][0-9]/[0-1]?[1-9]/[0-9][0-9][0-9][0-9]"))
-        {
-            errorDate.setText("Date must be DD/MM/YYYY");
-            errorDate.setVisibility(View.VISIBLE);
+		{
+			errorDate.setText("Date must be DD/MM/YYYY");
+			errorDate.setVisibility(View.VISIBLE);
 
-            result = false;
-        }
+			result = false;
+		}
+		else if(!isValidDate(setDate.getText().toString()))
+		{
+			errorDate.setText("Date must be valid");
+			errorDate.setVisibility(View.VISIBLE);
+
+			result = false;
+		}
         else
         {
             errorDate.setVisibility(View.GONE);
         }
 
 		return result;
+	}
+
+	private boolean amountWithinReason(String amount)
+	{
+		final double BILLION = 1000000000;
+		boolean result = false;
+
+		if (!(amount == null) && !amount.isEmpty())//make sure it's parsable
+		{
+			if (Double.parseDouble(amount)<=BILLION)
+			{
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	private boolean isValidDate(String date)
+	{
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		format.setLenient(false);
+
+		try
+		{
+			format.parse(date.trim());
+		} catch (ParseException parseEx)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 	protected int getSelectedUser()
