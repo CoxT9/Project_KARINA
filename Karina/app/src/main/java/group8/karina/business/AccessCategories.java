@@ -41,7 +41,6 @@ public class AccessCategories
 		{
 			throw new IllegalArgumentException("Null or empty value for Category");
 		}
-
 		dataAccess.insertCategory(currentCategory);
 	}
 

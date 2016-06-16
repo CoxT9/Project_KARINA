@@ -13,10 +13,35 @@
         android:text="Add Category"
         />
 
+    <TextView
+        android:id="@+id/incomeCategoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Income"
+        android:layout_below="@id/addCategoryButton"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        />
     <ListView
-        android:id="@+id/categoryList"
+        android:id="@+id/incomeCategoryList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addCategoryButton" />
+        android:layout_below="@+id/incomeCategoryTitle" />
+
+    <TextView
+        android:id="@+id/expenseCategoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expense"
+        android:layout_below="@id/incomeCategoryList"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        />
+
+    <ListView
+        android:id="@+id/expenseCategoryList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expenseCategoryTitle" />
 
 </RelativeLayout>

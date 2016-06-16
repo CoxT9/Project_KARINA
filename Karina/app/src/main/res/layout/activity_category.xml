@@ -55,10 +55,10 @@
         android:layout_toEndOf="@+id/addCategoryText">
 
         <RadioButton
+            android:id="@+id/expenseRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Expense"
-            android:id="@+id/expenseRadioButton"
             android:checked="true"/>
 
         <RadioButton
