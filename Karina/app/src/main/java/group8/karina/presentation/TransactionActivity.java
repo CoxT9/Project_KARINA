@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -274,6 +275,13 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 			result = false;
 		}
+		else if(!isWithin100Years(setDate.getText().toString()))
+		{
+			errorDate.setText("Date must be within a century from now");
+			errorDate.setVisibility(View.VISIBLE);
+
+			result = false;
+		}
         else
         {
             errorDate.setVisibility(View.GONE);
@@ -296,6 +304,25 @@ public abstract class TransactionActivity extends AppCompatActivity
 		}
 
 		return true;
+	}
+	private boolean isWithin100Years(String date)
+	{
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar calendar = Calendar.getInstance();
+		int yearNow = calendar.get(Calendar.YEAR);
+		int transYear;
+		Date transDate;
+		try
+		{
+			transDate = format.parse(date.trim());
+		} catch (ParseException parseEx)
+		{
+			return false;
+		}
+		calendar.setTime(transDate);
+		transYear= calendar.get(Calendar.YEAR);
+
+		return (transYear>(yearNow-100) && transYear<(yearNow+100));
 	}
 
 	protected int getSelectedUser()
