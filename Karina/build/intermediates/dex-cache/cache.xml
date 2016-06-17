@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_1d97963b6b67d196a243b5b344545b0767aa523d.jar" />
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_2aa5b2e6e45b6dd86c1a83e6e7598f9ec26e423a\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_d19382eb6d35e2cfdae8fbdf59d77b6a42faa13f.jar" />
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_149fef3f1c2e5fe8bac836eb5e1e757f31493319\classes.dex" />
     </item>
     <item
         jar="C:\Users\Mike\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.2.5\e135072797f494a3b6cb10640dd8c6495261b9ac\MPAndroidChart-v2.2.5.jar"
@@ -40,7 +40,7 @@
         jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\libs\hsqldb.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="5ee175911824a9913e650246f0759eb30691ca00">
+        sha1="13b8535951af7b446da23bbe4ba2f3282a456d7e">
         <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\hsqldb_31457f22a58518f0b7fa32b9bddff5a285dbf6be.jar" />
     </item>
     <item
@@ -54,8 +54,9 @@
         jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        sha1="ff406192ea246ecc439f8e21238d541ac7ec6d06">
         <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_92ba40cf864c0759d1794ffa875eb0b487c27727.jar" />
     </item>
+        sha1="5ee175911824a9913e650246f0759eb30691ca00">
 
 </items>

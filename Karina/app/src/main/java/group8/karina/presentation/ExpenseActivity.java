@@ -29,7 +29,8 @@ public class ExpenseActivity extends TransactionActivity
 	public void deleteButtonClicked(View view)
 	{
 		accessTransactions.deleteTransactionByID(editTransaction.getTransactionID());
-		startActivity(new Intent(this, MainActivity.class));
+		startActivity(new Intent(this, ExpenseList.class));
+		finish();
 	}
 
 	protected List<Category> getCategories()

@@ -28,7 +28,8 @@ public class IncomeActivity extends TransactionActivity
 	public void deleteButtonClicked(View view)
 	{
 		accessTransactions.deleteTransactionByID(editTransaction.getTransactionID());
-		startActivity(new Intent(this, MainActivity.class));
+		startActivity(new Intent(this, IncomeList.class));
+		finish();
 	}
 
 	protected List<Category> getCategories()

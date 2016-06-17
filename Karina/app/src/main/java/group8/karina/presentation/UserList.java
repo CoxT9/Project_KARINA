@@ -47,6 +47,7 @@ public class UserList extends AppCompatActivity
 				editUser.putExtra("EditUser",selectedUser);
 
 				startActivity(editUser);
+				finish();
 			}
 		});
 	}
@@ -54,6 +55,7 @@ public class UserList extends AppCompatActivity
 	public void addUserClicked(View view)
 	{
 		startActivity(new Intent(this, UserActivity.class));
+		finish();
 	}
 
 	private void populateListView()

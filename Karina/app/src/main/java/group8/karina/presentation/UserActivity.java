@@ -77,7 +77,8 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 		{
 			editUser.setUserName(editName.getText().toString());
 			access.updateUser(editUser);
-			startActivity(new Intent(this, MainActivity.class));
+			startActivity(new Intent(this, UserList.class));
+			finish();
 		}
 		catch(Exception ex)
 		{
@@ -97,7 +98,8 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 			}
 
 			access.insertUser(user);
-			startActivity(new Intent(this, MainActivity.class));
+			startActivity(new Intent(this, UserList.class));
+			finish();
 		} catch (DuplicateEntryException dupEx)
 		{
 			writeDuplicateMessage();
@@ -130,7 +132,8 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 		accessTransactions.deleteTransactionsByUserID(editUser.getUserID());
 
 		access.deleteUserById(editUser.getUserID());
-		startActivity(new Intent(this,MainActivity.class));
+		startActivity(new Intent(this,UserList.class));
+		finish();
 	}
 
 	@Override
@@ -140,6 +143,7 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 		accessTransactions.unassignTransactionsByUserID(editUser.getUserID());
 
 		access.deleteUserById(editUser.getUserID());
-		startActivity(new Intent(this,MainActivity.class));
+		startActivity(new Intent(this,UserList.class));
+		finish();
 	}
 }
