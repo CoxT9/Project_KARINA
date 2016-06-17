@@ -75,4 +75,9 @@ public class AccessTransactions
 	{
 		dataAccess.updateTransaction(trans);
 	}
+
+	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
+	{
+		return dataAccess.getTotalTransactionsByCategory(isExpense);
+	}
 }

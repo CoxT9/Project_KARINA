@@ -436,4 +436,9 @@ public class DataAccessStub implements Database
 			transactions.add(trans);
 		}
 	}
+
+	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
+	{
+		return null;
+	}
 }
