@@ -23,5 +23,10 @@ public class ReportsActivity extends AppCompatActivity
 		startActivity(new Intent(this,TotalTransactionReportActivity.class));
 	}
 
+	public void transactionByCategoryButtonClicked(View v)
+	{
+		startActivity(new Intent(this,TransactionByCategoryReportActivity.class));
+	}
+
 
 }

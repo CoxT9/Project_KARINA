@@ -12,6 +12,7 @@ public class Transaction implements Serializable, Cloneable
 	private int userID;
 	private Date date;
 	private String comments;
+	private String categoryName;
 
 	public Transaction(Date newDate, int usr, Boolean exp, double amt, int cat, String com)
 	{
@@ -59,6 +60,11 @@ public class Transaction implements Serializable, Cloneable
 	public int getCategoryID()
 	{
 		return (categoryID);
+	}
+
+	public String getCategoryName()
+	{
+		return categoryName;
 	}
 
 	public String getComments()
@@ -119,5 +125,10 @@ public class Transaction implements Serializable, Cloneable
 	public String toString()
 	{
 		return "$" + getAmount() + " on " + getDate();
+	}
+
+	public void setCategoryName(String categoryName)
+	{
+		this.categoryName = categoryName;
 	}
 }

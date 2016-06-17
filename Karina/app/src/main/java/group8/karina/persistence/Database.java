@@ -35,4 +35,6 @@ public interface Database
 	void unassignTransactionsByCategoryID(int categoryID);
 	void deleteTransactionByID(int transID);
 	void updateTransaction(Transaction trans) throws unfoundResourceException;
+
+	List<Transaction> getTotalTransactionsByCategory(boolean isExpense);
 }

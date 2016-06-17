@@ -633,4 +633,35 @@ public class DataAccessObject implements Database
 		return result;
 	}
 
+	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
+	{
+		List<Transaction> totals=new ArrayList<Transaction>();
+
+		double transAmount;
+		String transCategoryName;
+
+		rs2 = null;
+		try
+		{
+			cmdString = "Select SUM(t.transAmount) as total, c.categoryName from Transactions t inner join Categories c on t.transCategoryID = c.categoryID where t.transIsExpense = "+isExpense+" group by c.categoryName";
+			rs2 = st1.executeQuery(cmdString);
+
+			while (rs2.next())
+			{
+				transAmount = rs2.getDouble("total");
+				transCategoryName = rs2.getString("categoryName");
+				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
+				t.setCategoryName(transCategoryName);
+
+				totals.add(t);
+			}
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+
+		return totals;
+	}
+
 }
