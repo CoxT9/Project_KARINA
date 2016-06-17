@@ -104,18 +104,18 @@ public class DataAccessObjectTests
 	public void getCategoriesTest()
 	{
 		List<Category> cat = test.getAllCategories();
-		assertEquals(cat.get(1).getCategoryName(), "groceries");
-		assertEquals(cat.get(2).getCategoryName(), "weapons");
+		assertEquals(cat.get(2).getCategoryName(), "groceries");
+		assertEquals(cat.get(3).getCategoryName(), "weapons");
 		assertEquals(test.getCategoryByNameAndIsExpense("Default", true).getCategoryID(), 1);
 		assertEquals(test.getCategoryById(4).getCategoryName(), "income");
 		cat = test.getIncomeCategories();
-		assertEquals(cat.get(0).getCategoryName(), "income");
-		assertEquals(cat.size(), 1);
+		assertEquals(cat.get(1).getCategoryName(), "income");
+		assertEquals(cat.size(), 2);
 		cat = test.getExpenseCategories();
 		assertEquals(cat.get(0).getCategoryName(), "Default");
-		assertNotEquals(cat.size(), 1);
-		assertNull(test.getCategoryById(0));
-		assertNull(test.getCategoryByNameAndIsExpense("Default", false));
+		assertEquals(cat.size(), 3);
+		assertNull(test.getCategoryById(-1));
+		assertNull(test.getCategoryByNameAndIsExpense("groceries", false));
 	}
 
 	@Test
