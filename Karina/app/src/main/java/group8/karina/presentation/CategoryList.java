@@ -75,6 +75,7 @@ public class CategoryList extends AppCompatActivity
 				editCategory.putExtra("EditCategory",selectedCategory);
 
 				startActivity(editCategory);
+				finish();
 			}
 		});
 	}

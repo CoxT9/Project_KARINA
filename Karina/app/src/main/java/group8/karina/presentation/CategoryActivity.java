@@ -83,7 +83,8 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 		{
 			editCategory.setCategoryName(editName.getText().toString());
 			access.updateCategory(editCategory);
-			startActivity(new Intent(this, MainActivity.class));
+			startActivity(new Intent(this, CategoryList.class));
+			finish();
 		}
 		catch(Exception ex)
 		{
@@ -103,7 +104,9 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 			}
 
 			access.insertCategory(category);
-			startActivity(new Intent(this, MainActivity.class));
+			startActivity(new Intent(this, CategoryList.class));
+			finish();
+
 		} catch (DuplicateEntryException dupEx)
 		{
 			writeDuplicateMessage();
@@ -142,7 +145,8 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 		accessTransactions.deleteTransactionsByCategoryID(editCategory.getCategoryID());
 
 		access.deleteCategoryById(editCategory.getCategoryID());
-		startActivity(new Intent(this,MainActivity.class));
+		startActivity(new Intent(this,CategoryList.class));
+		finish();
 	}
 
 	@Override
@@ -152,7 +156,8 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 		accessTransactions.unassignTransactionsByCategoryID(editCategory.getCategoryID());
 
 		access.deleteCategoryById(editCategory.getCategoryID());
-		startActivity(new Intent(this,MainActivity.class));
+		startActivity(new Intent(this,CategoryList.class));
+		finish();
 	}
 
 }

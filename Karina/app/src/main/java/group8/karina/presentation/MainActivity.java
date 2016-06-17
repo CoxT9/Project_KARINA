@@ -41,4 +41,9 @@ public class MainActivity extends AppCompatActivity
 	{
 		startActivity(new Intent(this, ReportsActivity.class));
 	}
+
+	public void onAboutButtonClicked(View view)
+	{
+		startActivity(new Intent(this, AboutActivity.class));
+	}
 }

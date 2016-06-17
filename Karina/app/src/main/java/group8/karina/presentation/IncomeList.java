@@ -46,6 +46,7 @@ public class IncomeList extends AppCompatActivity
 				editIncome.putExtra("EditTransaction", selectedIncome);
 
 				startActivity(editIncome);
+				finish();
 			}
 		});
 	}
@@ -53,6 +54,7 @@ public class IncomeList extends AppCompatActivity
 	public void addIncomeClicked(View view)
 	{
 		startActivity(new Intent(this, IncomeActivity.class));
+		finish();
 	}
 
 	private void populateListView()

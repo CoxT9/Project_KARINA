@@ -191,7 +191,18 @@ public abstract class TransactionActivity extends AppCompatActivity
 			editTransaction.setComments(getComments());
 
 			accessTransactions.updateTransaction(editTransaction);
-			startActivity(new Intent(this, MainActivity.class));
+
+			if(isExpense)
+			{
+				startActivity(new Intent(this,ExpenseList.class));
+				finish();
+			}
+			else
+			{
+				startActivity(new Intent(this,IncomeList.class));
+				finish();
+			}
+
 		}
 		catch(Exception ex)
 		{
@@ -205,7 +216,17 @@ public abstract class TransactionActivity extends AppCompatActivity
 		Transaction t = new Transaction(getSelectedDate(), getSelectedUser(), isExpense, getEnteredAmount(), getSelectedCategory(), getComments());
 		accessTransactions.insertTransaction(t);
 
-		startActivity(new Intent(this, MainActivity.class));
+		if(isExpense)
+		{
+			startActivity(new Intent(this, ExpenseList.class));
+			finish();
+		}
+		else
+		{
+			startActivity(new Intent(this, IncomeList.class));
+			finish();
+		}
+
 	}
 
 	protected boolean validateForSave()

@@ -47,6 +47,7 @@ public class ExpenseList extends AppCompatActivity
 				editExpense.putExtra("EditTransaction", selectedExpense);
 
 				startActivity(editExpense);
+				finish();
 			}
 		});
 	}
