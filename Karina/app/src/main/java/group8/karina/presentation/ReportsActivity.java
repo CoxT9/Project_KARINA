@@ -28,5 +28,8 @@ public class ReportsActivity extends AppCompatActivity
 		startActivity(new Intent(this,TransactionByCategoryReportActivity.class));
 	}
 
-
+	public void transactionByUserButtonClicked(View v)
+	{
+		startActivity(new Intent(this,TransactionByUserReportActivity.class));
+	}
 }

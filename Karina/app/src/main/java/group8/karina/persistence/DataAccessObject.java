@@ -1,13 +1,18 @@
 package group8.karina.persistence;
 
+import android.support.annotation.NonNull;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Date;
+import java.util.ListIterator;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
@@ -616,7 +621,8 @@ public class DataAccessObject implements Database
 				rs2 = st1.executeQuery(cmdString);
 
 				rs2.close();
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				processSQLError(e);
 			}
@@ -635,7 +641,7 @@ public class DataAccessObject implements Database
 
 	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
 	{
-		List<Transaction> totals=new ArrayList<Transaction>();
+		List<Transaction> totals = new ArrayList<Transaction>();
 
 		double transAmount;
 		String transCategoryName;
@@ -652,6 +658,38 @@ public class DataAccessObject implements Database
 				transCategoryName = rs2.getString("categoryName");
 				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
 				t.setCategoryName(transCategoryName);
+
+				totals.add(t);
+			}
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+
+		return totals;
+	}
+
+	public List<Transaction> getTotalTransactionsByUser(boolean isExpense)
+	{
+		List<Transaction> totals = new ArrayList<Transaction>();
+
+		double transAmount;
+		String transUserName;
+
+		rs2 = null;
+
+		try
+		{
+			cmdString = "Select SUM(t.transAmount) as total, u.userName from Transactions t inner join Users u on t.transUserID = u.userID where t.transIsExpense = "+isExpense+" group by u.userName";
+			rs2 = st1.executeQuery(cmdString);
+
+			while (rs2.next())
+			{
+				transAmount = rs2.getDouble("total");
+				transUserName = rs2.getString("userName");
+				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
+				t.setUserName(transUserName);
 
 				totals.add(t);
 			}
