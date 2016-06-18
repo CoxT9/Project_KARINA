@@ -80,4 +80,9 @@ public class AccessTransactions
 	{
 		return dataAccess.getTotalTransactionsByCategory(isExpense);
 	}
+
+	public List<Transaction> getTotalTransactionsByUser(boolean isExpense)
+	{
+		return dataAccess.getTotalTransactionsByUser(isExpense);
+	}
 }

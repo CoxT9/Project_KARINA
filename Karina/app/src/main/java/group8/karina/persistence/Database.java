@@ -37,4 +37,5 @@ public interface Database
 	void updateTransaction(Transaction trans) throws unfoundResourceException;
 
 	List<Transaction> getTotalTransactionsByCategory(boolean isExpense);
+	List<Transaction> getTotalTransactionsByUser(boolean isExpense);
 }

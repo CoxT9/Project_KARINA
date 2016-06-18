@@ -69,24 +69,24 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 		editTransaction = (Transaction) getIntent().getSerializableExtra("EditTransaction");
 
+		fillUserSpinner();
+		fillCategorySpinner();
+
 		if(editTransaction != null)
 		{
 			setUpActivityForEdit();
 		}
-
-		fillUserSpinner();
-		fillCategorySpinner();
 	}
 
 	private void setUpActivityForEdit()
 	{
 		String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(editTransaction.getDate());
-
 		value.setText(toStringremoveUnneededDecimal(editTransaction.getAmount()));
 		setDate.setText(formattedDate);
 		comments.setText(editTransaction.getComments());
 		deleteButton.setVisibility(View.VISIBLE);
 	}
+
 	private String toStringremoveUnneededDecimal(double amount)
 	{
 		String result = null;
@@ -117,6 +117,7 @@ public abstract class TransactionActivity extends AppCompatActivity
 		adapter = new ArrayAdapter<String>(getApplicationContext(),
 				android.R.layout.simple_spinner_item, list);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 		categorySpinner.setAdapter(adapter);
 
 		categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -128,14 +129,7 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 				if (categorySpinnerText != null) //have to do null check to avoid problems when initially opening the page
 				{
-					if(editTransaction != null)
-					{
-						categorySpinnerText.setText(accessCategories.getCategoryByID(editTransaction.getCategoryID()).toString());
-					}
-					else
-					{
-						categorySpinnerText.setText(item);
-					}
+					categorySpinnerText.setText(item);
 				}
 			}
 
@@ -145,6 +139,13 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 			}
 		});
+
+		if(editTransaction != null)
+		{
+			ArrayAdapter categorySpinnerAdapter = (ArrayAdapter) categorySpinner.getAdapter();
+			int spinnerPosition = categorySpinnerAdapter.getPosition(accessCategories.getCategoryByID(editTransaction.getCategoryID()).toString());
+			categorySpinner.setSelection(spinnerPosition);
+		}
 	}
 
 	private void fillUserSpinner()
@@ -175,14 +176,7 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 				if (userSpinnerText != null) //have to do null check to avoid problems when initially opening the page
 				{
-					if(editTransaction != null)
-					{
-						userSpinnerText.setText(accessUsers.getUserByID(editTransaction.getUserID()).toString());
-					}
-					else
-					{
-						userSpinnerText.setText(item);
-					}
+					userSpinnerText.setText(item);
 				}
 			}
 
@@ -192,6 +186,13 @@ public abstract class TransactionActivity extends AppCompatActivity
 
 			}
 		});
+
+		if(editTransaction != null)
+		{
+			ArrayAdapter userSpinnerAdapter = (ArrayAdapter) userSpinner.getAdapter();
+			int spinnerPosition = userSpinnerAdapter.getPosition(accessUsers.getUserByID(editTransaction.getUserID()).toString());
+			userSpinner.setSelection(spinnerPosition);
+		}
 	}
 
 	protected void updateExistingTransaction(boolean isExpense)
@@ -217,7 +218,6 @@ public abstract class TransactionActivity extends AppCompatActivity
 				startActivity(new Intent(this,IncomeList.class));
 				finish();
 			}
-
 		}
 		catch(Exception ex)
 		{
