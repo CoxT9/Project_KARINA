@@ -3,6 +3,7 @@ package group8.karina.presentation;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.RadioButton;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -23,6 +24,7 @@ public class TransactionByUserReportActivity extends AppCompatActivity
 {
 	private PieChart pieChart;
 	private AccessTransactions transactions;
+	private RadioButton expenseButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,8 +34,10 @@ public class TransactionByUserReportActivity extends AppCompatActivity
 
 		transactions = new AccessTransactions();
 		pieChart = (PieChart) findViewById(R.id.pieChart);
+		expenseButton = (RadioButton) findViewById(R.id.expenseRadioButton);
 
 		initializePieChart();
+		pieChart.setData(createPieChartData(expenseButton.isChecked()));
 	}
 
 	private void initializePieChart()
