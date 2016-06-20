@@ -467,6 +467,53 @@ public class DataAccessObject implements Database
 
 		return result;
 	}
+
+	public List<Transaction> getOrderedTransactionsByDate()
+	{
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions Order By transDate ASC";
+			rs2 = st1.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs2.next())
+			{
+				transAmount = rs2.getDouble("transAmount");
+				transComment = rs2.getString("transComment");
+				transUserID = rs2.getInt("transUserID");
+				transCategoryID = rs2.getInt("transCategoryID");
+				transID = rs2.getInt("transID");
+				transIsExpense = rs2.getBoolean("transIsExpense");
+				transDate = rs2.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+				result.add(transaction);
+			}
+			rs2.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;
+	}
 	public Transaction getTransactionByID(int id)
 	{
 		Transaction transaction=null;

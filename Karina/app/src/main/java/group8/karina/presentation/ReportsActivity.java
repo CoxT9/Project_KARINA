@@ -32,4 +32,8 @@ public class ReportsActivity extends AppCompatActivity
 	{
 		startActivity(new Intent(this,TransactionByUserReportActivity.class));
 	}
+	public void transactionOverTimeButtonClicked(View v)
+	{
+		startActivity(new Intent(this,TransactionOverTimeReportActivity.class));
+	}
 }

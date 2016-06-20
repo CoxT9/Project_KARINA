@@ -85,4 +85,8 @@ public class AccessTransactions
 	{
 		return dataAccess.getTotalTransactionsByUser(isExpense);
 	}
+	public List<Transaction> getOrderedTransactionsByDate()
+	{
+		return dataAccess.getOrderedTransactionsByDate();
+	}
 }
