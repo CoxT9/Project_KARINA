@@ -32,24 +32,21 @@ public class TransactionOverTimeReportActivity extends AppCompatActivity
 
 		transactions = new AccessTransactions();
 		barChart = (BarChart) findViewById(R.id.barChart);
-
+		barChart.setDescription("");
 		initializeBarChart();
 
 	}
 
 	private void initializeBarChart()
 	{
-		//setUpChartLegend(barChart.getLegend());
+		setUpChartLegend(barChart.getLegend());
 
 		barChart.setData(createBarChartData());
 	}
 
 	private void setUpChartLegend(Legend legend)
 	{
-		legend.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
-		legend.setXEntrySpace(7);
-		legend.setYEntrySpace(5);
-		legend.setTextSize(15);
+		legend.setEnabled(false);
 	}
 
 	private BarData createBarChartData()
@@ -76,7 +73,6 @@ public class TransactionOverTimeReportActivity extends AppCompatActivity
 
 
 		BarDataSet dataSet = new BarDataSet(entries,"");
-		//dataSet.setColors(ColorTemplate.PASTEL_COLORS);
 		dataSet.setValueTextSize(17f);
 		BarData barData = new BarData(titles,dataSet);
 

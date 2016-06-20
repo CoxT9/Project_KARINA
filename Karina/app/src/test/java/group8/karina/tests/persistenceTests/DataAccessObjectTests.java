@@ -153,6 +153,7 @@ public class DataAccessObjectTests
 		assertEquals(test.getTransactionByID(1).getCategoryID(), 2);
 
 		assertNull(test.getTransactionByID(0));
+
 	}
 
 	@Test
