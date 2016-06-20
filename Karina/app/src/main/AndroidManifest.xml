@@ -29,6 +29,7 @@
         <activity android:name=".presentation.TotalTransactionReportActivity"/>
         <activity android:name=".presentation.TransactionByCategoryReportActivity"/>
         <activity android:name=".presentation.TransactionByUserReportActivity"/>
+        <activity android:name=".presentation.TransactionOverTimeReportActivity"/>
         <activity android:name=".presentation.AboutActivity"/>
     </application>
 
