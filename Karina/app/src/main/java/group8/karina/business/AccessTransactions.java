@@ -3,7 +3,7 @@ package group8.karina.business;
 import java.util.Hashtable;
 import java.util.List;
 
-import group8.karina.application.Services;
+import group8.karina.application.DatabaseService;
 import group8.karina.objects.Transaction;
 import group8.karina.persistence.Database;
 import group8.karina.Exceptions.unfoundResourceException;
@@ -14,7 +14,7 @@ public class AccessTransactions
 
 	public AccessTransactions()
 	{
-		dataAccess = Services.getDataAccess();
+		dataAccess = DatabaseService.getDataAccess();
 	}
 
 	public List<Transaction> getTransactionsByType(boolean isExpense)
