@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import group8.karina.R;
-import group8.karina.business.AccessTransactions;
 
 public class ReportsActivity extends AppCompatActivity
 {
@@ -25,12 +23,12 @@ public class ReportsActivity extends AppCompatActivity
 
 	public void transactionByCategoryButtonClicked(View v)
 	{
-		startActivity(new Intent(this,TransactionByCategoryReportActivity.class));
+		startActivity(new Intent(this,TransactionByCategoryPieChartReportActivity.class));
 	}
 
 	public void transactionByUserButtonClicked(View v)
 	{
-		startActivity(new Intent(this,TransactionByUserReportActivity.class));
+		startActivity(new Intent(this,TransactionByUserPieChartReportActivity.class));
 	}
 	public void transactionOverTimeButtonClicked(View v)
 	{

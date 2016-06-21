@@ -27,8 +27,8 @@
         <activity android:name=".presentation.IncomeList"/>
         <activity android:name=".presentation.ReportsActivity"/>
         <activity android:name=".presentation.TotalTransactionReportActivity"/>
-        <activity android:name=".presentation.TransactionByCategoryReportActivity"/>
-        <activity android:name=".presentation.TransactionByUserReportActivity"/>
+        <activity android:name=".presentation.TransactionByCategoryPieChartReportActivity"/>
+        <activity android:name=".presentation.TransactionByUserPieChartReportActivity"/>
         <activity android:name=".presentation.TransactionOverTimeReportActivity"/>
         <activity android:name=".presentation.AboutActivity"/>
     </application>
