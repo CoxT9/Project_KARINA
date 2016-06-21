@@ -96,7 +96,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 
 		List<Category> categories = accessCategories.getAllCategories();
 
-		assertEquals(6, categories.size()); //this is 6 because we have some seed data in the database and our inserted data
+		assertEquals(7, categories.size()); //this is 7 because we have some seed data in the database and our inserted data
 	}
 
 	public void testDeleteCategoryByIdDeletes()
