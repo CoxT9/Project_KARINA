@@ -1,18 +1,13 @@
 package group8.karina.persistence;
 
-import android.support.annotation.NonNull;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Date;
-import java.util.ListIterator;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
@@ -22,16 +17,17 @@ import group8.karina.objects.User;
 
 public class DataAccessObject implements Database
 {
-	private Statement st1;
-	private Connection c1;
-	private ResultSet rs2;
+	private final String GET_ALL = "Select * from ";
 
+	private Statement st;
+	private Connection conn;
+	private ResultSet rs;
 
 	private String dbName;
 	private String dbType;
 	private String cmdString;
 	private List result;
-	private static String EOF = "  ";
+
 
 	public DataAccessObject(String dbName)
 	{
@@ -46,8 +42,8 @@ public class DataAccessObject implements Database
 			dbType = "HSQL";
 			Class.forName("org.hsqldb.jdbcDriver").newInstance();
 			url = "jdbc:hsqldb:file:" + dbPath; // stored on disk mode
-			c1 = DriverManager.getConnection(url, "SA", "");
-			st1 = c1.createStatement();
+			conn = DriverManager.getConnection(url, "SA", "");
+			st = conn.createStatement();
 		}
 		catch (Exception e)
 		{
@@ -60,8 +56,8 @@ public class DataAccessObject implements Database
 		try
 		{	// commit all changes to the database
 			cmdString = "shutdown compact";
-			rs2 = st1.executeQuery(cmdString);
-			c1.close();
+			rs = st.executeQuery(cmdString);
+			conn.close();
 		}
 		catch (Exception e)
 		{
@@ -69,85 +65,152 @@ public class DataAccessObject implements Database
 		}
 		System.out.println("Closed " +dbType +" database " +dbName);
 	}
-	public List<User> getUserSequential()
-	{
-		User user;
-		String userName;
-		int  userID;
-		userName = EOF;
-		userID = -1;
-		result=new ArrayList<User>();
 
+	private String queryByAttr(String tableName, String attrName, Object value)
+	{
+		//value must convert to String
+		return String.format("Select * from %s Where %s = %s", tableName, attrName, value);
+	}
+	private void updateDatabase(String cmd)
+	{
 		try
 		{
-			cmdString = "Select * from Users";
-			rs2 = st1.executeQuery(cmdString);
-			//ResultSetMetaData md2 = rs2.getMetaData();
+			st.executeUpdate(cmd);
 		}
 		catch (Exception e)
 		{
 			processSQLError(e);
 		}
+	}
+
+	private User getUser()
+	{
+		User user = null;
+		String userName;
+		int  userID;
+		if (rs != null)
+		{
+			try
+			{
+				userID = rs.getInt("userID");
+				userName = rs.getString("userName");
+				user = new User(userID, userName);
+			} catch (SQLException e)
+			{
+				processSQLError(e);
+			}
+		}
+		return user;
+	}
+
+	private Category getCategory()
+	{
+		Category category=null;
+		String catName;
+		int catID;
+		boolean catIsExpense;
+
+		if (rs != null)
+		{
+			try
+			{
+				catID = rs.getInt("categoryID");
+				catName = rs.getString("categoryName");
+				catIsExpense = rs.getBoolean("categoryIsExpense");
+				category = new Category(catID, catName, catIsExpense);
+			} catch (SQLException e)
+			{
+				processSQLError(e);
+			}
+		}
+		return category;
+	}
+
+	private Transaction getTransaction()
+	{
+		Transaction transaction=null;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+
+		if (rs != null)
+		{
+			try
+			{
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+			} catch (SQLException e)
+			{
+				processSQLError(e);
+			}
+		}
+		return transaction;
+	}
+
+	public List<User> getAllUsers()
+	{
+		User user;
+
+		result=new ArrayList<User>();
+
 		try
 		{
-			while (rs2.next())
+			rs = st.executeQuery(GET_ALL + "Users");
+
+			while (rs.next())
 			{
-				userID = rs2.getInt("userID");
-				userName = rs2.getString("userName");
-				user = new User(userID, userName);
+				user = getUser();
 				result.add(user);
 			}
-			rs2.close();
+			rs.close();
 		}
 		catch (Exception e)
 		{
-			System.out.println(processSQLError(e));
+			processSQLError(e);
 		}
 
 		return result;
 	}
 	public void insertUser(User currentUser) throws DuplicateEntryException
 	{
-		User user;
-		rs2 = null;
-		user = getUserByName(currentUser.getUserName());
-		try
+		User user = getUserByName(currentUser.getUserName());
+
+		if (user == null)
 		{
-			if (user == null)
-			{
-				cmdString = "Insert into Users (UserName) Values('"+ currentUser.getUserName()+"')";
-				rs2 = st1.executeQuery(cmdString);
-			}
-			else
-			{
-				throw new DuplicateEntryException("User already created");
-			}
-			rs2.close();
+			updateDatabase("Insert into Users (UserName) Values('"+ currentUser.getUserName()+"')");
+
 		}
-		catch (SQLException e)
+		else
 		{
-			processSQLError(e);
+			throw new DuplicateEntryException("User already created");
 		}
+
 	}
 	public
 	User getUserByName(String targetName)
 	{
 		User user=null;
-		String userName;
-		int userID;
-
-		rs2 = null;
+		rs = null;
 		try
 		{
-			cmdString = "Select * from Users Where userName = '"+ targetName+"'";
-			rs2 = st1.executeQuery(cmdString);
+			cmdString = queryByAttr("Users", "userName", "'"+targetName+"'");
+			rs = st.executeQuery(cmdString);
 
-			if (rs2.next())
+			if (rs.next())
 			{
-				userID = rs2.getInt("userID");
-				userName = rs2.getString("userName");
-				user = new User(userID, userName);
+				user = getUser();
 			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -158,21 +221,17 @@ public class DataAccessObject implements Database
 	public User getUserById(int uID)
 	{
 		User user=null;
-		String userName;
-		int userID;
-
-		rs2 = null;
+		rs = null;
 		try
 		{
-			cmdString = "Select * from Users Where userID = "+ uID;
-			rs2 = st1.executeQuery(cmdString);
+			cmdString = queryByAttr( "Users", "userID", uID);
+			rs = st.executeQuery(cmdString);
 
-			if (rs2.next())
+			if (rs.next())
 			{
-				userID = rs2.getInt("userID");
-				userName = rs2.getString("userName");
-				user = new User(userID, userName);
+				user = getUser();
 			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -183,23 +242,18 @@ public class DataAccessObject implements Database
 	public Category getCategoryById(int cID)
 	{
 		Category category=null;
-		String catName;
-		int catID;
-		boolean catIsExpense;
 
-		rs2 = null;
+		rs = null;
 		try
 		{
-			cmdString = "Select * from Categories Where CategoryID = "+ cID;
-			rs2 = st1.executeQuery(cmdString);
+			cmdString = queryByAttr("Categories", "categoryID", cID);
+			rs = st.executeQuery(cmdString);
 
-			if (rs2.next())
+			if (rs.next())
 			{
-				catID = rs2.getInt("categoryID");
-				catName = rs2.getString("categoryName");
-				catIsExpense = rs2.getBoolean("categoryIsExpense");
-				category = new Category(catID, catName, catIsExpense);
+				category = getCategory();
 			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -207,135 +261,92 @@ public class DataAccessObject implements Database
 		}
 		return category;
 	}
-	public List getAllCategories()
+	public List<Category> getAllCategories()
 	{
 		Category category;
-		String catName;
-		int  catID;
-		boolean catIsExpense;
 		result=new ArrayList<Category>();
+		rs = null;
 
 		try
 		{
-			cmdString = "Select * from Categories";
-			rs2 = st1.executeQuery(cmdString);
+			rs = st.executeQuery(GET_ALL + "Categories");
+			while (rs.next())
+			{
+				category = getCategory();
+				result.add(category);
+			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
 			processSQLError(e);
-		}
-		try
-		{
-			while (rs2.next())
-			{
-				catID = rs2.getInt("categoryID");
-				catName = rs2.getString("categoryName");
-				catIsExpense = rs2.getBoolean("categoryIsExpense");
-				category = new Category(catID, catName, catIsExpense);
-				result.add(category);
-			}
-			rs2.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println(processSQLError(e));
 		}
 
 		return result;
 	}
-	public List getIncomeCategories()
+	public List<Category> getIncomeCategories()
 	{
 		Category category;
-		String catName;
-		int  catID;
-		boolean catIsExpense;
 		result=new ArrayList<Category>();
+		rs = null;
 
 		try
 		{
-			cmdString = "Select * from Categories where categoryIsExpense = FALSE";
-			rs2 = st1.executeQuery(cmdString);
-			//ResultSetMetaData md2 = rs2.getMetaData();
+			cmdString = queryByAttr("Categories", "categoryIsExpense", "FALSE");
+			rs = st.executeQuery(cmdString);
+			while (rs.next())
+			{
+				category = getCategory();
+				result.add(category);
+			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
 			processSQLError(e);
-		}
-		try
-		{
-			while (rs2.next())
-			{
-				catID = rs2.getInt("categoryID");
-				catName = rs2.getString("categoryName");
-				catIsExpense = rs2.getBoolean("categoryIsExpense");
-				category = new Category(catID, catName, catIsExpense);
-				result.add(category);
-			}
-			rs2.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println(processSQLError(e));
 		}
 
 		return result;
 	}
-	public List getExpenseCategories()
+	public List<Category> getExpenseCategories()
 	{
 		Category category;
-		String catName;
-		int  catID;
-		boolean catIsExpense;
 		result=new ArrayList<Category>();
+		rs = null;
 
 		try
 		{
-			cmdString = "Select * from Categories where categoryIsExpense = TRUE";
-			rs2 = st1.executeQuery(cmdString);
+			cmdString = queryByAttr("Categories", "categoryIsExpense", "TRUE");
+			rs = st.executeQuery(cmdString);
+			while (rs.next())
+			{
+				category = getCategory();
+				result.add(category);
+			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
 			processSQLError(e);
 		}
-		try
-		{
-			while (rs2.next())
-			{
-				catID = rs2.getInt("categoryID");
-				catName = rs2.getString("categoryName");
-				catIsExpense = rs2.getBoolean("categoryIsExpense");
-				category = new Category(catID, catName, catIsExpense);
-				result.add(category);
-			}
-			rs2.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println(processSQLError(e));
-		}
+
 		return result;
 	}
 	public Category getCategoryByNameAndIsExpense(String targetName, boolean isExpense)
 	{
 		Category category = null;
-		String catName;
-		boolean catIsExpense;
-		int catID;
+		rs = null;
 
-		rs2 = null;
 		try
 		{
-			cmdString = "Select * from Categories Where categoryName = '"+ targetName + "' And CategoryIsExpense = "+ isExpense;
-			rs2 = st1.executeQuery(cmdString);
+			cmdString = queryByAttr("Categories","categoryName", "'"+ targetName + "'")+ "And CategoryIsExpense = "+ isExpense;
+			rs = st.executeQuery(cmdString);
 
-			if (rs2.next())
+			if (rs.next())
 			{
-				catID = rs2.getInt("categoryID");
-				catName = rs2.getString("categoryName");
-				catIsExpense = rs2.getBoolean("categoryIsExpense");
-				category = new Category(catID, catName, catIsExpense);
+				category = getCategory();
 			}
-			rs2.close();
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -346,42 +357,25 @@ public class DataAccessObject implements Database
 	}
 	public void insertCategory(Category currentCategory) throws DuplicateEntryException
 	{
-		Category category;
-		rs2 = null;
+		Category category = getCategoryByNameAndIsExpense(currentCategory.getCategoryName(), currentCategory.isExpense());
 
-		category = getCategoryByNameAndIsExpense(currentCategory.getCategoryName(), currentCategory.isExpense());
-
-		try
+		if (category == null)
 		{
-			if (category == null)
-			{
-				cmdString = "Insert into Categories (categoryName, categoryIsExpense) Values('"+ currentCategory.getCategoryName()+ "', "+ currentCategory.isExpense()+")";
-				rs2 = st1.executeQuery(cmdString);
-			}
-			else
-			{
-				throw new DuplicateEntryException("Category already created");
-			}
-			rs2.close();
+			cmdString = "Insert into Categories (categoryName, categoryIsExpense) Values('"+ currentCategory.getCategoryName()+ "', "+ currentCategory.isExpense()+")";
+			updateDatabase(cmdString);
+
 		}
-		catch (SQLException e)
+		else
 		{
-			processSQLError(e);
+			throw new DuplicateEntryException("Category already created");
 		}
 	}
 
 
 	public void deleteCategoryById(int categoryId)
 	{
-		try
-		{
-			cmdString = "Delete from Categories where CategoryID=" +categoryId;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Delete from Categories where CategoryID=" +categoryId);
+
 	}
 
 	@Override
@@ -393,76 +387,40 @@ public class DataAccessObject implements Database
 		}
 		else
 		{
-			try
-			{
-				cmdString = "Update Categories Set categoryName='" + category.getCategoryName() + "', categoryIsExpense="
-						+ category.isExpense() + " where categoryID=" + category.getCategoryID();
-				st1.executeUpdate(cmdString);
-			} catch (Exception e)
-			{
-				processSQLError(e);
-			}
+			cmdString = "Update Categories Set categoryName='" + category.getCategoryName() + "', categoryIsExpense="
+				+ category.isExpense() + " where categoryID=" + category.getCategoryID();
+			updateDatabase(cmdString);
 		}
 	}
 
 	public void insertTransaction(Transaction currentTransaction)
 	{
-		try
-		{
-			cmdString = "Insert into Transactions (transDate, transAmount, transIsExpense, transComment, transCategoryID, transUserID) Values('"
-					+ new java.sql.Date(currentTransaction.getDate().getTime())+"', "+ currentTransaction.getAmount()+ ", "+ currentTransaction.isExpense()+", '"
-					+ currentTransaction.getComments()+"', " +currentTransaction.getCategoryID()+", "+currentTransaction.getUserID()+")";
-			rs2 = st1.executeQuery(cmdString);
 
-			rs2.close();
-		}
-		catch (SQLException e)
-		{
-			processSQLError(e);
-		}
+		cmdString = "Insert into Transactions (transDate, transAmount, transIsExpense, transComment, transCategoryID, transUserID) Values('"
+				+ new java.sql.Date(currentTransaction.getDate().getTime())+"', "+ currentTransaction.getAmount()+ ", "+ currentTransaction.isExpense()+", '"
+				+ currentTransaction.getComments()+"', " +currentTransaction.getCategoryID()+", "+currentTransaction.getUserID()+")";
+		updateDatabase(cmdString);
 	}
 	public List<Transaction> getTransactionsByType(boolean isExpense)
 	{
 		Transaction transaction;
-		double transAmount;
-		String transComment;
-		int transUserID;
-		int transCategoryID;
-		int  transID;
-		boolean transIsExpense;
-		Date transDate;
-
 		result=new ArrayList<Transaction>();
+		rs = null;
 
 		try
 		{
-			cmdString = "Select * from Transactions where transIsExpense = " + isExpense;
-			rs2 = st1.executeQuery(cmdString);
-
+			cmdString = queryByAttr("Transactions", "transIsExpense", isExpense);
+			rs = st.executeQuery(cmdString);
+			while (rs.next())
+			{
+				transaction = getTransaction();
+				result.add(transaction);
+			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
 			processSQLError(e);
-		}
-		try
-		{
-			while (rs2.next())
-			{
-				transAmount = rs2.getDouble("transAmount");
-				transComment = rs2.getString("transComment");
-				transUserID = rs2.getInt("transUserID");
-				transCategoryID = rs2.getInt("transCategoryID");
-				transID = rs2.getInt("transID");
-				transIsExpense = rs2.getBoolean("transIsExpense");
-				transDate = rs2.getDate("transDate");
-				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
-				result.add(transaction);
-			}
-			rs2.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println(processSQLError(e));
 		}
 
 		return result;
@@ -471,45 +429,23 @@ public class DataAccessObject implements Database
 	public List<Transaction> getOrderedTransactionsByDate()
 	{
 		Transaction transaction;
-		double transAmount;
-		String transComment;
-		int transUserID;
-		int transCategoryID;
-		int  transID;
-		boolean transIsExpense;
-		Date transDate;
-
 		result=new ArrayList<Transaction>();
+		rs = null;
 
 		try
 		{
-			cmdString = "Select * from Transactions Order By transDate ASC";
-			rs2 = st1.executeQuery(cmdString);
-
+			cmdString = GET_ALL + "Transactions Order By transDate ASC";
+			rs = st.executeQuery(cmdString);
+			while (rs.next())
+			{
+				transaction = getTransaction();
+				result.add(transaction);
+			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
 			processSQLError(e);
-		}
-		try
-		{
-			while (rs2.next())
-			{
-				transAmount = rs2.getDouble("transAmount");
-				transComment = rs2.getString("transComment");
-				transUserID = rs2.getInt("transUserID");
-				transCategoryID = rs2.getInt("transCategoryID");
-				transID = rs2.getInt("transID");
-				transIsExpense = rs2.getBoolean("transIsExpense");
-				transDate = rs2.getDate("transDate");
-				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
-				result.add(transaction);
-			}
-			rs2.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println(processSQLError(e));
 		}
 
 		return result;
@@ -517,31 +453,16 @@ public class DataAccessObject implements Database
 	public Transaction getTransactionByID(int id)
 	{
 		Transaction transaction=null;
-		double transAmount;
-		String transComment;
-		int transUserID;
-		int transCategoryID;
-		int  transID;
-		boolean transIsExpense;
-		Date transDate;
+		rs = null;
 
-		rs2 = null;
 		try
 		{
-			cmdString = "Select * from Transactions Where transID = "+ id;
-			rs2 = st1.executeQuery(cmdString);
+			cmdString = queryByAttr("Transactions", "transID", id);
+			rs = st.executeQuery(cmdString);
 
-			if (rs2.next())
+			if (rs.next())
 			{
-				transAmount = rs2.getDouble("transAmount");
-				transComment = rs2.getString("transComment");
-				transUserID = rs2.getInt("transUserID");
-				transCategoryID = rs2.getInt("transCategoryID");
-				transID = rs2.getInt("transID");
-				transIsExpense = rs2.getBoolean("transIsExpense");
-				transDate = rs2.getDate("transDate");
-				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
-
+				transaction = getTransaction();
 			}
 		}
 		catch (Exception e)
@@ -552,15 +473,7 @@ public class DataAccessObject implements Database
 	}
 	public void deleteUserById(int userId)
 	{
-		try
-		{
-			cmdString = "Delete from Users where UserID=" +userId;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Delete from Users where UserID=" +userId);
 	}
 
 	public void updateUser(User user) throws unfoundResourceException
@@ -571,83 +484,36 @@ public class DataAccessObject implements Database
 		}
 		else
 		{
-			try
-			{
-				cmdString = "Update Users Set userName='" + user.getUserName() + "' where UserID=" + user.getUserID();
-				st1.executeUpdate(cmdString);
-			} catch (Exception e)
-			{
-				processSQLError(e);
-			}
+			updateDatabase("Update Users Set userName='" + user.getUserName() + "' where UserID=" + user.getUserID());
 		}
 	}
 	public void deleteTransactionsByUserID(int userId)
 	{
-		try
-		{
-			cmdString = "Delete from Transactions where transUserID=" +userId;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Delete from Transactions where transUserID=" +userId);
 	}
 
 	@Override
 	public void deleteTransactionsByCategoryID(int categoryId)
 	{
-		try
-		{
-			cmdString = "Delete from Transactions where transCategoryID=" +categoryId;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Delete from Transactions where transCategoryID=" +categoryId);
 	}
 
 	@Override
 	public void unassignTransactionsByUserID(int userID)
 	{
-		try
-		{
-			cmdString = "Update Transactions Set transUserID = 1 where transUserID=" +userID;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Update Transactions Set transUserID = 1 where transUserID=" +userID);
 	}
 
 	@Override
 	public void unassignTransactionsByCategoryID(int categoryID)
 	{
-		try
-		{
-			cmdString = "Update Transactions Set transCategoryID = 1 where transCategoryID=" +categoryID;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Update Transactions Set transCategoryID = 1 where transCategoryID=" +categoryID);
 	}
 
 	@Override
 	public void deleteTransactionByID(int transID)
 	{
-		try
-		{
-			cmdString = "Delete from Transactions where transID=" +transID;
-			st1.executeUpdate(cmdString);
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
+		updateDatabase("Delete from Transactions where transID=" +transID);
 	}
 
 	@Override
@@ -659,31 +525,13 @@ public class DataAccessObject implements Database
 		}
 		else
 		{
-			try
-			{
-				cmdString = "Update Transactions Set transDate = '"+ new java.sql.Date(trans.getDate().getTime())
-						+ "', transAmount = " + trans.getAmount() + ", transIsExpense = "+ trans.isExpense()
-						+  ", transComment = '"+ trans.getComments() + "', transCategoryID = "+ trans.getCategoryID()
-						+ ", transUserID = " + trans.getUserID() + " where transID = " + trans.getTransactionID();
-				rs2 = st1.executeQuery(cmdString);
+			cmdString = "Update Transactions Set transDate = '"+ new java.sql.Date(trans.getDate().getTime())
+				+ "', transAmount = " + trans.getAmount() + ", transIsExpense = "+ trans.isExpense()
+				+  ", transComment = '"+ trans.getComments() + "', transCategoryID = "+ trans.getCategoryID()
+				+ ", transUserID = " + trans.getUserID() + " where transID = " + trans.getTransactionID();
+			updateDatabase(cmdString);
 
-				rs2.close();
-			}
-			catch (SQLException e)
-			{
-				processSQLError(e);
-			}
 		}
-	}
-
-	public String processSQLError(Exception e)
-	{
-		String result = "*** SQL Error: " + e.getMessage();
-
-		// Remember, this will NOT be seen by the user!
-		e.printStackTrace();
-
-		return result;
 	}
 
 	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
@@ -692,22 +540,23 @@ public class DataAccessObject implements Database
 
 		double transAmount;
 		String transCategoryName;
+		rs = null;
 
-		rs2 = null;
 		try
 		{
 			cmdString = "Select SUM(t.transAmount) as total, c.categoryName from Transactions t inner join Categories c on t.transCategoryID = c.categoryID where t.transIsExpense = "+isExpense+" group by c.categoryName";
-			rs2 = st1.executeQuery(cmdString);
+			rs = st.executeQuery(cmdString);
 
-			while (rs2.next())
+			while (rs.next())
 			{
-				transAmount = rs2.getDouble("total");
-				transCategoryName = rs2.getString("categoryName");
+				transAmount = rs.getDouble("total");
+				transCategoryName = rs.getString("categoryName");
 				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
 				t.setCategoryName(transCategoryName);
 
 				totals.add(t);
 			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -723,23 +572,23 @@ public class DataAccessObject implements Database
 
 		double transAmount;
 		String transUserName;
-
-		rs2 = null;
+		rs = null;
 
 		try
 		{
 			cmdString = "Select SUM(t.transAmount) as total, u.userName from Transactions t inner join Users u on t.transUserID = u.userID where t.transIsExpense = "+isExpense+" group by u.userName";
-			rs2 = st1.executeQuery(cmdString);
+			rs = st.executeQuery(cmdString);
 
-			while (rs2.next())
+			while (rs.next())
 			{
-				transAmount = rs2.getDouble("total");
-				transUserName = rs2.getString("userName");
+				transAmount = rs.getDouble("total");
+				transUserName = rs.getString("userName");
 				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
 				t.setUserName(transUserName);
 
 				totals.add(t);
 			}
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -747,6 +596,16 @@ public class DataAccessObject implements Database
 		}
 
 		return totals;
+	}
+
+	public String processSQLError(Exception e)
+	{
+		String result = "*** SQL Error: " + e.getMessage();
+
+		// Remember, this will NOT be seen by the user!
+		e.printStackTrace();
+
+		return result;
 	}
 
 }

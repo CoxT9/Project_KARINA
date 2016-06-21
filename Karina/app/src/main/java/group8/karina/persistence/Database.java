@@ -12,7 +12,7 @@ public interface Database
 {
 	void open(String dbName);
 	void close();
-	List<User> getUserSequential();
+	List<User> getAllUsers();
 	void insertUser(User currentUser) throws DuplicateEntryException;
 	User getUserByName(String targetName);
 	User getUserById(int uID);

@@ -19,7 +19,7 @@ public class AccessUsers
 
 	public List<User> getUsers()
 	{
-		return dataAccess.getUserSequential();
+		return dataAccess.getAllUsers();
 	}
 
 	public User getUserByID(int uID) { return dataAccess.getUserById(uID); }
