@@ -23,12 +23,12 @@ public class ReportsActivity extends AppCompatActivity
 
 	public void transactionByCategoryButtonClicked(View v)
 	{
-		startActivity(new Intent(this,TransactionByCategoryPieChartReportActivity.class));
+		startActivity(new Intent(this,TransactionByCategoryReportActivity.class));
 	}
 
 	public void transactionByUserButtonClicked(View v)
 	{
-		startActivity(new Intent(this,TransactionByUserPieChartReportActivity.class));
+		startActivity(new Intent(this,TransactionByUserReportActivity.class));
 	}
 	public void transactionOverTimeButtonClicked(View v)
 	{

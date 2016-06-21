@@ -8,13 +8,14 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 
-public class TransactionByUserPieChartReportActivity extends PieChartReportActivityBase
+public class TransactionByUserReportActivity extends PieChartReportActivityBase
 {
 	private AccessTransactions transactions;
 	private RadioButton expenseButton;
@@ -40,15 +41,16 @@ public class TransactionByUserPieChartReportActivity extends PieChartReportActiv
 	@Override
 	protected void setEntriesAndCategories(ArrayList<Entry> entries, ArrayList<String> categoryNames)
 	{
-		List<Transaction> totals = transactions.getTotalTransactionsByUser(isExpense);
+		Hashtable<String,Double> totals = transactions.getTotalTransactionsByUser(isExpense);
+		int i=0;
 
-		for(int i=0;i<totals.size(); i++)
+		for(String key : totals.keySet())
 		{
-			entries.add(new Entry((float)totals.get(i).getAmount(),i));
-			categoryNames.add(totals.get(i).getUserName());
+			entries.add(new Entry(totals.get(key).floatValue(),i));
+			categoryNames.add(key);
+			i++;
 		}
 	}
-
 	public void expenseRadioButtonClicked(View v)
 	{
 		isExpense = true;

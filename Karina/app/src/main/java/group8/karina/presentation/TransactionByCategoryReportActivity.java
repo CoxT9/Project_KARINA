@@ -9,13 +9,14 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 
-public class TransactionByCategoryPieChartReportActivity extends PieChartReportActivityBase
+public class TransactionByCategoryReportActivity extends PieChartReportActivityBase
 {
 	private AccessTransactions transactions;
 	private RadioButton expenseButton;
@@ -40,12 +41,14 @@ public class TransactionByCategoryPieChartReportActivity extends PieChartReportA
 	@Override
 	protected void setEntriesAndCategories(ArrayList<Entry> entries, ArrayList<String> categoryNames)
 	{
-		List<Transaction> totals = transactions.getTotalTransactionsByCategory(isExpense);
+		Hashtable<String,Double> totals = transactions.getTotalTransactionsByCategory(isExpense);
+		int i=0;
 
-		for(int i=0;i<totals.size(); i++)
+		for(String key : totals.keySet())
 		{
-			entries.add(new Entry((float)totals.get(i).getAmount(),i));
-			categoryNames.add(totals.get(i).getCategoryName());
+			entries.add(new Entry(totals.get(key).floatValue(),i));
+			categoryNames.add(key);
+			i++;
 		}
 	}
 
