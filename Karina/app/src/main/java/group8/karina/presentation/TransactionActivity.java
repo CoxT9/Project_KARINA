@@ -26,7 +26,7 @@ import group8.karina.objects.Category;
 import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
 
-public abstract class TransactionActivity extends AppCompatActivity
+public abstract class TransactionActivity extends AppCompatActivity implements DeleteDialogCaller
 {
     private EditText value;
     private Spinner userSpinner;
