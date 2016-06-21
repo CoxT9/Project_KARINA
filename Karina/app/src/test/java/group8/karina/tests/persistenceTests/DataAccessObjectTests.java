@@ -56,6 +56,14 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 			fail("inserting a valid user should not throw an exception");
 		}
 
+		try
+		{
+			test.insertUser(newUser);
+			fail("inserting a duplicate user should throw an exception");
+		} catch (DuplicateEntryException e)
+		{
+			//we want this
+		}
 		newUser = null;
 		newUser = test.getUserByName("tester");
 		assertEquals(newUser.getUserName(), "tester");
@@ -68,8 +76,10 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 
 	public void testChangeUsers()
 	{
+		int totalUsers = test.getAllUsers().size();
 		User user = new User(1, "NotDefault");
 
+		assertNull(test.getUserByName("NotDefault"));
 		try
 		{
 			test.updateUser(user);
@@ -92,6 +102,8 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 			fail("User 1 should still be in the database");
 		}
 
+		test.deleteUserById(-1);
+		assertEquals(totalUsers, test.getAllUsers().size());
 
 	}
 
@@ -123,6 +135,14 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 			fail("inserting a valid category should not throw an exception");
 		}
 
+		try
+		{
+			test.insertCategory(newCat);
+			fail("inserting a duplicate category should not throw an exception");
+		} catch (DuplicateEntryException e)
+		{
+			//we want this
+		}
 		newCat = null;
 		newCat = test.getCategoryByNameAndIsExpense("tester", true);
 		assertNotNull(newCat);
