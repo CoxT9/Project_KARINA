@@ -104,6 +104,7 @@ public class CategoryList extends AppCompatActivity
 				editCategory.putExtra("EditCategory",selectedCategory);
 
 				startActivity(editCategory);
+				finish();
 			}
 		});
 		expenseList.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -126,6 +127,7 @@ public class CategoryList extends AppCompatActivity
 	public void addCategoryClicked(View view)
 	{
 		startActivity(new Intent(this, CategoryActivity.class));
+		finish();
 	}
 
 }

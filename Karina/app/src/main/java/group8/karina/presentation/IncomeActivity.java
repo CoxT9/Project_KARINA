@@ -44,4 +44,11 @@ public class IncomeActivity extends TransactionActivity
 		startActivity(new Intent(this, IncomeList.class));
 		finish();
 	}
+
+	@Override
+	public void onBackPressed()
+	{
+		startActivity(new Intent(this, IncomeList.class));
+		finish();
+	}
 }

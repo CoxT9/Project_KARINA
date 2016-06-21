@@ -146,4 +146,11 @@ public class UserActivity extends AppCompatActivity implements DeleteUnassignDia
 		startActivity(new Intent(this,UserList.class));
 		finish();
 	}
+
+	@Override
+	public void onBackPressed()
+	{
+		startActivity(new Intent(this, UserList.class));
+		finish();
+	}
 }
