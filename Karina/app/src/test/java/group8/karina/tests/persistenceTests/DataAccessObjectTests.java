@@ -35,7 +35,7 @@ public class DataAccessObjectTests
 	@Test
 	public void getUsersTest()
 	{
-		List<User> users = test.getUserSequential();
+		List<User> users = test.getAllUsers();
 		assertEquals(users.get(1).getUserName(), "Jon");
 		assertEquals(users.get(2).getUserName(), "Aria");
 		assertEquals(test.getUserByName("Default").getUserID(), 1);

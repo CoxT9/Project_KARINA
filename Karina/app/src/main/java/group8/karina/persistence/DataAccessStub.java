@@ -96,7 +96,7 @@ public class DataAccessStub implements Database
 		System.out.println("Closed " + dbType + " database " + dbName);
 	}
 
-	public List<User> getUserSequential()
+	public List<User> getAllUsers()
 	{
 		List<User> result = new ArrayList<User>();
 		for (User u : users)
