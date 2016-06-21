@@ -15,7 +15,7 @@ import group8.karina.Exceptions.*;
 import group8.karina.objects.*;
 import group8.karina.persistence.DataAccessObject;
 
-public class DataAccessObjectTests
+public class DataAccessObjectTests extends junit.framework.TestCase
 {
 	DataAccessObject test;
 
@@ -27,13 +27,12 @@ public class DataAccessObjectTests
 	}
 
 	@After
-	public void shutdown()
+	public void tearDown()
 	{
 		test.close();
 	}
 
-	@Test
-	public void getUsersTest()
+	public void testGetUsersTest()
 	{
 		List<User> users = test.getAllUsers();
 		assertEquals(users.get(1).getUserName(), "Jon");
@@ -48,8 +47,7 @@ public class DataAccessObjectTests
 
 	}
 
-	@Test
-	public void insertUsersTest()
+	public void testInsertUsersTest()
 	{
 		User newUser = new User("tester");
 		try
@@ -70,8 +68,7 @@ public class DataAccessObjectTests
 
 	}
 
-	@Test
-	public void changeUsersTest()
+	public void testChangeUsersTest()
 	{
 		User user = new User(1, "NotDefault");
 
@@ -100,8 +97,7 @@ public class DataAccessObjectTests
 
 	}
 
-	@Test
-	public void getCategoriesTest()
+	public void testGetCategoriesTest()
 	{
 		List<Category> cat = test.getAllCategories();
 		assertEquals(cat.get(2).getCategoryName(), "groceries");
@@ -118,8 +114,7 @@ public class DataAccessObjectTests
 		assertNull(test.getCategoryByNameAndIsExpense("groceries", false));
 	}
 
-	@Test
-	public void insertCategoriesTest()
+	public void testInsertCategoriesTest()
 	{
 		Category newCat = new Category("tester", true);
 		try
@@ -138,8 +133,7 @@ public class DataAccessObjectTests
 		assertNull(test.getCategoryByNameAndIsExpense("tester", true));
 	}
 
-	@Test
-	public void getTransactionsTest()
+	public void testGetTransactionsTest()
 	{
 		List<Transaction> trans = test.getTransactionsByType(true);
 		assertEquals(trans.get(0).getUserID(), 4);
@@ -156,8 +150,7 @@ public class DataAccessObjectTests
 
 	}
 
-	@Test
-	public void insertDeleteTransactionsTest()
+	public void testInsertDeleteTransactionsTest()
 	{
 		Transaction newTrans = new Transaction(new Date(), 1, true, 39.95, 1, "comment");
 		assertEquals(test.getTransactionsByType(true).size(), 2);
@@ -173,8 +166,7 @@ public class DataAccessObjectTests
 
 	}
 
-	@Test
-	public void changeTransactionsTest()
+	public void testChangeTransactions()
 	{
 		Transaction oldTrans = test.getTransactionByID(1);
 		Transaction newTrans = new Transaction(1, new Date(), 3, true, 49.8, 3, "hi");

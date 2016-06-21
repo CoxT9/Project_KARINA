@@ -21,7 +21,7 @@ public class KarinaApp extends Application
 		super.onCreate();
 		copyDatabaseToDevice();
 
-		Services.createDataAccess();
+		DatabaseService.createDataAccess();
 	}
 
 

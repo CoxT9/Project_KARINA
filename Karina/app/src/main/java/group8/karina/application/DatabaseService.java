@@ -1,11 +1,11 @@
 package group8.karina.application;
 
 import group8.karina.persistence.DataAccessObject;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
-public class Services
+public class DatabaseService
 {
-//	private static DataAccessStub dataAccessService = null;
 	private static Database dataAccessService = null;
 
 	public static Database createDataAccess()
@@ -35,6 +35,12 @@ public class Services
 			dataAccessService.close();
 		}
 		dataAccessService = null;
+	}
+
+	public static void setDatabaseToStub()
+	{
+		dataAccessService = new DataAccessStub("test");
+		dataAccessService.open("test");
 	}
 }
 
