@@ -161,4 +161,11 @@ public class CategoryActivity extends AppCompatActivity implements DeleteUnassig
 		finish();
 	}
 
+	@Override
+	public void onBackPressed()
+	{
+		startActivity(new Intent(this, CategoryList.class));
+		finish();
+	}
+
 }

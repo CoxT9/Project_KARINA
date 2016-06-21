@@ -45,4 +45,11 @@ public class ExpenseActivity extends TransactionActivity
 		startActivity(new Intent(this, ExpenseList.class));
 		finish();
 	}
+
+	@Override
+	public void onBackPressed()
+	{
+		startActivity(new Intent(this, ExpenseList.class));
+		finish();
+	}
 }
