@@ -43,7 +43,7 @@ public class DataAccessStub implements Database
 		transactions = new ArrayList<Transaction>();
 		try
 		{
-			user = new User("default");
+			user = new User("Default");
 			insertUser(user);
 
 			user = new User("Jon");
@@ -58,16 +58,18 @@ public class DataAccessStub implements Database
 			user = new User("Sansa");
 			insertUser(user);
 
-			category = new Category("default", true);
+			category = new Category("Default", true);
 			insertCategory(category);
 
-			category = new Category("groceries", true);
+			category = new Category("income", true);
 			insertCategory(category);
 			category = new Category("weapons", true);
 			insertCategory(category);
 			category = new Category("entertainment", true);
 			insertCategory(category);
 			category = new Category("income", false);
+			insertCategory(category);
+			category = new Category("Default", false);
 			insertCategory(category);
 
 
