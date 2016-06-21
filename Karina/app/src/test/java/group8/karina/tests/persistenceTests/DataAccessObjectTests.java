@@ -32,7 +32,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		test.close();
 	}
 
-	public void testGetUsersTest()
+	public void testGetUsers()
 	{
 		List<User> users = test.getAllUsers();
 		assertEquals(users.get(1).getUserName(), "Jon");
@@ -42,12 +42,10 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 
 		assertNull(test.getUserById(0));
 		assertNull(test.getUserByName("Jorah the explorah"));
-		java.util.Date utilDate = new java.util.Date();
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
 	}
 
-	public void testInsertUsersTest()
+	public void testInsertUsers()
 	{
 		User newUser = new User("tester");
 		try
@@ -68,7 +66,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 
 	}
 
-	public void testChangeUsersTest()
+	public void testChangeUsers()
 	{
 		User user = new User(1, "NotDefault");
 
@@ -97,7 +95,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 
 	}
 
-	public void testGetCategoriesTest()
+	public void testGetCategories()
 	{
 		List<Category> cat = test.getAllCategories();
 		assertEquals(cat.get(2).getCategoryName(), "groceries");
@@ -114,7 +112,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		assertNull(test.getCategoryByNameAndIsExpense("groceries", false));
 	}
 
-	public void testInsertCategoriesTest()
+	public void testInsertCategories()
 	{
 		Category newCat = new Category("tester", true);
 		try
@@ -133,7 +131,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		assertNull(test.getCategoryByNameAndIsExpense("tester", true));
 	}
 
-	public void testGetTransactionsTest()
+	public void testGetTransactions()
 	{
 		List<Transaction> trans = test.getTransactionsByType(true);
 		assertEquals(trans.get(0).getUserID(), 4);
@@ -150,7 +148,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 
 	}
 
-	public void testInsertDeleteTransactionsTest()
+	public void testInsertDeleteTransactions()
 	{
 		Transaction newTrans = new Transaction(new Date(), 1, true, 39.95, 1, "comment");
 		assertEquals(test.getTransactionsByType(true).size(), 2);
