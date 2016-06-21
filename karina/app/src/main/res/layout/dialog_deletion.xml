@@ -34,9 +34,20 @@
             android:layout_height="40dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:text="Delete All"
+            android:text="Delete"
             android:textColor="#5DBCD2"
             android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/deleteAllButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:text="Delete All"
+            android:textColor="#5DBCD2"
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/unassignButton"
@@ -47,7 +58,8 @@
             android:text="Set unassigned"
             android:textColor="#5DBCD2"
             android:textStyle="bold"
-            android:layout_marginLeft="10px"/>
+            android:layout_marginLeft="10px"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/cancelButton"
