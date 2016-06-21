@@ -17,13 +17,12 @@ import java.util.ArrayList;
 import group8.karina.R;
 import group8.karina.business.AccessTransactions;
 
-public class TotalTransactionReportActivity extends AppCompatActivity
+public class TotalTransactionReportActivity extends PieChartReportActivityBase
 {
 	private TextView totalIncome;
 	private TextView totalExpense;
 	private TextView totalNet;
 	private AccessTransactions transactions;
-	private PieChart pieChart;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +33,9 @@ public class TotalTransactionReportActivity extends AppCompatActivity
 
 		formatTextLabels();
 		initializePieChart();
+
+		pieChart.setData(createPieChartData());
+		pieChart.invalidate();
 
 	}
 
@@ -61,39 +63,25 @@ public class TotalTransactionReportActivity extends AppCompatActivity
 			totalNet.setText("$" + String.format("%.2f", netMonies));
 		}
 	}
-	private void initializePieChart()
-	{
-		pieChart.setHoleRadius(40);
-		pieChart.setTransparentCircleRadius(44);
-		pieChart.setDescription("");
-		setUpChartLegend(pieChart.getLegend());
 
-		pieChart.setData(createPieChartData());
-	}
 
-	private void setUpChartLegend(Legend legend)
-	{
-		legend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-		legend.setXEntrySpace(7);
-		legend.setYEntrySpace(5);
-		legend.setTextSize(15);
-	}
-
-	private PieData createPieChartData()
+	@Override
+	protected void setEntriesAndCategories(ArrayList<Entry> entries, ArrayList<String> categoryNames)
 	{
 		double sumOfMonies = transactions.positiveSumTransactions();
-		ArrayList<Entry> entries = new ArrayList<Entry>();
+
 		entries.add(new Entry((float)(transactions.totalIncome()*100/sumOfMonies),0));
 		entries.add(new Entry((float)(transactions.totalExpenses()*100/sumOfMonies),1));
 
-		ArrayList<String> titles = new ArrayList<String>();
-		titles.add("Income");
-		titles.add("Expense");
+		categoryNames.add("Income");
+		categoryNames.add("Expense");
+	}
 
-		PieDataSet dataSet = new PieDataSet(entries,"");
-		dataSet.setColors(ColorTemplate.PASTEL_COLORS);
-		dataSet.setValueTextSize(17f);
-		PieData pieData = new PieData(titles,dataSet);
+
+	@Override
+	protected PieData createPieChartData()
+	{
+		PieData pieData = super.createPieChartData();
 		pieData.setValueFormatter(new PercentFormatter());
 
 		return pieData;

@@ -1,5 +1,6 @@
 package group8.karina.business;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import group8.karina.application.Services;
@@ -76,14 +77,44 @@ public class AccessTransactions
 		dataAccess.updateTransaction(trans);
 	}
 
-	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
+	public Hashtable<String,Double> getTotalTransactionsByCategory(boolean isExpense)
 	{
-		return dataAccess.getTotalTransactionsByCategory(isExpense);
+		List<Transaction> transactions = dataAccess.getTransactionsByType(isExpense);
+		Hashtable<String,Double> transactionsByCategory = new Hashtable<String,Double>();
+
+		for(Transaction transaction : transactions)
+		{
+			if(transactionsByCategory.contains(transaction.getCategoryName()))
+			{
+				transactionsByCategory.put(transaction.getCategoryName(),transactionsByCategory.get(transaction.getCategoryName())+transaction.getAmount());
+			}
+			else
+			{
+				transactionsByCategory.put(transaction.getCategoryName(),transaction.getAmount());
+			}
+		}
+
+		return transactionsByCategory;
 	}
 
-	public List<Transaction> getTotalTransactionsByUser(boolean isExpense)
+	public Hashtable<String,Double> getTotalTransactionsByUser(boolean isExpense)
 	{
-		return dataAccess.getTotalTransactionsByUser(isExpense);
+		List<Transaction> transactions = dataAccess.getTransactionsByType(isExpense);
+		Hashtable<String,Double> transactionsByUser = new Hashtable<String,Double>();
+
+		for(Transaction transaction : transactions)
+		{
+			if(transactionsByUser.contains(transaction.getUserName()))
+			{
+				transactionsByUser.put(transaction.getUserName(),transactionsByUser.get(transaction.getUserName())+transaction.getAmount());
+			}
+			else
+			{
+				transactionsByUser.put(transaction.getUserName(),transaction.getAmount());
+			}
+		}
+
+		return transactionsByUser;
 	}
 	public List<Transaction> getOrderedTransactionsByDate()
 	{

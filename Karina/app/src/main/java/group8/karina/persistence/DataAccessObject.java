@@ -404,16 +404,26 @@ public class DataAccessObject implements Database
 	public List<Transaction> getTransactionsByType(boolean isExpense)
 	{
 		Transaction transaction;
+		String categoryName;
+		String userName;
 		result=new ArrayList<Transaction>();
 		rs = null;
 
 		try
 		{
-			cmdString = queryByAttr("Transactions", "transIsExpense", isExpense);
+			cmdString = "Select transAmount,transComment,transUserID,transCategoryID,transID,transIsExpense,transDate,categoryName,userName from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense;
 			rs = st.executeQuery(cmdString);
+
 			while (rs.next())
 			{
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
 				transaction = getTransaction();
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
+
 				result.add(transaction);
 			}
 			rs.close();
@@ -428,7 +438,7 @@ public class DataAccessObject implements Database
 
 	public List<Transaction> getOrderedTransactionsByDate()
 	{
-		Transaction transaction;
+		Transaction transaction = null;
 		result=new ArrayList<Transaction>();
 		rs = null;
 
@@ -532,70 +542,6 @@ public class DataAccessObject implements Database
 			updateDatabase(cmdString);
 
 		}
-	}
-
-	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
-	{
-		List<Transaction> totals = new ArrayList<Transaction>();
-
-		double transAmount;
-		String transCategoryName;
-		rs = null;
-
-		try
-		{
-			cmdString = "Select SUM(t.transAmount) as total, c.categoryName from Transactions t inner join Categories c on t.transCategoryID = c.categoryID where t.transIsExpense = "+isExpense+" group by c.categoryName";
-			rs = st.executeQuery(cmdString);
-
-			while (rs.next())
-			{
-				transAmount = rs.getDouble("total");
-				transCategoryName = rs.getString("categoryName");
-				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
-				t.setCategoryName(transCategoryName);
-
-				totals.add(t);
-			}
-			rs.close();
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
-
-		return totals;
-	}
-
-	public List<Transaction> getTotalTransactionsByUser(boolean isExpense)
-	{
-		List<Transaction> totals = new ArrayList<Transaction>();
-
-		double transAmount;
-		String transUserName;
-		rs = null;
-
-		try
-		{
-			cmdString = "Select SUM(t.transAmount) as total, u.userName from Transactions t inner join Users u on t.transUserID = u.userID where t.transIsExpense = "+isExpense+" group by u.userName";
-			rs = st.executeQuery(cmdString);
-
-			while (rs.next())
-			{
-				transAmount = rs.getDouble("total");
-				transUserName = rs.getString("userName");
-				Transaction t = new Transaction(-1, null, -1, false, transAmount,-1, "");
-				t.setUserName(transUserName);
-
-				totals.add(t);
-			}
-			rs.close();
-		}
-		catch (Exception e)
-		{
-			processSQLError(e);
-		}
-
-		return totals;
 	}
 
 	public String processSQLError(Exception e)

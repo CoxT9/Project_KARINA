@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import group8.karina.R;
-import group8.karina.business.AccessTransactions;
 
 public class ReportsActivity extends AppCompatActivity
 {

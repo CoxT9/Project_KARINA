@@ -440,9 +440,5 @@ public class DataAccessStub implements Database
 	{
 		return null;
 	}
-	public List<Transaction> getTotalTransactionsByCategory(boolean isExpense)
-	{
-		return null;
-	}
-	public List<Transaction> getTotalTransactionsByUser(boolean isExpense) { return null; }
+
 }
