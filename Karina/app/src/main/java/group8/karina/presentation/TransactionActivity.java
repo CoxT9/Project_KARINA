@@ -282,13 +282,6 @@ public abstract class TransactionActivity extends AppCompatActivity implements D
 
             result = false;
         }
-        else if(!setDate.getText().toString().matches("[0-3][0-9]/[0-1]?[1-9]/[0-9][0-9][0-9][0-9]"))
-		{
-			errorDate.setText("Date must be DD/MM/YYYY");
-			errorDate.setVisibility(View.VISIBLE);
-
-			result = false;
-		}
 		else if(!isValidDate(setDate.getText().toString()))
 		{
 			errorDate.setText("Date must be valid");
@@ -319,7 +312,8 @@ public abstract class TransactionActivity extends AppCompatActivity implements D
 		try
 		{
 			format.parse(date.trim());
-		} catch (ParseException parseEx)
+		}
+		catch (ParseException parseEx)
 		{
 			return false;
 		}
@@ -333,10 +327,12 @@ public abstract class TransactionActivity extends AppCompatActivity implements D
 		int yearNow = calendar.get(Calendar.YEAR);
 		int transYear;
 		Date transDate;
+
 		try
 		{
 			transDate = format.parse(date.trim());
-		} catch (ParseException parseEx)
+		}
+		catch (ParseException parseEx)
 		{
 			return false;
 		}
@@ -388,13 +384,14 @@ public abstract class TransactionActivity extends AppCompatActivity implements D
 
 	protected Date getSelectedDate()
 	{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date;
 
 		try
 		{
 			date = dateFormat.parse(setDate.getText().toString());
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			date = null;
 		}
