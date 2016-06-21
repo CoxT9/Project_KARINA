@@ -89,4 +89,14 @@ public class AccessTransactions
 	{
 		return dataAccess.getOrderedTransactionsByDate();
 	}
+
+	public double positiveSumTransactions()
+	{
+		return totalExpenses()+totalIncome();
+	}
+
+	public double totalNet()
+	{
+		return totalIncome() - totalExpenses();
+	}
 }

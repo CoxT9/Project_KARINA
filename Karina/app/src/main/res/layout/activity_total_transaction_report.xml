@@ -22,8 +22,8 @@
 
     <RelativeLayout
         android:id="@+id/totalsCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="382dp"
+        android:layout_height="76dp"
         android:layout_below="@id/titleCard"
         android:layout_marginTop="10dp">
 
@@ -44,12 +44,25 @@
             android:text="Total Expenses: "/>
 
         <TextView
+            android:id="@+id/netTotalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Net Total: "
+            android:layout_below="@+id/expenseTotalLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
             android:id="@+id/incomeTotalValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/incomeTotalLabel"
             android:textSize="18sp"
-            android:text="0"/>
+            android:text="0"
+            android:layout_toLeftOf="@+id/expenseTotalValue"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/expenseTotalLabel"
+            android:layout_toEndOf="@+id/expenseTotalLabel"/>
 
         <TextView
             android:id="@+id/expenseTotalValue"
@@ -59,6 +72,16 @@
             android:layout_toRightOf="@id/expenseTotalLabel"
             android:textSize="18sp"
             android:text="0"/>
+
+        <TextView
+            android:id="@+id/netTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/expenseTotalLabel"
+            android:textSize="18sp"
+            android:text="0"
+            android:layout_alignBottom="@+id/netTotalLabel"/>
+
     </RelativeLayout>
 
     <RelativeLayout
