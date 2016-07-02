@@ -19,9 +19,9 @@ public class DataAccessObject implements Database
 {
 	private final String GET_ALL = "Select * from ";
 
-	private Statement st;
-	private Connection conn;
-	private ResultSet rs;
+	protected Statement st;
+	protected Connection conn;
+	protected ResultSet rs;
 
 	private String dbName;
 	private String dbType;
@@ -71,7 +71,8 @@ public class DataAccessObject implements Database
 		//value must convert to String
 		return String.format("Select * from %s Where %s = %s", tableName, attrName, value);
 	}
-	private void updateDatabase(String cmd)
+
+	protected void updateDatabase(String cmd)
 	{
 		try
 		{

@@ -6,16 +6,29 @@ import group8.karina.persistence.Database;
 
 public class DatabaseService
 {
+	public static String dbName = "database0";
+	public static String dbPathName = "database/";
 	private static Database dataAccessService = null;
 
 	public static Database createDataAccess()
 	{
 		if (dataAccessService == null)
 		{
-			dataAccessService = new DataAccessObject(KarinaApp.dbName);
-			dataAccessService.open(KarinaApp.dbPathName);
+			dataAccessService = new DataAccessObject(dbName);
+			dataAccessService.open(dbPathName+dbName);
 		}
 		return dataAccessService;
+	}
+
+	public static void setDBPathName(String pathName)
+	{
+		System.out.println("Setting DB path to: " + pathName);
+		dbPathName = pathName;
+	}
+
+	public static void openDataAccess()
+	{
+		dataAccessService.open(dbPathName+dbName);
 	}
 
 	public static Database getDataAccess()
@@ -37,10 +50,14 @@ public class DatabaseService
 		dataAccessService = null;
 	}
 
-	public static void setDatabaseToStub()
+	public static void setDatabase(Database d)
 	{
-		dataAccessService = new DataAccessStub("test");
-		dataAccessService.open("test");
+		dataAccessService = d;
+	}
+
+	public static void setDbName(String name)
+	{
+		dbName = name;
 	}
 }
 
