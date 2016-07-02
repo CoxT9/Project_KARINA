@@ -10,6 +10,7 @@ import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
 public class AccessUsersTests extends junit.framework.TestCase
@@ -20,7 +21,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		DatabaseService.setDatabaseToStub();
+		DatabaseService.setDatabase(new DataAccessStub("test"));
 		dataAccess = DatabaseService.getDataAccess();
 		accessUsers = new AccessUsers();
 	}

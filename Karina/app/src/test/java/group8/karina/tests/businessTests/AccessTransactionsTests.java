@@ -8,11 +8,10 @@ import java.util.List;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
-/**
- * Created by Malcolm on 2016-06-01.
- */
+
 public class AccessTransactionsTests extends junit.framework.TestCase
 {
 	private Database dataAccess;
@@ -21,7 +20,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		DatabaseService.setDatabaseToStub();
+		DatabaseService.setDatabase(new DataAccessStub("test"));
 		dataAccess = DatabaseService.getDataAccess();
 		accessTransactions = new AccessTransactions();
 	}
