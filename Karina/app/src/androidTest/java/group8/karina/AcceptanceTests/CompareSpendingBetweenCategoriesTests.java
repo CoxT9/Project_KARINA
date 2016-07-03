@@ -1,3 +1,22 @@
+/*
+	User Story: I want to see how much I spend on things like groceries
+
+	I want to be able to add new categories
+		Add a new category
+		Go back to the category list
+		click on the new category
+		go back to the category list
+		try adding a new category with the same name and type, which should fail
+
+	I want to be able to assign certain expenses to categories:
+		add an expense with the new category assigned to it
+		go back to the expense list, and click on the added expense
+
+	I would like to be able to compare expenses between categories:
+		go to the reports view
+		click on transaction by category report and view it
+*/
+
 package group8.karina.AcceptanceTests;
 
 import group8.karina.TestHelpers.TestDataAccessObject;
