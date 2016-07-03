@@ -3,60 +3,73 @@
 
     <item
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="23.0.3"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_2aa5b2e6e45b6dd86c1a83e6e7598f9ec26e423a\classes.dex" />
     </item>
     <item
         jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="23.0.3"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
         <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_149fef3f1c2e5fe8bac836eb5e1e757f31493319\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Mike\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.2.5\e135072797f494a3b6cb10640dd8c6495261b9ac\MPAndroidChart-v2.2.5.jar"
-        jumboMode="false"
+        jar="C:\Users\Taylor\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.2.5\e135072797f494a3b6cb10640dd8c6495261b9ac\MPAndroidChart-v2.2.5.jar"
+        jumboMode="true"
         revision="23.0.3"
         sha1="e135072797f494a3b6cb10640dd8c6495261b9ac">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v2.2.5_58527f5e3a7d91f834a7260612b8962e4e260b14.jar" />
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v2.2.5_7e29bbf20433ce30e181c0b38c4061f180d71e16\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Mike\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_65ccc65d49b853a015aa3f371477bfa34c4ae7c2.jar" />
-    </item>
-    <item
-        jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="false"
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
         revision="23.0.3"
         sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_2e95eed584265fad199ee93b92319a6631c9b75e.jar" />
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_0328bc39a827c681fb8f2fd230c16a353b58f9ae\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\libs\hsqldb.jar"
-        jumboMode="false"
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.3"
-        sha1="13b8535951af7b446da23bbe4ba2f3282a456d7e">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\hsqldb_31457f22a58518f0b7fa32b9bddff5a285dbf6be.jar" />
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_35987a569c29bb9c797f10e51a4b2fe7ef4b218c\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_82213e1239f212a2a1b6de4321d2c341372de3f7.jar" />
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_dd14dc98ce3420c84c93b1dc72fafd3a6d8b64f1\classes.dex" />
     </item>
     <item
-        jar="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         revision="23.0.3"
-        sha1="ff406192ea246ecc439f8e21238d541ac7ec6d06">
-        <dex dex="C:\Users\Mike\Git\Project_KARINA\Karina\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_92ba40cf864c0759d1794ffa875eb0b487c27727.jar" />
+        sha1="6382c4fa2ea60596c624dd4137d6bd44bb1659c3">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_eb0b85571819d80859146dfca1b9e7cc37242f47\classes.dex" />
     </item>
+    <item
+        jar="C:\Users\Taylor\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_118c64b00ab97eef19b8d343eafcbd9ddb6a048b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="254684f83939b2aeb9431f80094b19774955ca46">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_43673ed8dd2ab516148c436d3ff24295f77c34ca\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\libs\hsqldb.jar"
+        jumboMode="true"
+        revision="23.0.3"
         sha1="5ee175911824a9913e650246f0759eb30691ca00">
+        <dex dex="C:\Users\Taylor\Documents\Git\Project_KARINA\Karina\app\build\intermediates\transforms\dex\debug\folders\1000\2\hsqldb_866938c360b7ce846c194ec74b4d9177e55aba40\classes.dex" />
+    </item>
 
 </items>

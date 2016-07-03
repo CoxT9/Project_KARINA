@@ -127,7 +127,7 @@ public class Transaction implements Serializable, Cloneable
 
 	public String toString()
 	{
-		return "$" + getAmount() + " on " + getDate();
+		return "$" + String.format( "%.2f", getAmount()) + " on " + getDate();
 	}
 
 	public void setCategoryName(String categoryName)
