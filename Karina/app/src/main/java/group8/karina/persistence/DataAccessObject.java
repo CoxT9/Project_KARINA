@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
@@ -461,6 +461,63 @@ public class DataAccessObject implements Database
 
 		return result;
 	}
+
+	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
+	{
+		//TODO
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+		String userName;
+		String categoryName;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense + " Order By transDate ASC";
+			System.out.println("cmd str : " + cmdString);
+			rs = st.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs.next())
+			{
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+				result.add(transaction);
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
+			}
+			rs.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;
+	}
 	public Transaction getTransactionByID(int id)
 	{
 		Transaction transaction=null;
@@ -482,6 +539,122 @@ public class DataAccessObject implements Database
 		}
 		return transaction;
 	}
+	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
+	{
+		//TODO
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+		String userName;
+		String categoryName;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense + " Order By transUserID ASC";
+			System.out.println("cmd str : " + cmdString);
+			rs = st.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs.next())
+			{
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+				result.add(transaction);
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
+			}
+			rs.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<Transaction> getOrderedTransactionsByCategory(boolean isExpense) {
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+
+		String categoryName;
+		String userName;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense + " Order By transCategoryID ASC";
+			System.out.println("cmd str : " + cmdString);
+			rs = st.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			System.out.println("cat err.");
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs.next())
+			{
+				//TODO
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
+
+				result.add(transaction);
+			}
+			rs.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;	}
+
 	public void deleteUserById(int userId)
 	{
 		updateDatabase("Delete from Users where UserID=" +userId);

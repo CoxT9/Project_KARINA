@@ -14,10 +14,20 @@
         android:text="Add Income"
         />
 
+    <Button
+        android:id="@+id/sortByButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sortButtonClicked"
+        android:layout_below="@id/addIncomeButton"
+        android:text="Sort By"
+        />
+
     <ListView
         android:id="@+id/incomeList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addIncomeButton" />
+        android:layout_below="@+id/sortByButton"
+        android:headerDividersEnabled="true"/>
 
 </RelativeLayout>

@@ -15,11 +15,14 @@ import group8.karina.R;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 
-public class ExpenseList extends AppCompatActivity
+public class ExpenseList extends AppCompatActivity implements TransactionSortDialogCaller
 {
 	private ListView listView;
 	private AccessTransactions access;
 
+	private final int CATEGORIES = 0;
+	private final int USERS = 1;
+	private final int DATE = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +55,34 @@ public class ExpenseList extends AppCompatActivity
 	}
 
 	public void addExpenseClicked(View view) { startActivity(new Intent(this, ExpenseActivity.class)); }
+
+	public void sortButtonClicked(View view)
+	{
+
+		TransactionSortDialog t = new TransactionSortDialog(this);
+		t.show();
+	}
+
+	public void sortOkButtonClicked(int sortOption)
+	{
+		List<Transaction> transaction;
+
+		if(sortOption==CATEGORIES)
+		{
+			transaction = access.getOrderedTransactionsByCategory(true);
+		}
+		else if(sortOption==USERS)
+		{
+			transaction = access.getOrderedTransactionsByUser(true);
+		}
+		else
+		{
+			transaction = access.getOrderedTransactionsByDateAndType(true);
+		}
+
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, transaction);
+		listView.setAdapter(adapter);
+	}
 
 	private void populateListView()
 	{

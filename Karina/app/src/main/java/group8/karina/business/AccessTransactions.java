@@ -121,6 +121,21 @@ public class AccessTransactions
 		return dataAccess.getOrderedTransactionsByDate();
 	}
 
+	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
+	{
+		return dataAccess.getOrderedTransactionsByDateAndType(isExpense);
+	}
+
+	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
+	{
+		return dataAccess.getOrderedTransactionsByUser(isExpense);
+	}
+
+	public List<Transaction> getOrderedTransactionsByCategory(boolean isExpense)
+	{
+		return dataAccess.getOrderedTransactionsByCategory(isExpense);
+	}
+
 	public double positiveSumTransactions()
 	{
 		return totalExpenses()+totalIncome();

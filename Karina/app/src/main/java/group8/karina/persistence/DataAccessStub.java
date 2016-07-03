@@ -414,6 +414,15 @@ public class DataAccessStub implements Database
 			}
 		}
 	}
+	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
+	{
+		return null;
+	}
+
+	@Override
+	public List<Transaction> getOrderedTransactionsByCategory(boolean isExpense) {
+		return null;
+	}
 
 	public void updateTransaction(Transaction trans) throws unfoundResourceException
 	{
@@ -438,9 +447,14 @@ public class DataAccessStub implements Database
 			transactions.add(trans);
 		}
 	}
+
 	public List<Transaction> getOrderedTransactionsByDate()
 	{
 		return null;
 	}
 
+	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
+	{
+		return null;
+	}
 }

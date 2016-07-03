@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Iterator;
@@ -20,7 +19,6 @@ import group8.karina.objects.Category;
 public class CategoryList extends AppCompatActivity
 {
 
-	private RelativeLayout card;
 	private AccessCategories access;
     private ListView incomeList;
 	private ListView expenseList;
@@ -90,6 +88,7 @@ public class CategoryList extends AppCompatActivity
 			}
 		}
 	}
+
 
 	public void setListViewOnItemClicked()
 	{
