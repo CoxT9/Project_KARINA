@@ -1,18 +1,13 @@
 package group8.karina.persistence;
 
-import android.support.annotation.NonNull;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Date;
-import java.util.ListIterator;
+import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
@@ -514,6 +509,54 @@ public class DataAccessObject implements Database
 
 		return result;
 	}
+
+	public List<Transaction> getOrderedTransactionsByDate(boolean isExpense)
+	{
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transDate ASC";
+			System.out.println("cmd str : " + cmdString);
+			rs2 = st1.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs2.next())
+			{
+				transAmount = rs2.getDouble("transAmount");
+				transComment = rs2.getString("transComment");
+				transUserID = rs2.getInt("transUserID");
+				transCategoryID = rs2.getInt("transCategoryID");
+				transID = rs2.getInt("transID");
+				transIsExpense = rs2.getBoolean("transIsExpense");
+				transDate = rs2.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+				result.add(transaction);
+			}
+			rs2.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;
+	}
 	public Transaction getTransactionByID(int id)
 	{
 		Transaction transaction=null;
@@ -550,6 +593,101 @@ public class DataAccessObject implements Database
 		}
 		return transaction;
 	}
+	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
+	{
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transUserID ASC";
+			System.out.println("cmd str : " + cmdString);
+			rs2 = st1.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs2.next())
+			{
+				transAmount = rs2.getDouble("transAmount");
+				transComment = rs2.getString("transComment");
+				transUserID = rs2.getInt("transUserID");
+				transCategoryID = rs2.getInt("transCategoryID");
+				transID = rs2.getInt("transID");
+				transIsExpense = rs2.getBoolean("transIsExpense");
+				transDate = rs2.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+				result.add(transaction);
+			}
+			rs2.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<Transaction> getOrderedTransactionsByCategory(boolean isExpense) {
+		Transaction transaction;
+		double transAmount;
+		String transComment;
+		int transUserID;
+		int transCategoryID;
+		int  transID;
+		boolean transIsExpense;
+		Date transDate;
+
+		result=new ArrayList<Transaction>();
+
+		try
+		{
+			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transCategoryID ASC";
+			System.out.println("cmd str : " + cmdString);
+			rs2 = st1.executeQuery(cmdString);
+
+		}
+		catch (Exception e)
+		{
+			processSQLError(e);
+		}
+		try
+		{
+			while (rs2.next())
+			{
+				transAmount = rs2.getDouble("transAmount");
+				transComment = rs2.getString("transComment");
+				transUserID = rs2.getInt("transUserID");
+				transCategoryID = rs2.getInt("transCategoryID");
+				transID = rs2.getInt("transID");
+				transIsExpense = rs2.getBoolean("transIsExpense");
+				transDate = rs2.getDate("transDate");
+				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+				result.add(transaction);
+			}
+			rs2.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(processSQLError(e));
+		}
+
+		return result;	}
+
 	public void deleteUserById(int userId)
 	{
 		try

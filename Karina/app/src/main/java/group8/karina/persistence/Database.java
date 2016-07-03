@@ -36,7 +36,9 @@ public interface Database
 	void deleteTransactionByID(int transID);
 	void updateTransaction(Transaction trans) throws unfoundResourceException;
 	List<Transaction> getOrderedTransactionsByDate();
-
+	List<Transaction> getOrderedTransactionsByDate(boolean isExpense);
+	List<Transaction> getOrderedTransactionsByUser(boolean isExpense);
+	List<Transaction> getOrderedTransactionsByCategory(boolean isExpense);
 	List<Transaction> getTotalTransactionsByCategory(boolean isExpense);
 	List<Transaction> getTotalTransactionsByUser(boolean isExpense);
 }

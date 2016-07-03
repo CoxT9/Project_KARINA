@@ -20,6 +20,10 @@ public class IncomeList extends AppCompatActivity
 	private ListView listView;
 	private AccessTransactions access;
 
+	private final int CATEGORIES = 0;
+	private final int USERS = 1;
+	private final int DATE = 2;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +59,29 @@ public class IncomeList extends AppCompatActivity
 	{
 		startActivity(new Intent(this, IncomeActivity.class));
 		finish();
+	}
+
+	public void sortButtonClicked(View view)
+	{
+
+		TransactionSortDialog t = new TransactionSortDialog(this);
+		t.show();
+	}
+
+	public void sortOkButtonClicked(int sortOption){
+		List<Transaction> transaction;
+		if(sortOption==CATEGORIES){
+			System.out.println("sort by cat");
+			transaction = access.getOrderedTransactionsByCategory(false);
+		} else if(sortOption==USERS){
+			System.out.println("sort by users");
+			transaction = access.getOrderedTransactionsByUser(false);
+		} else {
+			System.out.println("sort by date.");
+			transaction = access.getOrderedTransactionsByDate(false);
+		}
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, transaction);
+		listView.setAdapter(adapter);
 	}
 
 	private void populateListView()
