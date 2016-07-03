@@ -12,13 +12,13 @@ import group8.karina.tests.objectsTests.TransactionTests;
 import group8.karina.tests.objectsTests.UserTests;
 import group8.karina.tests.persistenceTests.DataAccessObjectTests;
 
-public class AllTests
+public class AllUnitTests
 {
 	public static TestSuite suite;
 
 	public static Test suite()
 	{
-		suite = new TestSuite("All tests");
+		suite = new TestSuite("All unit tests");
 		testObjects();
 		testBusiness();
 		testPersistance();
