@@ -121,9 +121,9 @@ public class AccessTransactions
 		return dataAccess.getOrderedTransactionsByDate();
 	}
 
-	public List<Transaction> getOrderedTransactionsByDate(boolean isExpense)
+	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
 	{
-		return dataAccess.getOrderedTransactionsByDate(isExpense);
+		return dataAccess.getOrderedTransactionsByDateAndType(isExpense);
 	}
 
 	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)

@@ -463,7 +463,7 @@ public class DataAccessObject implements Database
 		return result;
 	}
 
-	public List<Transaction> getOrderedTransactionsByDate(boolean isExpense)
+	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
 	{
 		Transaction transaction;
 		double transAmount;
@@ -480,7 +480,7 @@ public class DataAccessObject implements Database
 		{
 			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transDate ASC";
 			System.out.println("cmd str : " + cmdString);
-			rs2 = st1.executeQuery(cmdString);
+			rs = st.executeQuery(cmdString);
 
 		}
 		catch (Exception e)
@@ -489,19 +489,19 @@ public class DataAccessObject implements Database
 		}
 		try
 		{
-			while (rs2.next())
+			while (rs.next())
 			{
-				transAmount = rs2.getDouble("transAmount");
-				transComment = rs2.getString("transComment");
-				transUserID = rs2.getInt("transUserID");
-				transCategoryID = rs2.getInt("transCategoryID");
-				transID = rs2.getInt("transID");
-				transIsExpense = rs2.getBoolean("transIsExpense");
-				transDate = rs2.getDate("transDate");
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
 				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
 				result.add(transaction);
 			}
-			rs2.close();
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -548,7 +548,7 @@ public class DataAccessObject implements Database
 		{
 			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transUserID ASC";
 			System.out.println("cmd str : " + cmdString);
-			rs2 = st1.executeQuery(cmdString);
+			rs = st.executeQuery(cmdString);
 
 		}
 		catch (Exception e)
@@ -557,19 +557,19 @@ public class DataAccessObject implements Database
 		}
 		try
 		{
-			while (rs2.next())
+			while (rs.next())
 			{
-				transAmount = rs2.getDouble("transAmount");
-				transComment = rs2.getString("transComment");
-				transUserID = rs2.getInt("transUserID");
-				transCategoryID = rs2.getInt("transCategoryID");
-				transID = rs2.getInt("transID");
-				transIsExpense = rs2.getBoolean("transIsExpense");
-				transDate = rs2.getDate("transDate");
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
 				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
 				result.add(transaction);
 			}
-			rs2.close();
+			rs.close();
 		}
 		catch (Exception e)
 		{
@@ -596,7 +596,7 @@ public class DataAccessObject implements Database
 		{
 			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transCategoryID ASC";
 			System.out.println("cmd str : " + cmdString);
-			rs2 = st1.executeQuery(cmdString);
+			rs = st.executeQuery(cmdString);
 
 		}
 		catch (Exception e)
@@ -605,19 +605,19 @@ public class DataAccessObject implements Database
 		}
 		try
 		{
-			while (rs2.next())
+			while (rs.next())
 			{
-				transAmount = rs2.getDouble("transAmount");
-				transComment = rs2.getString("transComment");
-				transUserID = rs2.getInt("transUserID");
-				transCategoryID = rs2.getInt("transCategoryID");
-				transID = rs2.getInt("transID");
-				transIsExpense = rs2.getBoolean("transIsExpense");
-				transDate = rs2.getDate("transDate");
+				transAmount = rs.getDouble("transAmount");
+				transComment = rs.getString("transComment");
+				transUserID = rs.getInt("transUserID");
+				transCategoryID = rs.getInt("transCategoryID");
+				transID = rs.getInt("transID");
+				transIsExpense = rs.getBoolean("transIsExpense");
+				transDate = rs.getDate("transDate");
 				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
 				result.add(transaction);
 			}
-			rs2.close();
+			rs.close();
 		}
 		catch (Exception e)
 		{

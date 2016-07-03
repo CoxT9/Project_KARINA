@@ -447,14 +447,14 @@ public class DataAccessStub implements Database
 			transactions.add(trans);
 		}
 	}
+
 	public List<Transaction> getOrderedTransactionsByDate()
 	{
 		return null;
 	}
 
-	@Override
-	public List<Transaction> getOrderedTransactionsByDate(boolean isExpense) {
+	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
+	{
 		return null;
 	}
-
 }
