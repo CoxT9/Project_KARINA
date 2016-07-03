@@ -22,8 +22,8 @@
 
     <RelativeLayout
         android:id="@+id/totalsCard"
-        android:layout_width="382dp"
-        android:layout_height="76dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/titleCard"
         android:layout_marginTop="10dp">
 

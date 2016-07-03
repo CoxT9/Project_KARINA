@@ -4,7 +4,7 @@ import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
-import group8.karina.application.Services;
+import group8.karina.application.DatabaseService;
 import group8.karina.objects.User;
 import group8.karina.persistence.Database;
 
@@ -14,12 +14,12 @@ public class AccessUsers
 
 	public AccessUsers()
 	{
-		dataAccess = Services.getDataAccess();
+		dataAccess = DatabaseService.getDataAccess();
 	}
 
 	public List<User> getUsers()
 	{
-		return dataAccess.getUserSequential();
+		return dataAccess.getAllUsers();
 	}
 
 	public User getUserByID(int uID) { return dataAccess.getUserById(uID); }

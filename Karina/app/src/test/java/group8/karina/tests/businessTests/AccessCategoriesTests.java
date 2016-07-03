@@ -7,9 +7,10 @@ import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
-import group8.karina.application.Services;
+import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
 public class AccessCategoriesTests extends junit.framework.TestCase
@@ -20,14 +21,15 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		dataAccess = Services.getDataAccess();
+		DatabaseService.setDatabase(new DataAccessStub("test"));
+		dataAccess = DatabaseService.getDataAccess();
 		accessCategories = new AccessCategories();
 	}
 
 	@After
 	public void tearDown()
 	{
-		Services.closeDataAccess();
+		DatabaseService.closeDataAccess();
 	}
 
 	public void testInsertCategoryInsertsCategories()
@@ -95,7 +97,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 
 		List<Category> categories = accessCategories.getAllCategories();
 
-		assertEquals(6, categories.size()); //this is 6 because we have some seed data in the database and our inserted data
+		assertEquals(7, categories.size()); //this is 7 because we have some seed data in the database and our inserted data
 	}
 
 	public void testDeleteCategoryByIdDeletes()

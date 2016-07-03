@@ -18,7 +18,7 @@ import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Category;
 
 
-public class CategoryActivity extends AppCompatActivity implements DeleteDialogCaller
+public class CategoryActivity extends AppCompatActivity implements DeleteUnassignDialogCaller
 {
 	private EditText editName;
 	private TextView errorText;
@@ -107,7 +107,8 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 			startActivity(new Intent(this, CategoryList.class));
 			finish();
 
-		} catch (DuplicateEntryException dupEx)
+		}
+		catch (DuplicateEntryException dupEx)
 		{
 			writeDuplicateMessage();
 		}
@@ -115,7 +116,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 
 	public void deleteButtonClicked(View view)
 	{
-		DeletionDialog d = new DeletionDialog(this,"category");
+		DeleteUnassignDialog d = new DeleteUnassignDialog(this,"category");
 		d.show();
 	}
 
@@ -136,6 +137,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 	{
 		errorText.setText("A category already exists with that name");
 		errorText.setTextColor(Color.RED);
+		errorText.setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -157,6 +159,13 @@ public class CategoryActivity extends AppCompatActivity implements DeleteDialogC
 
 		access.deleteCategoryById(editCategory.getCategoryID());
 		startActivity(new Intent(this,CategoryList.class));
+		finish();
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+		startActivity(new Intent(this, CategoryList.class));
 		finish();
 	}
 

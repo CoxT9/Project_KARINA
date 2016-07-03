@@ -2,32 +2,25 @@ package group8.karina.presentation;
 
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 
-public class TransactionByCategoryReportActivity extends AppCompatActivity
+public class TransactionByCategoryReportActivity extends PieChartReportActivityBase
 {
-	private PieChart pieChart;
 	private AccessTransactions transactions;
 	private RadioButton expenseButton;
-
+	private boolean isExpense;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -39,55 +32,39 @@ public class TransactionByCategoryReportActivity extends AppCompatActivity
 		pieChart = (PieChart) findViewById(R.id.pieChart);
 		expenseButton = (RadioButton) findViewById(R.id.expenseRadioButton);
 
-
+		isExpense = expenseButton.isChecked();
 		initializePieChart();
-		pieChart.setData(createPieChartData(expenseButton.isChecked()));
-	}
-
-	private void initializePieChart()
-	{
-		pieChart.setHoleRadius(40);
-		pieChart.setTransparentCircleRadius(44);
-		pieChart.setDescription("");
-		setUpChartLegend(pieChart.getLegend());
-
+		pieChart.setData(createPieChartData());
 		pieChart.invalidate();
 	}
 
-	private void setUpChartLegend(Legend legend)
+	@Override
+	protected void setEntriesAndCategories(ArrayList<Entry> entries, ArrayList<String> categoryNames)
 	{
-		legend.setEnabled(false);
-	}
+		Hashtable<String,Double> totals = transactions.getTotalTransactionsByCategory(isExpense);
+		int i=0;
 
-	private PieData createPieChartData(boolean isExpense)
-	{
-		ArrayList<Entry> entries = new ArrayList<Entry>();
-		ArrayList<String> categoryNames = new ArrayList<String>();
-		List<Transaction> totals = transactions.getTotalTransactionsByCategory(isExpense);
-
-		for(int i=0;i<totals.size(); i++)
+		for(String key : totals.keySet())
 		{
-			entries.add(new Entry((float)totals.get(i).getAmount(),i));
-			categoryNames.add(totals.get(i).getCategoryName());
+			entries.add(new Entry(totals.get(key).floatValue(),i));
+			categoryNames.add(key);
+			i++;
 		}
-
-		PieDataSet dataSet = new PieDataSet(entries,"");
-		dataSet.setColors(ColorTemplate.PASTEL_COLORS);
-		dataSet.setValueTextSize(17f);
-		PieData pieData = new PieData(categoryNames,dataSet);
-
-		return pieData;
 	}
 
 	public void expenseRadioButtonClicked(View v)
 	{
-		pieChart.setData(createPieChartData(true));
+		isExpense = true;
+
+		pieChart.setData(createPieChartData());
 		pieChart.invalidate();
 	}
 
 	public void incomeRadioButtonClicked(View v)
 	{
-		pieChart.setData(createPieChartData(false));
+		isExpense = false;
+
+		pieChart.setData(createPieChartData());
 		pieChart.invalidate();
 	}
 

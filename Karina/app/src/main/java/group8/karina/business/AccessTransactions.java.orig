@@ -97,7 +97,12 @@ public class AccessTransactions
 		return transactionsByCategory;
 	}
 
+<<<<<<< HEAD
+
+	public List<Transaction> getTotalTransactionsByUser(boolean isExpense)
+=======
 	public Hashtable<String,Double> getTotalTransactionsByUser(boolean isExpense)
+>>>>>>> master
 	{
 		List<Transaction> transactions = dataAccess.getTransactionsByType(isExpense);
 		Hashtable<String,Double> transactionsByUser = new Hashtable<String,Double>();

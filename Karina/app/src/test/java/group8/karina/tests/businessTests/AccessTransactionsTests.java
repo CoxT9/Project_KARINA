@@ -2,18 +2,16 @@ package group8.karina.tests.businessTests;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.util.List;
 
-import group8.karina.application.Services;
+import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
-/**
- * Created by Malcolm on 2016-06-01.
- */
+
 public class AccessTransactionsTests extends junit.framework.TestCase
 {
 	private Database dataAccess;
@@ -22,14 +20,15 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		dataAccess = Services.getDataAccess();
+		DatabaseService.setDatabase(new DataAccessStub("test"));
+		dataAccess = DatabaseService.getDataAccess();
 		accessTransactions = new AccessTransactions();
 	}
 
 	@After
 	public void tearDown()
 	{
-		Services.closeDataAccess();
+		DatabaseService.closeDataAccess();
 	}
 
 	public void testGetTransactionsByTypeReturnsExpenseTransactions()

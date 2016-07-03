@@ -7,9 +7,10 @@ import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
 import group8.karina.Exceptions.unfoundResourceException;
-import group8.karina.application.Services;
+import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
+import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
 public class AccessUsersTests extends junit.framework.TestCase
@@ -20,14 +21,15 @@ public class AccessUsersTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		dataAccess = Services.getDataAccess();
+		DatabaseService.setDatabase(new DataAccessStub("test"));
+		dataAccess = DatabaseService.getDataAccess();
 		accessUsers = new AccessUsers();
 	}
 
 	@After
 	public void tearDown()
 	{
-		Services.closeDataAccess();
+		DatabaseService.closeDataAccess();
 	}
 
 	public void test_insert_user_inserts_user()

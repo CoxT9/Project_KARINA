@@ -12,26 +12,18 @@ import java.io.InputStreamReader;
 
 public class KarinaApp extends Application
 {
-	public static final String dbName = "database0";
-	public static String dbPathName = "database/database0";
-
 	@Override
 	public void onCreate()
 	{
 		super.onCreate();
 		copyDatabaseToDevice();
 
-		Services.createDataAccess();
+		DatabaseService.createDataAccess();
 	}
 
-
-
-	public static void setDBPathName(String pathName) {
-		System.out.println("Setting DB path to: " + pathName);
-		dbPathName = pathName;
-	}
 
 	private void copyDatabaseToDevice() {
+
 		final String DB_PATH = "db";
 
 		String[] assetNames;
@@ -39,7 +31,8 @@ public class KarinaApp extends Application
 		File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
 		AssetManager assetManager = getAssets();
 
-		try {
+		try
+		{
 
 			assetNames = assetManager.list(DB_PATH);
 			for (int i = 0; i < assetNames.length; i++) {
@@ -48,17 +41,21 @@ public class KarinaApp extends Application
 
 			copyAssetsToDirectory(assetNames, dataDirectory);
 
-			setDBPathName(dataDirectory.toString() + "/" + dbName);
+			DatabaseService.setDBPathName(dataDirectory.toString() + "/");
 
-		} catch (IOException ioe) {
+		}
+		catch (IOException ioe)
+		{
 			System.out.print("Unable to access application data: " + ioe.getMessage());
 		}
 	}
 
-	public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+	public void copyAssetsToDirectory(String[] assets, File directory) throws IOException
+	{
 		AssetManager assetManager = getAssets();
 
-		for (String asset : assets) {
+		for (String asset : assets)
+		{
 			String[] components = asset.split("/");
 			String copyPath = directory.toString() + "/" + components[components.length - 1];
 			char[] buffer = new char[1024];
@@ -66,12 +63,14 @@ public class KarinaApp extends Application
 
 			File outFile = new File(copyPath);
 
-			if (!outFile.exists()) {
+			if (!outFile.exists())
+			{
 				InputStreamReader in = new InputStreamReader(assetManager.open(asset));
 				FileWriter out = new FileWriter(outFile);
 
 				count = in.read(buffer);
-				while (count != -1) {
+				while (count != -1)
+				{
 					out.write(buffer, 0, count);
 					count = in.read(buffer);
 				}

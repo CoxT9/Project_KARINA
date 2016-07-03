@@ -14,7 +14,7 @@ import group8.karina.business.AccessTransactions;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
 
-public class UserActivity extends AppCompatActivity implements DeleteDialogCaller
+public class UserActivity extends AppCompatActivity implements DeleteUnassignDialogCaller
 {
 	private EditText editName;
 	private TextView nameText;
@@ -52,7 +52,7 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 
 	public void deleteButtonClicked(View view)
 	{
-		DeletionDialog d = new DeletionDialog(this,"user");
+		DeleteUnassignDialog d = new DeleteUnassignDialog(this,"user");
 		d.show();
 	}
 
@@ -144,6 +144,13 @@ public class UserActivity extends AppCompatActivity implements DeleteDialogCalle
 
 		access.deleteUserById(editUser.getUserID());
 		startActivity(new Intent(this,UserList.class));
+		finish();
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+		startActivity(new Intent(this, UserList.class));
 		finish();
 	}
 }
