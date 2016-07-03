@@ -61,7 +61,7 @@ public class DataAccessStub implements Database
 			category = new Category("Default", true);
 			insertCategory(category);
 
-			category = new Category("income", true);
+			category = new Category("groceries", true);
 			insertCategory(category);
 			category = new Category("weapons", true);
 			insertCategory(category);
