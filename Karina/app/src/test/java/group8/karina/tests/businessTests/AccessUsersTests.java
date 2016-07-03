@@ -50,7 +50,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 		actualUser = dataAccess.getUserByName(expectedUser.getUserName());
 
 		assertNotNull(actualUser);
-		assertEquals(actualUser.getUserName(), expectedUser.getUserName());
+		assertEquals("bob",actualUser.getUserName());
 	}
 
 	public void testInsertUserThrowsExceptionWithNullUsername()
@@ -145,7 +145,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 			fail("This should not throw an exception");
 		}
 
-		assertEquals(expectedUserName,dataAccess.getUserById(u.getUserID()).getUserName());
+		assertEquals("Joe",dataAccess.getUserById(u.getUserID()).getUserName());
 	}
 
 
