@@ -21,7 +21,9 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		DatabaseService.setDatabase(new DataAccessStub("test"));
+		Database testDb = new DataAccessStub("test");
+		testDb.open("test");
+		DatabaseService.setDatabase(testDb);
 		dataAccess = DatabaseService.getDataAccess();
 		accessCategories = new AccessCategories();
 	}
