@@ -24,8 +24,9 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
+		test = new DataAccessObject("db");
 		test = new DataAccessStub("test");
-		test.open("test");
+		test.open("src/test/java/database/db");
 	}
 
 	@After
