@@ -15,7 +15,7 @@ import group8.karina.R;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
 
-public class IncomeList extends AppCompatActivity
+public class IncomeList extends AppCompatActivity implements TransactionSortDialogCaller
 {
 	private ListView listView;
 	private AccessTransactions access;
@@ -74,17 +74,14 @@ public class IncomeList extends AppCompatActivity
 
 		if(sortOption==CATEGORIES)
 		{
-			System.out.println("sort by cat");
 			transaction = access.getOrderedTransactionsByCategory(false);
 		}
 		else if(sortOption==USERS)
 		{
-			System.out.println("sort by users");
 			transaction = access.getOrderedTransactionsByUser(false);
 		}
 		else
 		{
-			System.out.println("sort by date.");
 			transaction = access.getOrderedTransactionsByDateAndType(false);
 		}
 

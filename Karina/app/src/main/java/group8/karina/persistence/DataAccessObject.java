@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.ListIterator;
 import java.util.List;
 
 import group8.karina.Exceptions.DuplicateEntryException;
@@ -465,6 +464,7 @@ public class DataAccessObject implements Database
 
 	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
 	{
+		//TODO
 		Transaction transaction;
 		double transAmount;
 		String transComment;
@@ -473,12 +473,14 @@ public class DataAccessObject implements Database
 		int  transID;
 		boolean transIsExpense;
 		Date transDate;
+		String userName;
+		String categoryName;
 
 		result=new ArrayList<Transaction>();
 
 		try
 		{
-			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transDate ASC";
+			cmdString = "Select * from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense + " Order By transDate ASC";
 			System.out.println("cmd str : " + cmdString);
 			rs = st.executeQuery(cmdString);
 
@@ -491,6 +493,9 @@ public class DataAccessObject implements Database
 		{
 			while (rs.next())
 			{
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
 				transAmount = rs.getDouble("transAmount");
 				transComment = rs.getString("transComment");
 				transUserID = rs.getInt("transUserID");
@@ -500,6 +505,9 @@ public class DataAccessObject implements Database
 				transDate = rs.getDate("transDate");
 				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
 				result.add(transaction);
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
 			}
 			rs.close();
 		}
@@ -533,6 +541,7 @@ public class DataAccessObject implements Database
 	}
 	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
 	{
+		//TODO
 		Transaction transaction;
 		double transAmount;
 		String transComment;
@@ -541,12 +550,14 @@ public class DataAccessObject implements Database
 		int  transID;
 		boolean transIsExpense;
 		Date transDate;
+		String userName;
+		String categoryName;
 
 		result=new ArrayList<Transaction>();
 
 		try
 		{
-			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transUserID ASC";
+			cmdString = "Select * from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense + " Order By transUserID ASC";
 			System.out.println("cmd str : " + cmdString);
 			rs = st.executeQuery(cmdString);
 
@@ -559,6 +570,9 @@ public class DataAccessObject implements Database
 		{
 			while (rs.next())
 			{
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
 				transAmount = rs.getDouble("transAmount");
 				transComment = rs.getString("transComment");
 				transUserID = rs.getInt("transUserID");
@@ -568,6 +582,9 @@ public class DataAccessObject implements Database
 				transDate = rs.getDate("transDate");
 				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
 				result.add(transaction);
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
 			}
 			rs.close();
 		}
@@ -590,23 +607,31 @@ public class DataAccessObject implements Database
 		boolean transIsExpense;
 		Date transDate;
 
+		String categoryName;
+		String userName;
+
 		result=new ArrayList<Transaction>();
 
 		try
 		{
-			cmdString = "Select * from Transactions where transIsExpense = " + isExpense + " Order By transCategoryID ASC";
+			cmdString = "Select * from Transactions t inner join Categories c on c.categoryID = t.transCategoryID inner join Users u on t.transUserID = u.userID where transIsExpense = " + isExpense + " Order By transCategoryID ASC";
 			System.out.println("cmd str : " + cmdString);
 			rs = st.executeQuery(cmdString);
 
 		}
 		catch (Exception e)
 		{
+			System.out.println("cat err.");
 			processSQLError(e);
 		}
 		try
 		{
 			while (rs.next())
 			{
+				//TODO
+				categoryName = rs.getString("categoryName");
+				userName = rs.getString("userName");
+
 				transAmount = rs.getDouble("transAmount");
 				transComment = rs.getString("transComment");
 				transUserID = rs.getInt("transUserID");
@@ -615,6 +640,10 @@ public class DataAccessObject implements Database
 				transIsExpense = rs.getBoolean("transIsExpense");
 				transDate = rs.getDate("transDate");
 				transaction = new Transaction(transID, transDate, transUserID, transIsExpense, transAmount, transCategoryID, transComment);
+
+				transaction.setCategoryName(categoryName);
+				transaction.setUserName(userName);
+
 				result.add(transaction);
 			}
 			rs.close();

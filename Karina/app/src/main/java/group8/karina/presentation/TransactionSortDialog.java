@@ -22,12 +22,12 @@ public class TransactionSortDialog extends Dialog{
 	private RadioButton sortUsers;
 	private RadioButton sortDate;
 	private RadioGroup sortRadioGrp;
-	private IncomeList caller;
+	private TransactionSortDialogCaller caller;
 
 
 	public TransactionSortDialog(Context context) {
 		super(context);
-		caller = (group8.karina.presentation.IncomeList) context;
+		caller = (group8.karina.presentation.TransactionSortDialogCaller) context;
 	}
 
 	@Override
