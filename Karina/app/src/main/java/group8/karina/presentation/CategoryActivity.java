@@ -137,6 +137,7 @@ public class CategoryActivity extends AppCompatActivity implements DeleteUnassig
 	{
 		errorText.setText("A category already exists with that name");
 		errorText.setTextColor(Color.RED);
+		errorText.setVisibility(View.VISIBLE);
 	}
 
 	@Override
