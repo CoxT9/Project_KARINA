@@ -44,7 +44,8 @@
         android:id="@+id/errorText"
         android:layout_below="@+id/addCategoryText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
