@@ -144,18 +144,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:layout_below="@+id/commentText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/deleteButton"
+        android:layout_alignRight="@+id/commentText"
+        android:layout_alignEnd="@+id/commentText"/>
 
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete"
-        android:layout_below="@+id/saveButton"
         android:onClick="deleteButtonClicked"
-        android:visibility="gone" />
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/errorValue"
+        android:layout_toEndOf="@+id/errorValue"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"

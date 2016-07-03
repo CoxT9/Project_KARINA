@@ -51,7 +51,7 @@ public class ExpenseList extends AppCompatActivity
 		});
 	}
 
-	public void addExpenseClicked(View view) { startActivity(new Intent(this, ExpenseActivity.class)); }
+	public void addExpenseClicked(View view) { startActivity(new Intent(this, ExpenseActivity.class)); finish(); }
 
 	private void populateListView()
 	{
