@@ -21,7 +21,9 @@ public class AccessUsersTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		DatabaseService.setDatabase(new DataAccessStub("test"));
+		Database testDb = new DataAccessStub("test");
+		testDb.open("test");
+		DatabaseService.setDatabase(testDb);
 		dataAccess = DatabaseService.getDataAccess();
 		accessUsers = new AccessUsers();
 	}
@@ -48,7 +50,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 		actualUser = dataAccess.getUserByName(expectedUser.getUserName());
 
 		assertNotNull(actualUser);
-		assertEquals(actualUser.getUserName(), expectedUser.getUserName());
+		assertEquals("bob",actualUser.getUserName());
 	}
 
 	public void testInsertUserThrowsExceptionWithNullUsername()
@@ -143,7 +145,7 @@ public class AccessUsersTests extends junit.framework.TestCase
 			fail("This should not throw an exception");
 		}
 
-		assertEquals(expectedUserName,dataAccess.getUserById(u.getUserID()).getUserName());
+		assertEquals("Joe",dataAccess.getUserById(u.getUserID()).getUserName());
 	}
 
 

@@ -20,7 +20,9 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		DatabaseService.setDatabase(new DataAccessStub("test"));
+		Database testDb = new DataAccessStub("test");
+		testDb.open("test");
+		DatabaseService.setDatabase(testDb);
 		dataAccess = DatabaseService.getDataAccess();
 		accessTransactions = new AccessTransactions();
 	}
@@ -66,26 +68,23 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		Transaction actualTransaction = dataAccess.getTransactionByID(expectedTransaction.getTransactionID());
 
 		assertNotNull(actualTransaction);
-		assertEquals(expectedTransaction.getDate(), actualTransaction.getDate());
-		assertEquals(expectedTransaction.getUserID(), actualTransaction.getUserID());
-		assertEquals(expectedTransaction.isExpense(), actualTransaction.isExpense());
-		assertEquals(expectedTransaction.getAmount(), actualTransaction.getAmount(), 0);
-		assertEquals(expectedTransaction.getCategoryID(), actualTransaction.getCategoryID());
-		assertEquals(expectedTransaction.getComments(), actualTransaction.getComments());
-
+		assertEquals(null, actualTransaction.getDate());
+		assertEquals(8, actualTransaction.getUserID());
+		assertEquals(true, actualTransaction.isExpense());
+		assertEquals(1.12, actualTransaction.getAmount(), 0);
+		assertEquals(1, actualTransaction.getCategoryID());
+		assertEquals("hello world", actualTransaction.getComments());
 	}
 
 	public void testGetIncomeReturnsTotalIncome()
 	{
-		double expectedValue = 151.34; // from seed data
 		double actualValue = accessTransactions.totalIncome();
-		assertEquals(expectedValue, actualValue, 0.0);
+		assertEquals(151.34, actualValue, 0.0);
 	}
 	public void testGetExpensesReturnsTotalExpenses()
 	{
-		double expectedValue = 172.75; // from seed data
 		double actualValue = accessTransactions.totalExpenses();
-		assertEquals(expectedValue, actualValue, 0.0);
+		assertEquals(172.75, actualValue, 0.0);
 	}
 
 	public void testUnassignTransactionsByCategoryUnassigns()

@@ -14,10 +14,19 @@
         android:text="Add Expense"
         />
 
+    <Button
+        android:id="@+id/sortByButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sortButtonClicked"
+        android:layout_below="@id/addExpenseButton"
+        android:text="Sort By"
+        />
+
     <ListView
         android:id="@+id/expenseList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addExpenseButton" />
+        android:layout_below="@+id/sortByButton" />
 
 </RelativeLayout>

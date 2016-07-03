@@ -61,7 +61,7 @@ public class CompareSpendingBetweenUsersTests extends ActivityInstrumentationTes
         //Wait for activity: 'group8.karina.presentation.UserList'
 		assertTrue("group8.karina.presentation.UserList is not found!", solo.waitForActivity(group8.karina.presentation.UserList.class));
         //Click on Bob
-		solo.clickOnView(solo.getView(android.R.id.text1, 3));
+		solo.clickOnView(solo.getView(android.R.id.text1, 4));
         //Wait for activity: 'group8.karina.presentation.UserActivity'
 		assertTrue("group8.karina.presentation.UserActivity is not found!", solo.waitForActivity(group8.karina.presentation.UserActivity.class));
         //Press menu back key
@@ -103,8 +103,8 @@ public class CompareSpendingBetweenUsersTests extends ActivityInstrumentationTes
 		View view1 = solo.getView(Spinner.class, 0);
 		solo.clickOnView(view1);
 		solo.scrollToTop();
-		solo.clickOnView(solo.getView(TextView.class, 4));
+		solo.clickOnView(solo.getView(TextView.class, 5));
 		solo.clickOnView(solo.getView(group8.karina.R.id.saveButton));
-		solo.clickOnView(solo.getView(android.R.id.text1, 2));
+		solo.clickOnView(solo.getView(android.R.id.text1, 4));
 	}
 }

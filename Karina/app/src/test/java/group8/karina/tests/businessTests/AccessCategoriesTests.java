@@ -21,7 +21,9 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		DatabaseService.setDatabase(new DataAccessStub("test"));
+		Database testDb = new DataAccessStub("test");
+		testDb.open("test");
+		DatabaseService.setDatabase(testDb);
 		dataAccess = DatabaseService.getDataAccess();
 		accessCategories = new AccessCategories();
 	}
@@ -48,8 +50,8 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 		actualCategory = dataAccess.getCategoryByNameAndIsExpense(expectedCategory.getCategoryName(), expectedCategory.isExpense());
 
 		assertNotNull(actualCategory);
-		assertEquals(actualCategory.getCategoryName(), expectedCategory.getCategoryName());
-		assertEquals(actualCategory.isExpense(), expectedCategory.isExpense());
+		assertEquals("definitelynotinthedatabase",actualCategory.getCategoryName());
+		assertEquals(true,actualCategory.isExpense());
 
 	}
 
@@ -145,7 +147,7 @@ public class AccessCategoriesTests extends junit.framework.TestCase
 			fail("This should not throw an exception");
 		}
 
-		assertEquals(expectedCategoryName,dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
+		assertEquals("Things",dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
 	}
 
 }
