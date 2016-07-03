@@ -1,4 +1,4 @@
-package group8.karina.test;
+package group8.karina.AcceptanceTests;
 
 import group8.karina.TestHelpers.TestDataAccessObject;
 import group8.karina.application.DatabaseService;
@@ -55,7 +55,7 @@ public class CompareSpendingBetweenCategoriesTests extends ActivityInstrumentati
         //Wait for activity: 'group8.karina.presentation.CategoryList'
 		assertTrue("group8.karina.presentation.CategoryList is not found!", solo.waitForActivity(group8.karina.presentation.CategoryList.class));
         //Click on Car
-		solo.clickOnView(solo.getView(android.R.id.text1, 4));
+		solo.clickOnView(solo.getView(android.R.id.text1, 5));
         //Wait for activity: 'group8.karina.presentation.CategoryActivity'
 		assertTrue("group8.karina.presentation.CategoryActivity is not found!", solo.waitForActivity(group8.karina.presentation.CategoryActivity.class));
         //Press menu back key
@@ -97,14 +97,14 @@ public class CompareSpendingBetweenCategoriesTests extends ActivityInstrumentati
 		View view1 = solo.getView(Spinner.class, 1);
 		solo.clickOnView(view1);
 		solo.scrollToTop();
-		solo.clickOnView(solo.getView(TextView.class, 3));
+		solo.clickOnView(solo.getView(TextView.class, 4));
 
         //Click on Save
 		solo.clickOnView(solo.getView(group8.karina.R.id.saveButton));
         //Wait for activity: 'group8.karina.presentation.ExpenseList'
 		assertTrue("group8.karina.presentation.ExpenseList is not found!", solo.waitForActivity(group8.karina.presentation.ExpenseList.class));
 
-		solo.clickOnView(solo.getView(android.R.id.text1, 2));
+		solo.clickOnView(solo.getView(android.R.id.text1, 4));
 
 	}
 }
