@@ -125,5 +125,9 @@ public class CompareSpendingBetweenCategoriesTests extends ActivityInstrumentati
 
 		solo.clickOnView(solo.getView(android.R.id.text1, 4));
 
+		solo.goBackToActivity("MainActivity");
+		solo.clickOnView(solo.getView(group8.karina.R.id.reportsButton));
+		solo.clickOnView(solo.getView(group8.karina.R.id.transactionByCategoryButton));
+
 	}
 }
