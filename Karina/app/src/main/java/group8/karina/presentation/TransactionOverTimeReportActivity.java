@@ -52,6 +52,7 @@ public class TransactionOverTimeReportActivity extends AppCompatActivity
 		ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 		List<String> titles = new ArrayList<String>();
 		double amount;
+		BarDataSet dataSet;
 
 		for (int i = 0; i<data.size(); i++)
 		{
@@ -69,10 +70,11 @@ public class TransactionOverTimeReportActivity extends AppCompatActivity
 		}
 
 
-		BarDataSet dataSet = new BarDataSet(entries,"");
-		dataSet.setValueTextSize(17f);
-		BarData barData = new BarData(titles,dataSet);
+		dataSet = new BarDataSet(entries,"");
+		dataSet.setValueTextSize(10f);
+		dataSet.setValueFormatter(new CurrencyFormatter());
 
+		BarData barData = new BarData(titles,dataSet);
 
 		return barData;
 	}
