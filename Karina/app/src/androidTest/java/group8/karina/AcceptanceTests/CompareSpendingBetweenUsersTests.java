@@ -1,3 +1,23 @@
+/*
+	User Story: I want to be able to see how much i spent vs a significant other
+
+	I want to be able to add new members to my household:
+		Add a new User
+		Go back to the user list
+		click on the new user
+		go back to the user list
+		try adding a new user with the same name, which should fail
+
+	I want to be able to assign certain expenses to household members:
+		add an expense with the new user assigned to it
+		go back to the expense list, and click on the added expense
+
+	I would like to be able to compare expenses between members of the household:
+		go to the reports view
+		click on transaction by user report and view it
+*/
+
+
 package group8.karina.AcceptanceTests;
 
 import group8.karina.R;
@@ -61,7 +81,7 @@ public class CompareSpendingBetweenUsersTests extends ActivityInstrumentationTes
         //Wait for activity: 'group8.karina.presentation.UserList'
 		assertTrue("group8.karina.presentation.UserList is not found!", solo.waitForActivity(group8.karina.presentation.UserList.class));
         //Click on Bob
-		solo.clickOnView(solo.getView(android.R.id.text1, 3));
+		solo.clickOnView(solo.getView(android.R.id.text1, 4));
         //Wait for activity: 'group8.karina.presentation.UserActivity'
 		assertTrue("group8.karina.presentation.UserActivity is not found!", solo.waitForActivity(group8.karina.presentation.UserActivity.class));
         //Press menu back key
@@ -103,8 +123,12 @@ public class CompareSpendingBetweenUsersTests extends ActivityInstrumentationTes
 		View view1 = solo.getView(Spinner.class, 0);
 		solo.clickOnView(view1);
 		solo.scrollToTop();
-		solo.clickOnView(solo.getView(TextView.class, 4));
+		solo.clickOnView(solo.getView(TextView.class, 5));
 		solo.clickOnView(solo.getView(group8.karina.R.id.saveButton));
-		solo.clickOnView(solo.getView(android.R.id.text1, 2));
+		solo.clickOnView(solo.getView(android.R.id.text1, 4));
+
+		solo.goBackToActivity("MainActivity");
+		solo.clickOnView(solo.getView(group8.karina.R.id.reportsButton));
+		solo.clickOnView(solo.getView(group8.karina.R.id.transactionByUserButton));
 	}
 }

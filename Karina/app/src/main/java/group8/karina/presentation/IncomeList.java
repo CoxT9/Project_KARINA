@@ -22,7 +22,6 @@ public class IncomeList extends AppCompatActivity implements TransactionSortDial
 
 	private final int CATEGORIES = 0;
 	private final int USERS = 1;
-	private final int DATE = 2;
 
 
 	@Override

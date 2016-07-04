@@ -15,7 +15,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@+id/valueText" />
+        android:layout_alignBottom="@+id/valueText"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/valueText"
@@ -52,7 +53,9 @@
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignBottom="@+id/setDate"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/setDate"
@@ -90,7 +93,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@+id/userSpinner" />
+        android:padding="10dp"/>
 
     <Spinner
         android:id="@+id/userSpinner"
@@ -98,7 +101,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/errorDate"
         android:layout_alignLeft="@+id/categorySpinner"
-        android:layout_alignStart="@+id/categorySpinner" />
+        android:layout_alignStart="@+id/categorySpinner"
+        android:layout_marginTop="@dimen/margin"
+        android:padding="10dp" />
 
     <TextView
         android:id="@+id/category"
@@ -109,7 +114,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@+id/categorySpinner" />
+        android:padding="10dp" />
 
     <Spinner
         android:id="@+id/categorySpinner"
@@ -117,7 +122,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/userSpinner"
         android:layout_alignLeft="@+id/commentText"
-        android:layout_alignStart="@+id/commentText" />
+        android:layout_alignStart="@+id/commentText"
+        android:layout_marginTop="@dimen/margin"
+        android:padding="10dp" />
 
     <TextView
         android:id="@+id/comment"
@@ -127,7 +134,8 @@
         android:text="Comments: "
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/commentText"
@@ -136,7 +144,6 @@
         android:layout_below="@id/categorySpinner"
         android:layout_toRightOf="@id/comment"
 
-
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -144,18 +151,22 @@
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/commentText"
         android:text="Save"
-        android:onClick="saveButtonClicked"/>
+        android:onClick="saveButtonClicked"
+        android:layout_above="@+id/deleteButton"
+        android:layout_toRightOf="@+id/errorValue"
+        android:layout_toEndOf="@+id/errorValue"/>
 
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete"
-        android:layout_below="@+id/saveButton"
         android:onClick="deleteButtonClicked"
-        android:visibility="gone" />
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/errorValue"
+        android:layout_toEndOf="@+id/errorValue"/>
 
     <TextView
         android:layout_width="wrap_content"

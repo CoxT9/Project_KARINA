@@ -10,11 +10,9 @@ import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 
 import group8.karina.R;
 import group8.karina.business.AccessTransactions;
-import group8.karina.objects.Transaction;
 
 public class TransactionByCategoryReportActivity extends PieChartReportActivityBase
 {

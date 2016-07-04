@@ -54,7 +54,7 @@ public class ExpenseList extends AppCompatActivity implements TransactionSortDia
 		});
 	}
 
-	public void addExpenseClicked(View view) { startActivity(new Intent(this, ExpenseActivity.class)); }
+	public void addExpenseClicked(View view) { startActivity(new Intent(this, ExpenseActivity.class)); finish(); }
 
 	public void sortButtonClicked(View view)
 	{

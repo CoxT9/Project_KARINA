@@ -56,8 +56,8 @@ public class CategoryList extends AppCompatActivity
 		{
 			c = categoryIterator.next();
 
-			//user id of 1 means the default user, which we dont want the user to be able to edit or remove
-			if(c.getCategoryID() == 1)
+			// Category id of 0 or 1 is the default income and expense categories
+			if(c.getCategoryID() == 0 || c.getCategoryID() == 1)
 			{
 				categoryIterator.remove();
 				break; //no need to look at everything else in the list

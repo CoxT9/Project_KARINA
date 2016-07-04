@@ -1,7 +1,6 @@
 package group8.karina.application;
 
 import group8.karina.persistence.DataAccessObject;
-import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
 
 public class DatabaseService
