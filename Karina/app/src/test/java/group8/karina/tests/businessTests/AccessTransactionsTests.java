@@ -68,7 +68,7 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 		Transaction actualTransaction = dataAccess.getTransactionByID(expectedTransaction.getTransactionID());
 
 		assertNotNull(actualTransaction);
-		assertEquals(null, actualTransaction.getDate());
+		assertEquals(expectedTransaction.getDate(), actualTransaction.getDate());
 		assertEquals(8, actualTransaction.getUserID());
 		assertEquals(true, actualTransaction.isExpense());
 		assertEquals(1.12, actualTransaction.getAmount(), 0);
