@@ -48,22 +48,24 @@ public class TransactionOverTimeReportActivity extends AppCompatActivity
 
 	private BarData createBarChartData()
 	{
-		List <Transaction> data = transactions.getAllTransactionsQuantified();
+		List<Transaction> data = transactions.getAllTransactionsQuantified();
 		ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 		List<String> titles = new ArrayList<String>();
+		BarDataSet dataSet;
+		BarData barData;
 
 		for (int i = 0; i < data.size(); i++)
 		{
-			entries.add(new BarEntry((float)data.get(i).getAmount(), i));
+			entries.add(new BarEntry((float) data.get(i).getAmount(), i));
 			titles.add(data.get(i).getDate().toString());
 
 		}
 
+		dataSet = new BarDataSet(entries, "");
+		dataSet.setValueTextSize(10f);
+		dataSet.setValueFormatter(new CurrencyFormatter());
 
-		BarDataSet dataSet = new BarDataSet(entries,"");
-		dataSet.setValueTextSize(17f);
-		BarData barData = new BarData(titles,dataSet);
-
+		barData = new BarData(titles, dataSet);
 
 		return barData;
 	}

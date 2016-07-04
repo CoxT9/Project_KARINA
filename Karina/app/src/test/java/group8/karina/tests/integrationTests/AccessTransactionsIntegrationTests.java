@@ -48,10 +48,9 @@ public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 
 	public void testGetTransactionsByTypeReturnsIncomeTransactions()
 	{
-		int expectedSize = 2; //from seed data
 		List<Transaction> incomeTransactions = accessTransactions.getTransactionsByType(false);
 
-		assertEquals(expectedSize, incomeTransactions.size());
+		assertEquals(2, incomeTransactions.size());
 
 		for (Transaction t : incomeTransactions)
 		{
@@ -80,6 +79,7 @@ public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 		double actualValue = accessTransactions.totalIncome();
 		assertEquals(151.34, actualValue, 0.0);
 	}
+
 	public void testGetExpensesReturnsTotalExpenses()
 	{
 		double actualValue = accessTransactions.totalExpenses();
@@ -88,52 +88,52 @@ public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 
 	public void testUnassignTransactionsByCategoryUnassigns()
 	{
-		int testCatID = 5;
-		Transaction testTransaction = new Transaction(null, 4, true, 5.5, testCatID, "test transaction");
+
+		Transaction testTransaction = new Transaction(null, 4, true, 5.5, 5, "test transaction");
 		testTransaction.setTransactionID(-50);
 
 		accessTransactions.insertTransaction(testTransaction);
 
-		accessTransactions.unassignTransactionsByCategoryID(testCatID);
+		accessTransactions.unassignTransactionsByCategoryID(5);
 		assertNotNull(dataAccess.getTransactionByID(-50));
 		assertEquals(dataAccess.getTransactionByID(-50).getCategoryID(), 1);
 	}
 
 	public void testDeleteTransactionsByCategoryDeletesAll()
 	{
-		int testCatID = 5;
-		Transaction testTransaction = new Transaction(null, 4, true, 5.5, testCatID, "test transaction");
+
+		Transaction testTransaction = new Transaction(null, 4, true, 5.5, 5, "test transaction");
 		testTransaction.setTransactionID(-50);
 
 		accessTransactions.insertTransaction(testTransaction);
 
-		accessTransactions.deleteTransactionsByCategoryID(testCatID);
+		accessTransactions.deleteTransactionsByCategoryID(5);
 		List<Transaction> finalTransactions = accessTransactions.getTransactionsByType(true);
 		assertTrue(!finalTransactions.contains(testTransaction));
 	}
 
 	public void testDeleteTransactionsByUserDeletesAll()
 	{
-		int testUserID = 4;
-		Transaction testTransaction = new Transaction(null, testUserID, true, 5.5,5 , "test transaction");
+
+		Transaction testTransaction = new Transaction(null, 4, true, 5.5, 5, "test transaction");
 		testTransaction.setTransactionID(-50);
 
 		accessTransactions.insertTransaction(testTransaction);
 
-		accessTransactions.deleteTransactionsByUserID(testUserID);
+		accessTransactions.deleteTransactionsByUserID(4);
 		List<Transaction> finalTransactions = accessTransactions.getTransactionsByType(true);
 		assertTrue(!finalTransactions.contains(testTransaction));
 	}
 
 	public void testUnassignTransactionsByUserUnassigns()
 	{
-		int testUserID = 4;
-		Transaction testTransaction = new Transaction(null,testUserID , true, 5.5, 5, "test transaction");
+
+		Transaction testTransaction = new Transaction(null, 4, true, 5.5, 5, "test transaction");
 		testTransaction.setTransactionID(15);
 
 		accessTransactions.insertTransaction(testTransaction);
 
-		accessTransactions.unassignTransactionsByUserID(testUserID);
+		accessTransactions.unassignTransactionsByUserID(4);
 		assertEquals(dataAccess.getTransactionByID(testTransaction.getTransactionID()).getUserID(), 1);
 	}
 }

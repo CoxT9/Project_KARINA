@@ -37,12 +37,14 @@ public abstract class PieChartReportActivityBase extends AppCompatActivity
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<String> categoryNames = new ArrayList<String>();
 
-		setEntriesAndCategories(entries,categoryNames);
+		setEntriesAndCategories(entries, categoryNames);
 
-		PieDataSet dataSet = new PieDataSet(entries,"");
-		dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+		PieDataSet dataSet = new PieDataSet(entries, "");
+		dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
 		dataSet.setValueTextSize(17f);
-		PieData pieData = new PieData(categoryNames,dataSet);
+		dataSet.setValueFormatter(new CurrencyFormatter());
+		;
+		PieData pieData = new PieData(categoryNames, dataSet);
 
 		return pieData;
 	}

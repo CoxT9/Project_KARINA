@@ -49,7 +49,7 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		actualUser = dataAccess.getUserByName(expectedUser.getUserName());
 
 		assertNotNull(actualUser);
-		assertEquals("bob",actualUser.getUserName());
+		assertEquals("bob", actualUser.getUserName());
 	}
 
 	public void testInsertUserThrowsExceptionWithNullUsername()
@@ -106,8 +106,7 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			dataAccess.insertUser(u);
-		}
-		catch(Exception e)
+		} catch (Exception e)
 		{
 			fail("This should not throw an exception");
 		}
@@ -126,8 +125,7 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			dataAccess.insertUser(u);
-		}
-		catch(Exception e)
+		} catch (Exception e)
 		{
 			fail("This should not throw an exception");
 		}
@@ -138,13 +136,12 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			accessUsers.updateUser(u);
-		}
-		catch (unfoundResourceException e)
+		} catch (unfoundResourceException e)
 		{
 			fail("This should not throw an exception");
 		}
 
-		assertEquals("Joe",dataAccess.getUserById(u.getUserID()).getUserName());
+		assertEquals("Joe", dataAccess.getUserById(u.getUserID()).getUserName());
 	}
 
 

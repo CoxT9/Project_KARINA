@@ -213,7 +213,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		}
 
 		assertEquals(test.getTransactionsByType(true).size(), 4);
-		oldTrans = new Transaction (new Date(), 3, true, 49.8, 3, "hi");
+		oldTrans = new Transaction(new Date(), 3, true, 49.8, 3, "hi");
 		test.insertTransaction(oldTrans);
 		assertEquals(test.getTransactionsByType(true).size(), 5);
 		test.unassignTransactionsByCategoryID(3);
@@ -222,7 +222,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		test.deleteTransactionsByUserID(3);
 
 		assertEquals(test.getTransactionsByType(true).size(), 3);
-		oldTrans = new Transaction (new Date(), 3, true, 49.8, 3, "hi");
+		oldTrans = new Transaction(new Date(), 3, true, 49.8, 3, "hi");
 		test.insertTransaction(oldTrans);
 		assertEquals(test.getTransactionsByType(true).size(), 4);
 		test.unassignTransactionsByUserID(3);

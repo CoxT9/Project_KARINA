@@ -23,6 +23,7 @@ public class AllIntegrationTests
 
 	private static void testIntegrationBusiness()
 	{
+
 		suite.addTestSuite(AccessUsersIntegrationTests.class);
 		suite.addTestSuite(AccessCategoriesIntegrationTests.class);
 		suite.addTestSuite(AccessTransactionsIntegrationTests.class);
