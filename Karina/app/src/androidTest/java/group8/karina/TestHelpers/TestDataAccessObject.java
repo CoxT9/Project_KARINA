@@ -45,7 +45,6 @@ public class TestDataAccessObject extends DataAccessObject
 		statement += "INSERT INTO TRANSACTIONS VALUES(4,'2016-06-11',12.75E0,TRUE,1,2,'blahblah')";
 		statement += "INSERT INTO TRANSACTIONS VALUES(5,'2016-06-11',100.0E0,FALSE,5,1,'blahblah')";
 		statement += "INSERT INTO TRANSACTIONS VALUES(6,'2016-06-11',51.34E0,FALSE,5,4,'blahblah')";
-
 		updateDatabase(statement);
 	}
 
