@@ -17,7 +17,7 @@ public class Transaction implements Serializable, Cloneable
 
 	public Transaction(Date newDate, int usr, Boolean exp, double amt, int cat, String com)
 	{
-		date = newDate;
+		date = (newDate == null)? new Date():newDate;
 		expense = exp;
 		amount = amt;
 		categoryID = cat;
@@ -27,7 +27,7 @@ public class Transaction implements Serializable, Cloneable
 	}
 	public Transaction(int id, Date newDate, int usr, Boolean exp, double amt, int cat, String com)
 	{
-		date = newDate;
+		date = (newDate == null)? new Date():newDate;
 		expense = exp;
 		amount = amt;
 		categoryID = cat;

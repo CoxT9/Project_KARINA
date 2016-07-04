@@ -26,7 +26,6 @@ public class CategoryTests extends junit.framework.TestCase
 
 	}
 
-
 	public void testEquality()
 	{
 

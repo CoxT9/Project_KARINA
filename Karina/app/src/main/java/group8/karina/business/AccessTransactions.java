@@ -145,4 +145,18 @@ public class AccessTransactions
 	{
 		return totalIncome() - totalExpenses();
 	}
+
+	public List<Transaction> getAllTransactionsQuantified()
+	{
+		List<Transaction> data = dataAccess.getOrderedTransactionsByDate();
+
+		for (int i = 0; i<data.size(); i++)
+		{
+			if (data.get(i).isExpense())
+			{
+				data.get(i).setAmount(data.get(i).getAmount() * -1);
+			}
+		}
+		return data;
+	}
 }

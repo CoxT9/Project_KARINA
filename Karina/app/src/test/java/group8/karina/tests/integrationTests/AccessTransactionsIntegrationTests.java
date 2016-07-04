@@ -1,4 +1,4 @@
-package group8.karina.tests.businessTests;
+package group8.karina.tests.integrationTests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,11 +8,11 @@ import java.util.List;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
-import group8.karina.persistence.DataAccessStub;
 import group8.karina.persistence.Database;
+import group8.karina.tests.testHelpers.TestDataAccessObject;
 
 
-public class AccessTransactionsTests extends junit.framework.TestCase
+public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 {
 	private Database dataAccess;
 	private AccessTransactions accessTransactions;
@@ -20,9 +20,9 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		Database testDb = new DataAccessStub("test");
-		testDb.open("test");
-		DatabaseService.setDatabase(testDb);
+		dataAccess = new TestDataAccessObject("db");
+		dataAccess.open("src/test/java/database/db");
+		DatabaseService.setDatabase(dataAccess);
 		dataAccess = DatabaseService.getDataAccess();
 		accessTransactions = new AccessTransactions();
 	}
@@ -35,10 +35,10 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 
 	public void testGetTransactionsByTypeReturnsExpenseTransactions()
 	{
-		int expectedSize = 4; //from seed data
+
 		List<Transaction> expenseTransactions = accessTransactions.getTransactionsByType(true);
 
-		assertEquals(expectedSize, expenseTransactions.size());
+		assertEquals(4, expenseTransactions.size());
 
 		for (Transaction t : expenseTransactions)
 		{
@@ -61,15 +61,14 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 
 	public void testInsertTransactionInsertsTransaction()
 	{
-		Transaction expectedTransaction = new Transaction(null, 8, true, 1.12, 1, "hello world");
-		expectedTransaction.setTransactionID(123);
+		Transaction expectedTransaction = new Transaction(null, 5, true, 1.12, 1, "hello world");
+		expectedTransaction.setTransactionID(-3);
 		accessTransactions.insertTransaction(expectedTransaction);
 
 		Transaction actualTransaction = dataAccess.getTransactionByID(expectedTransaction.getTransactionID());
 
 		assertNotNull(actualTransaction);
-		assertEquals(expectedTransaction.getDate(), actualTransaction.getDate());
-		assertEquals(8, actualTransaction.getUserID());
+		assertEquals(5, actualTransaction.getUserID());
 		assertEquals(true, actualTransaction.isExpense());
 		assertEquals(1.12, actualTransaction.getAmount(), 0);
 		assertEquals(1, actualTransaction.getCategoryID());
@@ -89,20 +88,21 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 
 	public void testUnassignTransactionsByCategoryUnassigns()
 	{
-		int testCatID = -10;
-		Transaction testTransaction = new Transaction(null, 8, true, 5.5, testCatID, "test transaction");
+		int testCatID = 5;
+		Transaction testTransaction = new Transaction(null, 4, true, 5.5, testCatID, "test transaction");
 		testTransaction.setTransactionID(-50);
 
 		accessTransactions.insertTransaction(testTransaction);
 
 		accessTransactions.unassignTransactionsByCategoryID(testCatID);
-		assertEquals(testTransaction.getCategoryID(), 1);
+		assertNotNull(dataAccess.getTransactionByID(-50));
+		assertEquals(dataAccess.getTransactionByID(-50).getCategoryID(), 1);
 	}
 
 	public void testDeleteTransactionsByCategoryDeletesAll()
 	{
-		int testCatID = -10;
-		Transaction testTransaction = new Transaction(null, 8, true, 5.5, testCatID, "test transaction");
+		int testCatID = 5;
+		Transaction testTransaction = new Transaction(null, 4, true, 5.5, testCatID, "test transaction");
 		testTransaction.setTransactionID(-50);
 
 		accessTransactions.insertTransaction(testTransaction);
@@ -114,8 +114,8 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 
 	public void testDeleteTransactionsByUserDeletesAll()
 	{
-		int testUserID = -10;
-		Transaction testTransaction = new Transaction(null, testUserID, true, 5.5,8 , "test transaction");
+		int testUserID = 4;
+		Transaction testTransaction = new Transaction(null, testUserID, true, 5.5,5 , "test transaction");
 		testTransaction.setTransactionID(-50);
 
 		accessTransactions.insertTransaction(testTransaction);
@@ -127,8 +127,8 @@ public class AccessTransactionsTests extends junit.framework.TestCase
 
 	public void testUnassignTransactionsByUserUnassigns()
 	{
-		int testUserID = -10;
-		Transaction testTransaction = new Transaction(null,testUserID , true, 5.5, 8, "test transaction");
+		int testUserID = 4;
+		Transaction testTransaction = new Transaction(null,testUserID , true, 5.5, 5, "test transaction");
 		testTransaction.setTransactionID(15);
 
 		accessTransactions.insertTransaction(testTransaction);
