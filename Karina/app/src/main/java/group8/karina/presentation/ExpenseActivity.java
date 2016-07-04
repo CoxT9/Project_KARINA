@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 import java.util.List;
 
-import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Category;
 
 
