@@ -21,10 +21,11 @@ public class AccessCategoriesIntegrationTests  extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
+
 		dataAccess = new TestDataAccessObject("db");
 		dataAccess.open("src/test/java/database/db");
 		DatabaseService.setDatabase(dataAccess);
-		//dataAccess = DatabaseService.getDataAccess();
+		dataAccess = DatabaseService.getDataAccess();
 		accessCategories = new AccessCategories();
 	}
 

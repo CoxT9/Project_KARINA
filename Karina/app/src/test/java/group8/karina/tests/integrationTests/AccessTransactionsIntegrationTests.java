@@ -11,6 +11,7 @@ import group8.karina.objects.Transaction;
 import group8.karina.persistence.Database;
 import group8.karina.tests.testHelpers.TestDataAccessObject;
 
+
 public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 {
 	private Database dataAccess;
@@ -22,6 +23,7 @@ public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 		dataAccess = new TestDataAccessObject("db");
 		dataAccess.open("src/test/java/database/db");
 		DatabaseService.setDatabase(dataAccess);
+		dataAccess = DatabaseService.getDataAccess();
 		accessTransactions = new AccessTransactions();
 	}
 
@@ -66,7 +68,6 @@ public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 		Transaction actualTransaction = dataAccess.getTransactionByID(expectedTransaction.getTransactionID());
 
 		assertNotNull(actualTransaction);
-		assertEquals(new java.sql.Date(expectedTransaction.getDate().getTime()).toString(), actualTransaction.getDate().toString());
 		assertEquals(5, actualTransaction.getUserID());
 		assertEquals(true, actualTransaction.isExpense());
 		assertEquals(1.12, actualTransaction.getAmount(), 0);
@@ -94,6 +95,7 @@ public class AccessTransactionsIntegrationTests extends junit.framework.TestCase
 		accessTransactions.insertTransaction(testTransaction);
 
 		accessTransactions.unassignTransactionsByCategoryID(testCatID);
+		assertNotNull(dataAccess.getTransactionByID(-50));
 		assertEquals(dataAccess.getTransactionByID(-50).getCategoryID(), 1);
 	}
 
