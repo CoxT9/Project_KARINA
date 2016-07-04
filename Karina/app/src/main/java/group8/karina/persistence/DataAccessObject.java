@@ -464,7 +464,6 @@ public class DataAccessObject implements Database
 
 	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
 	{
-		//TODO
 		Transaction transaction;
 		double transAmount;
 		String transComment;
@@ -541,7 +540,6 @@ public class DataAccessObject implements Database
 	}
 	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
 	{
-		//TODO
 		Transaction transaction;
 		double transAmount;
 		String transComment;
@@ -628,7 +626,6 @@ public class DataAccessObject implements Database
 		{
 			while (rs.next())
 			{
-				//TODO
 				categoryName = rs.getString("categoryName");
 				userName = rs.getString("userName");
 
