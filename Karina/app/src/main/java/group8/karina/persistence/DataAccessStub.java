@@ -117,7 +117,6 @@ public class DataAccessStub implements Database
 		{
 			throw new DuplicateEntryException("Duplicate detected when entering user into database");
 		}
-		currentUser.setUserID(nextUserID);
 		nextUserID++;
 		users.add(currentUser);
 	}
@@ -275,7 +274,10 @@ public class DataAccessStub implements Database
 	public void insertTransaction(Transaction currentTransaction)
 	{
 		// don't bother checking for duplicates
-		currentTransaction.setTransactionID(nextTransactionID);
+		if (currentTransaction.getTransactionID()== -1)
+		{
+			currentTransaction.setTransactionID(nextTransactionID);
+		}
 		transactions.add(currentTransaction);
 		nextTransactionID++;
 	}

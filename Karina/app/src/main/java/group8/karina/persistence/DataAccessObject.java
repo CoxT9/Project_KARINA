@@ -188,8 +188,15 @@ public class DataAccessObject implements Database
 
 		if (user == null)
 		{
-			updateDatabase("Insert into Users (UserName) Values('"+ currentUser.getUserName()+"')");
-
+			if (currentUser.getUserID() == -1)
+			{
+				cmdString="Insert into Users (UserName) Values('"+ currentUser.getUserName()+"')";
+			}
+			else
+			{
+				cmdString= "Insert into Users (UserID, UserName) Values("+ currentUser.getUserID()+" '"+ currentUser.getUserName()+"')";
+			}
+			updateDatabase(cmdString);
 		}
 		else
 		{
@@ -362,7 +369,16 @@ public class DataAccessObject implements Database
 
 		if (category == null)
 		{
-			cmdString = "Insert into Categories (categoryName, categoryIsExpense) Values('"+ currentCategory.getCategoryName()+ "', "+ currentCategory.isExpense()+")";
+			if (currentCategory.getCategoryID() == -1)
+			{
+				cmdString = "Insert into Categories (categoryName, categoryIsExpense) Values('"+ currentCategory.getCategoryName()+ "', "+ currentCategory.isExpense()+")";
+
+			}
+			else
+			{
+				cmdString = "Insert into Categories (categoryID, categoryName, categoryIsExpense) Values("+ currentCategory.getCategoryID()+"'"+ currentCategory.getCategoryName()+ "', "+ currentCategory.isExpense()+")";
+
+			}
 			updateDatabase(cmdString);
 
 		}
@@ -396,10 +412,19 @@ public class DataAccessObject implements Database
 
 	public void insertTransaction(Transaction currentTransaction)
 	{
+		if (currentTransaction.getTransactionID()== -1)
+		{
+			cmdString = "Insert into Transactions (transDate, transAmount, transIsExpense, transComment, transCategoryID, transUserID) Values('"
+					+ new java.sql.Date(currentTransaction.getDate().getTime())+"', "+ currentTransaction.getAmount()+ ", "+ currentTransaction.isExpense()+", '"
+					+ currentTransaction.getComments()+"', " +currentTransaction.getCategoryID()+", "+currentTransaction.getUserID()+")";
+		}
+		else
+		{
+			cmdString = "Insert into Transactions (transID, transDate, transAmount, transIsExpense, transComment, transCategoryID, transUserID) Values("
+					+ currentTransaction.getTransactionID()+", '" + new java.sql.Date(currentTransaction.getDate().getTime())+"', "+ currentTransaction.getAmount()+ ", "+ currentTransaction.isExpense()+", '"
+					+ currentTransaction.getComments()+"', " +currentTransaction.getCategoryID()+", "+currentTransaction.getUserID()+")";
+		}
 
-		cmdString = "Insert into Transactions (transDate, transAmount, transIsExpense, transComment, transCategoryID, transUserID) Values('"
-				+ new java.sql.Date(currentTransaction.getDate().getTime())+"', "+ currentTransaction.getAmount()+ ", "+ currentTransaction.isExpense()+", '"
-				+ currentTransaction.getComments()+"', " +currentTransaction.getCategoryID()+", "+currentTransaction.getUserID()+")";
 		updateDatabase(cmdString);
 	}
 	public List<Transaction> getTransactionsByType(boolean isExpense)
@@ -464,7 +489,6 @@ public class DataAccessObject implements Database
 
 	public List<Transaction> getOrderedTransactionsByDateAndType(boolean isExpense)
 	{
-		//TODO
 		Transaction transaction;
 		double transAmount;
 		String transComment;
@@ -541,7 +565,6 @@ public class DataAccessObject implements Database
 	}
 	public List<Transaction> getOrderedTransactionsByUser(boolean isExpense)
 	{
-		//TODO
 		Transaction transaction;
 		double transAmount;
 		String transComment;
@@ -628,7 +651,6 @@ public class DataAccessObject implements Database
 		{
 			while (rs.next())
 			{
-				//TODO
 				categoryName = rs.getString("categoryName");
 				userName = rs.getString("userName");
 

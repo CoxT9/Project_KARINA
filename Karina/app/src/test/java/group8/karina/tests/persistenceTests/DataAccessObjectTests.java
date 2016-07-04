@@ -1,21 +1,21 @@
 package group8.karina.tests.persistenceTests;
 
-import org.junit.Before;
 import org.junit.After;
-import org.junit.Test;
+import org.junit.Before;
 
-import java.util.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.fail;
-import static org.junit.Assert.*;
+import java.util.Date;
+import java.util.List;
 
-
-import group8.karina.Exceptions.*;
-import group8.karina.objects.*;
-import group8.karina.persistence.DataAccessObject;
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.Exceptions.DuplicateEntryException;
+import group8.karina.Exceptions.unfoundResourceException;
+import group8.karina.objects.Category;
+import group8.karina.objects.Transaction;
+import group8.karina.objects.User;
+import group8.karina.tests.testHelpers.TestDataAccessObject;
 import group8.karina.persistence.Database;
+
+import static org.junit.Assert.assertNotEquals;
+
 
 public class DataAccessObjectTests extends junit.framework.TestCase
 {
@@ -24,8 +24,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-		test = new DataAccessObject("db");
-		test = new DataAccessStub("test");
+		test = new TestDataAccessObject("db");
 		test.open("src/test/java/database/db");
 	}
 
@@ -39,9 +38,9 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 	{
 		List<User> users = test.getAllUsers();
 		assertEquals(users.get(1).getUserName(), "Jon");
-		assertEquals(users.get(2).getUserName(), "Bran");
+		assertEquals(users.get(2).getUserName(), "Aria");
 		assertEquals(test.getUserByName("Default").getUserID(), 1);
-		assertEquals(test.getUserById(4).getUserName(), "Aria");
+		assertEquals(test.getUserById(4).getUserName(), "Bran");
 
 		assertNull(test.getUserById(0));
 		assertNull(test.getUserByName("Jorah the explorah"));
@@ -113,12 +112,12 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 	public void testGetCategories()
 	{
 		List<Category> cat = test.getAllCategories();
-		assertEquals(cat.get(2).getCategoryName(), "weapons");
-		assertEquals(cat.get(3).getCategoryName(), "entertainment");
+		assertEquals(cat.get(2).getCategoryName(), "groceries");
+		assertEquals(cat.get(3).getCategoryName(), "weapons");
 		assertEquals(test.getCategoryByNameAndIsExpense("Default", true).getCategoryID(), 1);
 		assertEquals(test.getCategoryById(4).getCategoryName(), "entertainment");
 		cat = test.getIncomeCategories();
-		assertEquals(cat.get(0).getCategoryName(), "income");
+		assertEquals(cat.get(0).getCategoryName(), "Default");
 		assertEquals(cat.size(), 2);
 		cat = test.getExpenseCategories();
 		assertEquals(cat.get(0).getCategoryName(), "Default");
@@ -174,6 +173,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 	public void testInsertDeleteTransactions()
 	{
 		Transaction newTrans = new Transaction(new Date(), 1, true, 39.95, 1, "comment");
+
 		assertEquals(test.getTransactionsByType(true).size(), 4);
 		test.insertTransaction(newTrans);
 		assertEquals(test.getTransactionsByType(true).size(), 5);
@@ -217,8 +217,8 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		test.insertTransaction(oldTrans);
 		assertEquals(test.getTransactionsByType(true).size(), 5);
 		test.unassignTransactionsByCategoryID(3);
-		assertEquals(test.getTransactionsByType(true).get(2).getCategoryID(), 1);
-		assertEquals(test.getTransactionsByType(true).get(2).getUserID(), 2);
+		assertEquals(test.getTransactionsByType(true).get(2).getCategoryID(), 2);
+		assertEquals(test.getTransactionsByType(true).get(2).getUserID(), 3);
 		test.deleteTransactionsByUserID(3);
 
 		assertEquals(test.getTransactionsByType(true).size(), 3);
@@ -226,7 +226,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		test.insertTransaction(oldTrans);
 		assertEquals(test.getTransactionsByType(true).size(), 4);
 		test.unassignTransactionsByUserID(3);
-		assertEquals(test.getTransactionsByType(true).get(2).getUserID(), 1);
+		assertEquals(test.getTransactionsByType(true).get(2).getUserID(), 2);
 		assertEquals(test.getTransactionsByType(true).get(2).getCategoryID(), 1);
 		test.deleteTransactionsByCategoryID(3);
 		assertEquals(test.getTransactionsByType(true).size(), 3);
