@@ -13,7 +13,7 @@ import group8.karina.objects.Category;
 import group8.karina.persistence.Database;
 import group8.karina.tests.testHelpers.TestDataAccessObject;
 
-public class AccessCategoriesIntegrationTests  extends junit.framework.TestCase
+public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 {
 	AccessCategories accessCategories;
 	Database dataAccess;
@@ -51,8 +51,8 @@ public class AccessCategoriesIntegrationTests  extends junit.framework.TestCase
 		actualCategory = dataAccess.getCategoryByNameAndIsExpense(expectedCategory.getCategoryName(), expectedCategory.isExpense());
 
 		assertNotNull(actualCategory);
-		assertEquals("definitelynotinthedatabase",actualCategory.getCategoryName());
-		assertEquals(true,actualCategory.isExpense());
+		assertEquals("definitelynotinthedatabase", actualCategory.getCategoryName());
+		assertEquals(true, actualCategory.isExpense());
 
 	}
 
@@ -110,8 +110,7 @@ public class AccessCategoriesIntegrationTests  extends junit.framework.TestCase
 		try
 		{
 			dataAccess.insertCategory(c);
-		}
-		catch(Exception e)
+		} catch (Exception e)
 		{
 			fail("This should not throw an exception");
 		}
@@ -125,30 +124,27 @@ public class AccessCategoriesIntegrationTests  extends junit.framework.TestCase
 	public void testUpdateCategoryUpdatesCategory()
 	{
 		Category c = new Category("Stuff", true);
-		String expectedCategoryName = "Things";
 
 		try
 		{
 			dataAccess.insertCategory(c);
-		}
-		catch(Exception e)
+		} catch (Exception e)
 		{
 			fail("This should not throw an exception");
 		}
 
 		c = dataAccess.getCategoryByNameAndIsExpense("Stuff", true);
-		c.setCategoryName(expectedCategoryName);
+		c.setCategoryName("Things");
 
 		try
 		{
 			accessCategories.updateCategory(c);
-		}
-		catch (unfoundResourceException e)
+		} catch (unfoundResourceException e)
 		{
 			fail("This should not throw an exception");
 		}
 
-		assertEquals("Things",dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
+		assertEquals("Things", dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
 	}
 
 }
