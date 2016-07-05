@@ -138,7 +138,7 @@ public class AddEditDeleteTest extends ActivityInstrumentationTestCase2<MainActi
         //Wait for activity: 'group8.karina.presentation.CategoryList'
 		assertTrue("group8.karina.presentation.CategoryList is not found!", solo.waitForActivity(group8.karina.presentation.CategoryList.class));
         //Click on Presents
-		solo.clickOnView(solo.getView(android.R.id.text1, 2));
+		solo.clickOnView(solo.getView(android.R.id.text1, 1));
         //Wait for activity: 'group8.karina.presentation.CategoryActivity'
 		assertTrue("group8.karina.presentation.CategoryActivity is not found!", solo.waitForActivity(group8.karina.presentation.CategoryActivity.class));
         //Click on Presents
@@ -257,10 +257,6 @@ public class AddEditDeleteTest extends ActivityInstrumentationTestCase2<MainActi
 		assertTrue("group8.karina.presentation.ExpenseList is not found!", solo.waitForActivity(group8.karina.presentation.ExpenseList.class));
         //Press menu back key
 		solo.goBack();
-        //Press menu back key
-		solo.goBack();
-		//Press menu back key
-		solo.goBack();
         //Click on Income
 		solo.clickOnView(solo.getView(group8.karina.R.id.incomeListButton));
         //Wait for activity: 'group8.karina.presentation.IncomeList'
@@ -367,7 +363,7 @@ public class AddEditDeleteTest extends ActivityInstrumentationTestCase2<MainActi
         //Wait for activity: 'group8.karina.presentation.CategoryList'
 		assertTrue("group8.karina.presentation.CategoryList is not found!", solo.waitForActivity(group8.karina.presentation.CategoryList.class));
         //Click on Food
-		solo.clickOnView(solo.getView(android.R.id.text1, 6));
+		solo.clickOnView(solo.getView(android.R.id.text1, 5));
         //Wait for activity: 'group8.karina.presentation.CategoryActivity'
 		assertTrue("group8.karina.presentation.CategoryActivity is not found!", solo.waitForActivity(group8.karina.presentation.CategoryActivity.class));
         //Click on Delete
@@ -389,7 +385,7 @@ public class AddEditDeleteTest extends ActivityInstrumentationTestCase2<MainActi
         //Wait for activity: 'group8.karina.presentation.CategoryList'
 		assertTrue("group8.karina.presentation.CategoryList is not found!", solo.waitForActivity(group8.karina.presentation.CategoryList.class));
         //Click on Gifts
-		solo.clickOnView(solo.getView(android.R.id.text1, 2));
+		solo.clickOnView(solo.getView(android.R.id.text1, 1));
         //Wait for activity: 'group8.karina.presentation.CategoryActivity'
 		assertTrue("group8.karina.presentation.CategoryActivity is not found!", solo.waitForActivity(group8.karina.presentation.CategoryActivity.class));
         //Click on Delete
