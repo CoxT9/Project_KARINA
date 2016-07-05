@@ -1,4 +1,4 @@
-package group8.karina.tests.integrationTests;
+package group8.karina.tests.integrationTests.businessIntegrationTests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,8 +23,8 @@ public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 	{
 
 		dataAccess = new TestDataAccessObject("db");
-		dataAccess.open("src/test/java/database/db");
 		DatabaseService.setDatabase(dataAccess);
+		DatabaseService.setDBPathName("src/main/assets/db/");
 		dataAccess = DatabaseService.getDataAccess();
 		accessCategories = new AccessCategories();
 	}

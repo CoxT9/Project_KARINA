@@ -1,4 +1,4 @@
-package group8.karina.tests.businessTests;
+package group8.karina.tests.unitTests.businessTests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.tests.testHelpers.DataAccessStub;
 import group8.karina.persistence.Database;
 
 public class AccessUsersTests extends junit.framework.TestCase
