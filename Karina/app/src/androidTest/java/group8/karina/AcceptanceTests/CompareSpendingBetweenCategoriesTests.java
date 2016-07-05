@@ -73,7 +73,7 @@ public class CompareSpendingBetweenCategoriesTests extends ActivityInstrumentati
         //Wait for activity: 'group8.karina.presentation.CategoryList'
 		assertTrue("group8.karina.presentation.CategoryList is not found!", solo.waitForActivity(group8.karina.presentation.CategoryList.class));
         //Click on Car
-		solo.clickOnView(solo.getView(android.R.id.text1, 5));
+		solo.clickOnView(solo.getView(android.R.id.text1, 4));
         //Wait for activity: 'group8.karina.presentation.CategoryActivity'
 		assertTrue("group8.karina.presentation.CategoryActivity is not found!", solo.waitForActivity(group8.karina.presentation.CategoryActivity.class));
         //Press menu back key
