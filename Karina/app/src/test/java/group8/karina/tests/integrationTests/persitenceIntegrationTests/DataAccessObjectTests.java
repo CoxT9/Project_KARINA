@@ -28,6 +28,7 @@ public class DataAccessObjectTests extends junit.framework.TestCase
 		dataAccess = new TestDataAccessObject("db");
 		DatabaseService.setDatabase(dataAccess);
 		DatabaseService.setDBPathName("src/main/assets/db/");
+		DatabaseService.openDataAccess();
 		dataAccess = DatabaseService.getDataAccess();
 	}
 
