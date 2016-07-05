@@ -20,7 +20,6 @@ public class AllUnitTests
 		suite = new TestSuite("All unit tests");
 		testObjects();
 		testBusiness();
-		testPersistance();
 
 		return suite;
 	}
@@ -39,8 +38,4 @@ public class AllUnitTests
 		suite.addTestSuite(AccessTransactionsTests.class);
 	}
 
-	private static void testPersistance()
-	{
-		suite.addTestSuite(DataAccessObjectTests.class);
-	}
 }
