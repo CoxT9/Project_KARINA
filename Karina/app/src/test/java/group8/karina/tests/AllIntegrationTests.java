@@ -3,10 +3,10 @@ package group8.karina.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import group8.karina.tests.integrationTests.AccessCategoriesIntegrationTests;
-import group8.karina.tests.integrationTests.AccessTransactionsIntegrationTests;
-import group8.karina.tests.integrationTests.AccessUsersIntegrationTests;
-import group8.karina.tests.persistenceTests.DataAccessObjectTests;
+import group8.karina.tests.integrationTests.businessIntegrationTests.AccessCategoriesIntegrationTests;
+import group8.karina.tests.integrationTests.businessIntegrationTests.AccessTransactionsIntegrationTests;
+import group8.karina.tests.integrationTests.businessIntegrationTests.AccessUsersIntegrationTests;
+import group8.karina.tests.integrationTests.persistenceIntegrationTests.DataAccessObjectTests;
 
 public class AllIntegrationTests
 {
@@ -23,7 +23,6 @@ public class AllIntegrationTests
 
 	private static void testIntegrationBusiness()
 	{
-
 		suite.addTestSuite(AccessUsersIntegrationTests.class);
 		suite.addTestSuite(AccessCategoriesIntegrationTests.class);
 		suite.addTestSuite(AccessTransactionsIntegrationTests.class);
