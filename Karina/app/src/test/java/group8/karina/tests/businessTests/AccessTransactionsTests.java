@@ -8,9 +8,8 @@ import java.util.List;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.tests.testHelpers.DataAccessStub;
 import group8.karina.persistence.Database;
-
 
 public class AccessTransactionsTests extends junit.framework.TestCase
 {

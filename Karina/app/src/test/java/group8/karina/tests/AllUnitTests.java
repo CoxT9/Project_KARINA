@@ -3,14 +3,13 @@ package group8.karina.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import group8.karina.persistence.DataAccessObject;
 import group8.karina.tests.businessTests.AccessCategoriesTests;
 import group8.karina.tests.businessTests.AccessTransactionsTests;
 import group8.karina.tests.businessTests.AccessUsersTests;
 import group8.karina.tests.objectsTests.CategoryTests;
 import group8.karina.tests.objectsTests.TransactionTests;
 import group8.karina.tests.objectsTests.UserTests;
-import group8.karina.tests.persistenceTests.DataAccessObjectTests;
+import group8.karina.tests.integrationTests.persistenceIntegrationTests.DataAccessObjectTests;
 
 public class AllUnitTests
 {
@@ -21,7 +20,6 @@ public class AllUnitTests
 		suite = new TestSuite("All unit tests");
 		testObjects();
 		testBusiness();
-		testPersistance();
 
 		return suite;
 	}
@@ -40,8 +38,4 @@ public class AllUnitTests
 		suite.addTestSuite(AccessTransactionsTests.class);
 	}
 
-	private static void testPersistance()
-	{
-		suite.addTestSuite(DataAccessObjectTests.class);
-	}
 }
