@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 public class CompareSpendingBetweenCategoriesTests extends ActivityInstrumentationTestCase2<MainActivity> {
   	private Solo solo;
   	
