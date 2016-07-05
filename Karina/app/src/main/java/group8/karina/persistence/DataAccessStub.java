@@ -1,4 +1,4 @@
-package group8.karina.tests.testHelpers;
+package group8.karina.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.objects.Category;
 import group8.karina.objects.Transaction;
 import group8.karina.objects.User;
-import group8.karina.persistence.Database;
 
 
 public class DataAccessStub implements Database
