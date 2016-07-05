@@ -1,7 +1,6 @@
-package group8.karina.tests.objectsTests;
+package group8.karina.tests.unitTests.objectsTests;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

@@ -1,4 +1,4 @@
-package group8.karina.tests.integrationTests;
+package group8.karina.tests.unitTests.businessTests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,10 +10,10 @@ import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessCategories;
 import group8.karina.objects.Category;
+import group8.karina.tests.testHelpers.DataAccessStub;
 import group8.karina.persistence.Database;
-import group8.karina.tests.testHelpers.TestDataAccessObject;
 
-public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
+public class AccessCategoriesTests extends junit.framework.TestCase
 {
 	AccessCategories accessCategories;
 	Database dataAccess;
@@ -21,10 +21,9 @@ public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 	@Before
 	public void setUp()
 	{
-
-		dataAccess = new TestDataAccessObject("db");
-		dataAccess.open("src/test/java/database/db");
-		DatabaseService.setDatabase(dataAccess);
+		Database testDb = new DataAccessStub("test");
+		testDb.open("test");
+		DatabaseService.setDatabase(testDb);
 		dataAccess = DatabaseService.getDataAccess();
 		accessCategories = new AccessCategories();
 	}
@@ -51,8 +50,8 @@ public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 		actualCategory = dataAccess.getCategoryByNameAndIsExpense(expectedCategory.getCategoryName(), expectedCategory.isExpense());
 
 		assertNotNull(actualCategory);
-		assertEquals("definitelynotinthedatabase", actualCategory.getCategoryName());
-		assertEquals(true, actualCategory.isExpense());
+		assertEquals("definitelynotinthedatabase",actualCategory.getCategoryName());
+		assertEquals(true,actualCategory.isExpense());
 
 	}
 
@@ -100,7 +99,7 @@ public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 
 		List<Category> categories = accessCategories.getAllCategories();
 
-		assertEquals(7, categories.size()); //this is 6 because we have some seed data in the database and our inserted data
+		assertEquals(7, categories.size()); //this is 7 because we have some seed data in the database and our inserted data
 	}
 
 	public void testDeleteCategoryByIdDeletes()
@@ -110,7 +109,8 @@ public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			dataAccess.insertCategory(c);
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			fail("This should not throw an exception");
 		}
@@ -124,27 +124,30 @@ public class AccessCategoriesIntegrationTests extends junit.framework.TestCase
 	public void testUpdateCategoryUpdatesCategory()
 	{
 		Category c = new Category("Stuff", true);
+		String expectedCategoryName = "Things";
 
 		try
 		{
 			dataAccess.insertCategory(c);
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			fail("This should not throw an exception");
 		}
 
 		c = dataAccess.getCategoryByNameAndIsExpense("Stuff", true);
-		c.setCategoryName("Things");
+		c.setCategoryName(expectedCategoryName);
 
 		try
 		{
 			accessCategories.updateCategory(c);
-		} catch (unfoundResourceException e)
+		}
+		catch (unfoundResourceException e)
 		{
 			fail("This should not throw an exception");
 		}
 
-		assertEquals("Things", dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
+		assertEquals("Things",dataAccess.getCategoryById(c.getCategoryID()).getCategoryName());
 	}
 
 }

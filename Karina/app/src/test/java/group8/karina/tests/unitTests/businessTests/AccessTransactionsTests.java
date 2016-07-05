@@ -1,4 +1,4 @@
-package group8.karina.tests.businessTests;
+package group8.karina.tests.unitTests.businessTests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import java.util.List;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessTransactions;
 import group8.karina.objects.Transaction;
-import group8.karina.persistence.DataAccessStub;
+import group8.karina.tests.testHelpers.DataAccessStub;
 import group8.karina.persistence.Database;
 
 

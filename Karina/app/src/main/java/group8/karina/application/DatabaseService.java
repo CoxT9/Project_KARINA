@@ -6,7 +6,7 @@ import group8.karina.persistence.Database;
 public class DatabaseService
 {
 	public static String dbName = "database5";
-	public static String dbPathName = "database/";
+	public static String dbPathName="database/";
 	private static Database dataAccessService = null;
 
 	public static Database createDataAccess()

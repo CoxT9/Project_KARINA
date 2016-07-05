@@ -1,4 +1,4 @@
-package group8.karina.tests.integrationTests;
+package group8.karina.tests.unitTests.businessTests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,20 +10,21 @@ import group8.karina.Exceptions.unfoundResourceException;
 import group8.karina.application.DatabaseService;
 import group8.karina.business.AccessUsers;
 import group8.karina.objects.User;
+import group8.karina.tests.testHelpers.DataAccessStub;
 import group8.karina.persistence.Database;
-import group8.karina.tests.testHelpers.TestDataAccessObject;
 
-public class AccessUsersIntegrationTests extends junit.framework.TestCase
+public class AccessUsersTests extends junit.framework.TestCase
 {
-	private Database dataAccess;
-	private AccessUsers accessUsers;
+	AccessUsers accessUsers;
+	Database dataAccess;
 
 	@Before
 	public void setUp()
 	{
-		dataAccess = new TestDataAccessObject("db");
-		dataAccess.open("src/test/java/database/db");
-		DatabaseService.setDatabase(dataAccess);
+		Database testDb = new DataAccessStub("test");
+		testDb.open("test");
+		DatabaseService.setDatabase(testDb);
+		dataAccess = DatabaseService.getDataAccess();
 		accessUsers = new AccessUsers();
 	}
 
@@ -49,7 +50,7 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		actualUser = dataAccess.getUserByName(expectedUser.getUserName());
 
 		assertNotNull(actualUser);
-		assertEquals("bob", actualUser.getUserName());
+		assertEquals("bob",actualUser.getUserName());
 	}
 
 	public void testInsertUserThrowsExceptionWithNullUsername()
@@ -106,7 +107,8 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			dataAccess.insertUser(u);
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			fail("This should not throw an exception");
 		}
@@ -125,7 +127,8 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			dataAccess.insertUser(u);
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			fail("This should not throw an exception");
 		}
@@ -136,12 +139,13 @@ public class AccessUsersIntegrationTests extends junit.framework.TestCase
 		try
 		{
 			accessUsers.updateUser(u);
-		} catch (unfoundResourceException e)
+		}
+		catch (unfoundResourceException e)
 		{
 			fail("This should not throw an exception");
 		}
 
-		assertEquals("Joe", dataAccess.getUserById(u.getUserID()).getUserName());
+		assertEquals("Joe",dataAccess.getUserById(u.getUserID()).getUserName());
 	}
 
 

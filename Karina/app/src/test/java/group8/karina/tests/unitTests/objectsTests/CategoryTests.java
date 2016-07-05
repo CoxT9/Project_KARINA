@@ -1,4 +1,4 @@
-package group8.karina.tests.objectsTests;
+package group8.karina.tests.unitTests.objectsTests;
 
 import org.junit.Before;
 
